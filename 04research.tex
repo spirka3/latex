@@ -1,0 +1,96 @@
+\chapter{Realizácia riešenia}\label{chap:research}
+
+V kapitole je opísaný priebeh realizácie praktickej časti diplomovej práce. Postup sa vo veľkej miere držal navrhnutého riešenia, avšak počas vývoja došlo k malým doplnkom. Na prácu s výpočtovo zložitými operáciami sme mali k dispozícii školský server, ktorý má dve grafické karty NVIDIA GeForce RTX 3060, každá s 12 GB pamäte, CPU AMD Ryzen 9 5900X a 64 GB RAM. Na prihlásenia a vykonávanie príkazov na vzdialenom počítači bol použitý štandardný sieťový protokol. Prístup k serveru je zdieľaný medzi úzkou skupinou ľudí, preto trebalo brať ohľad aj na druhých používateľov.
+
+\section{Experimentálne meranie}
+
+Pred začiatkom merania sme sa oboznámili s odporúčaniami uvedenými v používateľskej príručke a vyskúšali testovaciu nahrávku. Počas jedného týždňa sa na meraní zúčastnilo osem ľudí. Všetci zúčastnení boli z okolia fakulty a jazdu absolvovali na svojom aute bez poskytnutia finančnej odmeny. 
+
+V tabuľke \ref{table:1} sú uložené informácie k jednotlivým účastníkom. Dvaja z nich majú mierne poškodenie zraku do diaľky a počas jazdy nemali nasadené dioptrické okuliare a ani šošovky. Podľa ich subjektívneho názoru to jazdu nijak významne neovplyvnilo. Jedna polovica účastníkov poznala celú trasu a druhá len určitú časť. V každom prípade bol vodič pred jazdou oboznámený, ktorou trasou pôjde a zároveň bol počas jazdy navigovaný spolujazdcom. Väčšia časť ľudí poznala čo je predmetom merania. 
+
+V nahrávacom softvéry so po dokončení nahrávania zobrazila informácia o tom, pre akú percentuálnu časť záznamu boli zaznamenané pohľady. Nízke percento mohlo byť zapríčinené sveteľnými podmienkami a slabšou kalibráciou. Priemerná nameraná hodnota bola 63,6\%. Okuliare sú určené predovšetkým na interný priestor a pre vonkajší sa odporúča použiť nástavec na tienenie, ktorý sme nemali k dispozícii.
+
+% todo musí mať každý obrázok použitú referenciu v texte?
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ |c c c c c|  }
+\hline
+meno & dioptrie & pozná cestu & pozná projekt & meranie \\
+\hline
+Dávid & - & áno & áno & 69\% \\
+Matúš & 0.5 & časť & áno & 70\% \\
+Viktor & 0.5 & časť & áno & 63\% \\
+Zuzana & - & áno & áno & 33\% \\
+Lukáš & - & časť & nie & 72\% \\
+Jaroslav & - & áno & nie & 69\% \\
+Zdenka & - & áno & nie & 45\% \\
+Zuzana & - & časť & áno & 88\% \\
+\hline
+\end{tabular}
+\caption{Informácie o účastníkoch experimentálneho merania.}
+\label{table:1}
+\end{table}
+
+\section{Tobii Pro Lab}
+
+Spoločnosť Tobii okrem hardvéru dodáva aj softvér na analýzu záznamu, čím ponúka kompletné riešenie pre výskum. Tobii Pro Lab poskytuje grafické používateľské rozhranie a špeciálne softvérové funkcie, ktoré pomáhajú s analýzou pohľadov. V zásade podporuje dva spôsoby, podľa ktorých sa dajú získať analytické údaje. 
+
+Prvým spôsobom je označenie oblasti, na ktorom sa nachádza objekt záujmu. Ku zvýšeniu efektivity má pomôcť automatické označovanie oblastí, kde stačí označiť objekt na prvej a na poslednej snímke, na ktorej bol viditeľný. Na základe tejto informácie a predpokladaným pohybom objektu, softvér vypočíta oblasť pre všetky zvyšné snímky v sekvencii. Bohužiaľ v našej práci sa to neukázalo ako dobré riešenie, pretože pohyb reklamy v nahrávkach nebol jednoduchý. Takmer na žiadnej snímke medzi začiatkom a koncom nebola oblasť reklamy označená správne. 
+
+Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom je sledovaný objekt. Potom ako sa vyberie časový interval, v ktorom sa očakáva výskyt sledovaného objektu, softvér automatický získa výstup toho, na ktorú časť objektu sa človek pozeral. Toto riešenie takisto zlyhalo, nakoľko softvér ani po viacerých pokusoch nedokázal priradiť k obrázku žiadne pohľady. Keďže dodávaný softvér pre náš prípad nedokázal pomôcť s analýzou, potrebovali sme vytvoriť vlastný systém, ktorý dokáže analyzovať pohľad na reklamy z videa.
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/02/tobiiprolab3.jpg}
+    \caption{TODO, hľa softvér, nahradiť obrázkom, kde je zle vypočítaná oblasť pre reklamu.}
+    \label{img:lab}
+\end{figure}
+
+% tensorboard https://medium.com/mlearning-ai/remote-tensorboard-viewing-on-your-local-browser-b0dc5c5a634a     and     https://pytorch.org/docs/stable/tensorboard.html
+
+\section{Detektor reklám}
+
+Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a importovať do projektu priamo ako knižnica pre Python. Spolu s ňou sa do prostredia nainštalujú ďalšie dôležité knižnice ako matplotlib, opencv-python, scipy, torch, torchvision a iné. Trénovanie sa spúšťa pomocou jedného príkazu, kde argumenty špecifikujú hodnoty pre parametre. Potrebné je nastaviť tri parametre: zdroj dát, počiatočné váhy a počet epoch. Zdroj bol je v našom prípade priečinok uložený na disku, ale ako zdroj sa dá použiť aj živý záznam z kamery alebo odkaz na video zverejnené na internete. Počiatočné váhy sa dajú stiahnuť z oficiálnej dokumentácie pre YOLOv8. Na výber je 5 modelov, ktoré sa líšia počtom parametrov, rýchlosťou a presnosťou. Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecného odporúčania pre prvý tréning.
+
+\subsubsection{Dataset}
+
+Mapillary Vistat má anotácie uložené vo formáte, ktorý nie je kompatibilný s formátom pre YOLO. Počas úpravy formátu sme zároveň vynechali obrázky, ktoré neobsahovali reklamu, čím sa počet obrázkov znížil na približne 20000 obrázkov. Pri prvom tréningu sme si všimli, že veľká chybovosť nastáva práve pri najmenšie označených reklamách. Najmenšie reklamy boli označené v takej diaľke, že by sa nedalo povedať, či sa vodič skutočne pozeral na reklamu, alebo na niečo iné. Preto sme z pôvodných dát vytvorili druhú verziu, kde sme ponechali len také obrázky, že reklamná plocha tvorí aspoň 0,1\% z obrázka. Dataset sa tým zmenšil takmer o polovicu. 
+
+Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 350 obrázkov s anotáciami reklám. Obrázky pochádzali z videí nahratých cez eyetracker, ktoré boli mimo experimentálnej trasy. Všetky tri verzie dát sme rozdelili na tri časti, v pomere 8:1:1 pre tréningovú, validačnú a testovaciu sadu. 
+
+% TODO skúsiť používať čo najviac slovenskú terminológiu
+\section{Sledovanie reklám}
+
+Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár, v ktorom je možné vyskúšať viaceré sledovacie metódy. Vstupné video sa spracováva postupne snímok po snímku. Zo snímky sa pomocou modelu získajú detekcie, ktoré sú potom posielané na do zvolenej sledovacej metódy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou.
+
+Každá metóda má konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre podobnosť objektov z predchádzajúcich snímok. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie sekvencie a niekoľko ďalších špecifických pre jednotlivé metódy. Pre StrongSort je to napríklad maximálne vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
+
+% todo zjednotiť slová video - nahrávka - experiment - záznam
+\subsection{Pomocné dáta a model}
+
+Na priblíženie sa ku skutočne pravdivým údajom sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každú druhý obrázok, ktorých spolu bolo takmer tisíc. 
+
+Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady reklamu v každom videu.
+
+Metódu s vysokou citlivosťou sme použili na detekciu reklám z každej nahrávky z merania. Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video. 
+
+Dosiahli sme tým korektúru oboch chýb a získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referencie reklamy, x a y súradnice ľavého horného rohu reklamy a pre rozmery reklamy.
+
+\section{Významnosť reklám}
+% todo pozrieť skloňovanie pre snímku - ženský rod
+Po tom čo sa nám podarilo získať informácie, na ktorých snímkach sa nachádza reklama, sme mohli začať analyzovať pohľady vodiča. V tomto bode sme zistili, že pohľady boli zaznamenané v počte 50 snímok za sekundu, kým video bolo nahrávané v počte 25 snímok za sekundu. To znamená, že pokiaľ bol pohľad zaznamenaná bez straty mali sme pre každú snímku z videa dva pohľady. Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, či dokonca oba pohľady. Pokiaľ sme pre snímok zaznamenali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou. Predikciu sme počítali pomocou dvoch predchádzajúcich pohľadov. Pre výpadok pohľadu na viac ako dve snímky sme predikciu nepočítali a snímok sme z analýzy vynechali.
+
+\section{Klasifikácia reklamy}
+% optimalizácia hyperparametre, Under/over-fitting
+% augmentacia pred trenovanim, pri testovani (Test time augmentation)
+% porovnanie precision a recall pre detector vs tracker
+
+% can object tracking improve object detection?
+
+% Yes, object tracking can improve object detection. Object tracking can be used to refine the object detection process by providing additional information about the location and movement of objects in a video stream. By tracking objects across multiple frames, object tracking algorithms can help to reduce false positives and false negatives in the object detection process. For example, if an object detection algorithm detects an object in one frame but fails to detect it in the next frame, an object tracking algorithm can use the object's previous position and movement to predict its location in the current frame. This can help to reduce the number of false negatives and improve the accuracy of the object detection algorithm. Additionally, object tracking can be used to filter out false positives in the object detection process. By tracking an object across multiple frames, an object tracking algorithm can verify that the object is indeed present and is not just a false positive detection. This can help to improve the precision of the object detection algorithm. Overall, object tracking and object detection are complementary techniques that can be used together to improve the accuracy and robustness of computer vision systems.
+
+
+% porovnať chybosť kategorizácie, kebyže sa to počíta zo standardného modelu
+
+% porovnať chybosť klasifikácie, kebyže sa to počíta zo standardného modelu
