@@ -36,9 +36,9 @@
 \contentsline {section}{\numberline {4.4}Sledovanie reklám}{25}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{26}{subsection.4.4.1}%
 \contentsline {section}{\numberline {4.5}Významnosť reklám}{27}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{27}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Vyhodnotenie získaných výsledkov}{28}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Detekcia}{28}{section.5.1}%
-\contentsline {subsubsection}{Testovanie modelov}{29}{section*.32}%
-\contentsline {section}{\numberline {5.2}Sledovanie}{29}{section.5.2}%
-\contentsline {subsubsection}{Testovanie sledovania}{30}{section*.34}%
+\contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{28}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Vyhodnotenie získaných výsledkov}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Detekcia}{29}{section.5.1}%
+\contentsline {subsubsection}{Testovanie modelov}{30}{section*.33}%
+\contentsline {section}{\numberline {5.2}Sledovanie}{30}{section.5.2}%
+\contentsline {subsubsection}{Testovanie sledovania}{31}{section*.35}%
