@@ -133,11 +133,20 @@ Obrázok \ref{img:lenet} zobrazuje prvú konvolučnú neurónovú sieť, ktorú 
 Prvou konvolučnou sieťou, ktorá vyhral majstrovstvá súťaže ILSVRC bola sieť AlexNet v roku 2012. Bola vytvorená zo základnej architektúry LeNet-5. Pozostáva z piatich konvolučných vrstiev, troch pooling vrstiev a troch plne prepojených vrstiev, s celkovým počtom 60 miliónov parametrov \cite{AlexNet}. Na testovacej sade ILSVRC chybovosť dosiahla úroveň 15,3\%, s výrazným rozdielom oproti druhému miestu s chybou 26,2\% \cite{ilsvrc}. Úspech siete AlexNet bol spôsobený viacerými vylepšeniami. Napríklad rozšírením trénovacích údajov pomocou úprav originálnych obrázkov, použitím aktivačnej funkcii ReLu, ktorá vtedy nebola bežne používaná a náhodným odstránim spojitých neurónov pomocou regularizačnej metódy \textit{dropout}.
 
 \subsubsection{YOLO}
-TODO.
+TODO. (just dummy copy-paste) The first 20 convolution layers of the model are pre-trained using ImageNet by plugging in a temporary average pooling and fully connected layer. Then, this pre-trained model is converted to perform detection since previous research showcased that adding convolution and connected layers to a pre-trained network improves performance. YOLO’s final fully connected layer predicts both class probabilities and bounding box coordinates.
 
-%   A
-%   NEW
-%   SECTION
+YOLO divides an input image into an S × S grid. If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object. Each grid cell predicts B bounding boxes and confidence scores for those boxes. These confidence scores reflect how confident the model is that the box contains an object and how accurate it thinks the predicted box is.
+
+YOLO predicts multiple bounding boxes per grid cell. At training time, we only want one bounding box predictor to be responsible for each object. YOLO assigns one predictor to be “responsible” for predicting an object based on which prediction has the highest current IOU with the ground truth. This leads to specialization between the bounding box predictors. Each predictor gets better at forecasting certain sizes, aspect ratios, or classes of objects, improving the overall recall score.
+
+One key technique used in the YOLO models is non-maximum suppression (NMS). NMS is a post-processing step that is used to improve the accuracy and efficiency of object detection. In object detection, it is common for multiple bounding boxes to be generated for a single object in an image. These bounding boxes may overlap or be located at different positions, but they all represent the same object. NMS is used to identify and remove redundant or incorrect bounding boxes and to output a single bounding box for each object in the image.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{YOLO.}
+    \label{img:ch2}
+\end{figure}
 
 \section{Výzvy neurónových sietí}
 Použitie neurónových sieti mnohokrát prináša veľmi dobré výsledky pre mnohé projekty a úroveň state-of-art sa rokmi zlepšuje. Bohužiaľ mnohé práce narážajú na niekoľko problémov, ktoré bránia dosiahnuť dobrú presnosť neurónovej siete \cite{RosinPaulL2019RIAa}.
@@ -163,7 +172,4 @@ Objekty, ktoré sa snaží počítač vidieť a rozoznať sa môžu medzi sebou 
 \end{figure}
 
 \subsubsection{Osvetlenie, oklúzia a deformácia}
-V neposlednom rade výsledky komplikujú podmienky, pri ktorých je hľadaný objekt zachytený. Príkladom môže byť autonómne riadenie vozidla, ktoré musí fungovať počas celého dňa, čiže za každých svetelných podmienok a to aj v extrémnych situáciách. Oklúzia nastáva keď objekt nie je viditeľný celý kvôli jeho prekrytiu. Deformácia nastáva hlavne pre objekty, ktoré nie sú pevné a tak sa môžu vyskytovať v rôznych formách. TODO zlepšiť odsek, obrázok netreba.
-
-% The occlusion problem occurs when an object in an image is partially or completely obscured by another object, making it difficult for the neural network to correctly identify or classify the object. The illumination problem arises when the lighting conditions in an image are poor or inconsistent, making it difficult for the neural network to distinguish between different objects or features. Finally, the deformation problem occurs when an object in an image is not in its typical or expected shape or position, making it difficult for the neural network to correctly identify or classify it.
-
+V neposlednom rade výsledky komplikujú podmienky, pri ktorých je hľadaný objekt zachytený. Osvetlenie môže byť problémom, keď je objekt v scéne príliš tmavý alebo príliš svetlý. Príkladom môže byť autonómne riadenie vozidla, ktoré musí fungovať počas celého dňa, čiže za každých svetelných podmienok a to aj v extrémnych situáciách a pri náhlich zmenách. Oklúzia nastáva, keď objekt nie je viditeľný celý kvôli jeho celému alebo čiastočnému prekrytiu. Deformácia nastáva hlavne pre objekty, ktoré nie sú pevné a tak sa môžu vyskytovať v rôznych neštandardných formách.

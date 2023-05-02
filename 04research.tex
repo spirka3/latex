@@ -61,16 +61,7 @@ Potrebné je nastaviť tri parametre:
     \item počet epoch, vo väčšine prípadov, sme zvolili 128 epoch, vzhľadom na to, že jeden cyklus trval približne 10 minút
 \end{enumerate}
 
-Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecného odporúčania pre prvý tréning. Okrem 
-
-Pri trénovaní sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a citlivosti na validačnej sade je zobrazený na obrázku \ref{img:lab}. Vývoj mAP50 a mAP50-95 je zobrazený na obrázku \ref{img:lab}.
-\\
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/04/graf.png}
-    \caption{TODO.}
-    \label{img:lab}
-\end{figure}
+% Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecného odporúčania pre prvý tréning.
 
 \subsubsection{Dataset}
 
@@ -79,6 +70,23 @@ Väčšina obrázkov v Mapillary Vistat je vyohtovených z vnútra auta, prípad
 Anotácie sú uložené vo formáte, ktorý nie je kompatibilný s formátom pre YOLO. Počas úpravy formátu sme zároveň vynechali obrázky, ktoré neobsahovali reklamu, čím sa počet obrázkov znížil na približne 20000 obrázkov. Pri prvom tréningu sme si všimli, že veľká chybovosť nastáva práve pri najmenšie označených reklamách. Najmenšie reklamy boli označené v takej diaľke, že by sa nedalo s istotou povedať, či sa vodič skutočne pozeral na reklamu, alebo na iný objekt. Preto sme z pôvodných dát vytvorili druhú verziu, kde sme ponechali len také obrázky, kde reklamná plocha tvorí aspoň 0,1\% z obrázka. Takouto úpravou mala druhá verzia dát takmer o polovicu menej obrázkov.
 
 Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 350 nových obrázkov s anotáciami reklám. Obrázky pochádzali z videí nahratých cez eyetracker, ktoré boli mimo meranú trasu. Všetky tri verzie dát sme rozdelili na tréningovú, validačnú a testovaciu sadu, v pomere 8:1:1.
+
+\subsubsection{Tréning}
+TODO, opísať tréning a jeho zlepšovanie. Pri trénovaní sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a citlivosti na validačnej sade je zobrazený na obrázku \ref{img:lab}. Vývoj mAP50 a mAP50-95 je zobrazený na obrázku \ref{img:lab}.
+
+TODO, ešte raz toľko textu opísať tréning a jeho zlepšovanie. Pri trénovaní sme mali k dispozícii informácie
+o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testova-
+nia na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom
+momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a
+citlivosti na validačnej sade je zobrazený na obrázku 5.1. Vývoj mAP50 a mAP50-95
+je zobrazený na obrázku...
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/04/graf.png}
+    \caption{TODO.}
+    \label{img:lab}
+\end{figure}
 
 \section{Sledovanie reklám}
 

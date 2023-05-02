@@ -4,7 +4,7 @@
 \contentsline {subsection}{\numberline {1.1.1}Tradičné metódy}{4}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Detekcia reklám}{5}{subsection.1.1.2}%
 \contentsline {section}{\numberline {1.2}Významnosť reklám}{7}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Charakteristiky reklám}{7}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.1}Charakteristiky reklám}{8}{subsection.1.2.1}%
 \contentsline {subsubsection}{Typ reklamy}{8}{section*.12}%
 \contentsline {subsubsection}{Umiestnenie reklamy}{8}{section*.13}%
 \contentsline {subsubsection}{Obsah reklamy}{8}{section*.14}%
@@ -18,27 +18,29 @@
 \contentsline {subsection}{\numberline {2.3.3}Plne prepojená vrstva}{16}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Existujúce architektúry}{17}{subsection.2.3.4}%
 \contentsline {subsubsection}{YOLO}{17}{section*.21}%
-\contentsline {section}{\numberline {2.4}Výzvy neurónových sietí}{17}{section.2.4}%
-\contentsline {subsubsection}{Trénovacie údaje}{18}{section*.22}%
-\contentsline {subsubsection}{Výpočtový čas}{18}{section*.23}%
-\contentsline {subsubsection}{Podobnosť a variácia trieď}{18}{section*.24}%
-\contentsline {subsubsection}{Osvetlenie, oklúzia a deformácia}{19}{section*.26}%
-\contentsline {chapter}{\numberline {3}Návrh riešenia}{20}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Detekcia reklám}{20}{section.3.1}%
-\contentsline {subsubsection}{Sledovanie reklám}{20}{section*.27}%
-\contentsline {section}{\numberline {3.2}Príprava dát}{20}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Významnosť reklám}{22}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Klasifikácia reklám}{22}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Realizácia riešenia}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Experimentálne meranie}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Tobii Pro Lab}{24}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Detektor reklám}{25}{section.4.3}%
-\contentsline {subsubsection}{Dataset}{26}{section*.33}%
-\contentsline {section}{\numberline {4.4}Sledovanie reklám}{27}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{28}{subsection.4.4.1}%
-\contentsline {section}{\numberline {4.5}Významnosť reklám}{30}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{31}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Vyhodnotenie získaných výsledkov}{33}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Detekcia}{33}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Sledovanie reklám}{34}{section.5.2}%
-\contentsline {subsubsection}{Testovanie sledovania}{34}{section*.41}%
+\contentsline {section}{\numberline {2.4}Výzvy neurónových sietí}{18}{section.2.4}%
+\contentsline {subsubsection}{Trénovacie údaje}{19}{section*.23}%
+\contentsline {subsubsection}{Výpočtový čas}{19}{section*.24}%
+\contentsline {subsubsection}{Podobnosť a variácia trieď}{19}{section*.25}%
+\contentsline {subsubsection}{Osvetlenie, oklúzia a deformácia}{20}{section*.27}%
+\contentsline {chapter}{\numberline {3}Návrh riešenia}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Detekcia reklám}{21}{section.3.1}%
+\contentsline {subsubsection}{Sledovanie reklám}{21}{section*.28}%
+\contentsline {section}{\numberline {3.2}Príprava dát}{21}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Významnosť reklám}{23}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Klasifikácia reklám}{23}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Realizácia riešenia}{24}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Experimentálne meranie}{24}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Tobii Pro Lab}{25}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Detektor reklám}{26}{section.4.3}%
+\contentsline {subsubsection}{Dataset}{27}{section*.33}%
+\contentsline {subsubsection}{Tréning}{27}{section*.34}%
+\contentsline {section}{\numberline {4.4}Sledovanie reklám}{28}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{29}{subsection.4.4.1}%
+\contentsline {section}{\numberline {4.5}Významnosť reklám}{31}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{32}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Vyhodnotenie výsledkov}{34}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Detekcia}{34}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Sledovanie reklám}{35}{section.5.2}%
+\contentsline {subsubsection}{Lokalizácia}{35}{section*.43}%
+\contentsline {subsubsection}{Citlivosť a presnosť}{36}{section*.46}%

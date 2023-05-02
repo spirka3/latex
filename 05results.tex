@@ -1,8 +1,10 @@
-\chapter{Vyhodnotenie získaných výsledkov}\label{chap:results}
+\chapter{Vyhodnotenie výsledkov}\label{chap:results}
+
+Vyhodnotenie získaných výsledkov sme rozdelili na tri časti. V prvej časti sme sa zamerali na detekciu, v druhej na klasifikáciu a v tretej na kombináciu oboch. V každej časti sme porovnali výsledky jednotlivých modelov a zároveň sme porovnali výsledky jednotlivých verzií dát.
 
 \section{Detekcia}
 
-Postupne sme natrénovali tri modely, každý s inou verziou dát. Všetky modely mali pre tréning rovnako nastavené parametre, líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte.
+Natrénovali sme tri modely, ktoré mali pri tréningu rovnako nastavené parametre a líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte.
 \\
 \begin{table}[ht]
 \centering
@@ -19,7 +21,7 @@ M3  & 0.577	& 0.504	& 0.503	& 0.324 \\
 \label{table:test1}
 \end{table}
 
-V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testovacej sade. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme si pripravili testovaciu vzorku obrázkov tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky a preto je najvhodnejší na pokračovanie v práci.
+V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testovacej sade. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme si pripravili testovaciu vzorku obrázkov, tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky a preto bol najvhodnejší na získanie detekcií pri sledovaní reklám.
 \\
 \begin{table}[ht]
 \centering
@@ -40,71 +42,87 @@ M3  & 0.715 & 0.541 & 0.656 & 0.480 \\
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{TODO. Ukážka dobrej a zlej detekcie.}
+    \caption{Ukážka dobrej a zlej detekcie.}
     \label{img:lab}
 \end{figure}
 
 \section{Sledovanie reklám}
 
-%Porovnanie výsledkov na pomocnom dataset pre 3. a 4. model \ref{table:test3}.
-%\\
-%\begin{table}[ht]
-%\centering
-%\begin{tabular}{ |c c c c c c| }
-%\hline
-%model & dáta & presnosť & citlivosť & mAP50 & mAP50-95 \\
-%\hline
-%M4 & testovacia sada & 0.473	& 0.352	& 0.327	& 0.195 \\
-%M3 & celý dataset & 0.659 & 0.565 & 0.656 & 0.467 \\
-%\hline
-%\end{tabular}
-%\caption{výsledky 3.}
-%\label{table:test3}
-%\end{table}
+Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Rozhodli sme sa použiť metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}, ktorá sa dá rozložiť na viacero menších častí, čím sa dajú vyhodnotiť viaceré aspekty sledovania.
 
-\subsubsection{Testovanie sledovania}
-%V tomto momente sme už mohli vyhodnotiť úspešnosť sledovacích metód v porovnaní s pripravenými údajmi.
+\subsubsection{Lokalizácia}
 
-Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Dlhodobo používané metriky sú CLEAR MOT \cite{clear}, VACE \cite{vace}, IDF1 \cite{idf} a MOTA \cite{mota}. V roku 2020 bola publikovaná práca, v ktorej autori navrhli novú metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}. Práca dokazuje, že predchádzajúce metriky nedokážu zachytiť toľko informácií ako HOTA, ktorá je navyše pomerne intuitívna. Metrika HOTA sa dá rozložiť na viacero menších častí, čím sa dajú vyhodnotiť viaceré aspekty sledovania.
+%HOTA is calculated at a number of different localisation thresholds α, and the final HOTA score is the average of the HOTAα scores calculated at each threshold. This formulation ensures that the final HOTA score takes the actual localisation accuracy into account.
 
-Localization measures the spatial alignment between one predicted detection and one ground-truth detection. Localization IoU (Loc-IoU) is typically used in many evaluation metrics to measure localization accuracy. It is calculated as the ratio of the overlap (intersection) between the two detections and the total area covered by both of them (union). As can be seen, when the Loc-IoU score here increases, the predicted and ground-truth detections are better spatially aligned and the localization is improved.
-
-We can measure the overall Localization Accuracy (LocA) by averaging the Loc-IoU over all pairs of matching predicted and ground-truth detections in the whole dataset (we describe below how we obtain these matches):
-
-\begingroup
-\large
-\begin{equation}
-LocA = \frac{A}{B}
-\label{e:DetRe}
-\end{equation}
-\endgroup
+Lokalizácia (Loc) meria priestorové zarovnanie medzi predikovanou detekciou a skutočnou hodnotou. Vypočíta sa ako pomer ich prieniku a zjednotenia. Keď sa Loc skóre zvýši, predikované a skutočné detekcie sú priestorovo lepšie zarovnané a lokalizácia je zlepšía.
 \\
-Citlivosť a presnosť detekcie (DetRe a DetPr) je definovaná rovnakým spôsobom ako pri vyhodnocovaní detektora. Detekcie, ktoré sú zhodné so skutočne pravdivým označením sa volajú skutočne pozitívne (TP) a detekcie, ktoré nie sú zhodné sa volajú falošne pozitívne (FP). Na základe toho sa dajú sformulovať tri rovnice. 
-Rovnica \ref{e:DetRe} opisuje koľko TP detekcií bolo nájdených zo všetkých skutočne pravdivých označení, rovnica \ref{e:DetPr} opisuje úspešnosť pravdivosti pre TP detekcie a napokon rovnica \ref{e:DetA} celkovú presnosť detekcií.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/05/loc.png}
+    \caption{TODO.}
+    \label{img:loc}
+\end{figure}
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{Ukážka dobrej a zlej lokalizácie.}
+    \label{img:loc-img}
+\end{figure}
+
+\subsubsection{Citlivosť a presnosť}
+
+Citlivosť a presnosť detekcie (DetRe a DetPr) je definovaná rovnakým spôsobom ako pri vyhodnocovaní detektora. Detekcie, ktoré sú zhodné so skutočne pravdivým označením sa volajú skutočne pozitívne (TP) a detekcie, ktoré nie sú zhodné sa volajú falošne pozitívne (FP). Na základe toho sa dajú sformulovať tri rovnice.
+Rovnica \ref{e:DetRe} opisuje koľko TP detekcií bolo nájdených zo všetkých skutočne pravdivých označení, rovnica \ref{e:DetPr} opisuje úspešnosť pravdivosti pre TP detekcie a napokon rovnica \ref{e:DetA} celkovú úspešnosť detekcií.
 
 \begingroup
-\large
 \begin{equation}
-DetRe = \frac{A}{B}
+DetRe = \frac{|TP|}{|TP| + |FN|}
 \label{e:DetRe}
 \end{equation}
 
 \begin{equation}
-DetPr = \frac{A}{B}
+DetPr = \frac{|TP|}{|TP| + |FP|}
 \label{e:DetPr}
 \end{equation}
 
 \begin{equation}
-DetA = \frac{A}{B}
+DetA = \frac{|TP|}{|TP| + |FN| + |FP|}
 \label{e:DetA}
 \end{equation}
 \endgroup
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{Ukážka dobrej a zlej detekcie.}
+    \label{img:det-img}
+\end{figure}
+
+%\begin{align}
+%
+%    DetRe &= \frac{A}{B} \\
+%
+%    DetPr &= \frac{A}{B} \\
+%
+%    DetA &= \frac{A}{B}
+%\end{align}
+
+%\begin{gather}
+%
+%    DetRe = \frac{A}{B}
+%
+%DetPr = \frac{A}{B}
+%
+%DetA = \frac{A}{B}
+%
+%\end{gather}
+
 \\
 % https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1
 Asociácia meria ako dobre sa podarilo spojiť detekciu s referenciou.  The intersection between two tracks can be measured as the number of True Positive matches between the two tracks, we call these True Positive Associations (TPA). Any remaining detections in the predicted track (which are either matched to other ground-truth tracks or none at all) are False Positive Associations (FPA) and any remaining detections in the ground-truth track False Negative Associations (FNA). The Association IoU (Ass-IoU) can then be calculated in a similar way as seen previously.
 
 \begingroup
-\large
 \begin{equation}
 AssRe = \frac{A}{B}
 \label{e:AssRe}
@@ -129,7 +147,7 @@ We can see a visual example of the definitions TPA, FNA and FPA below. The red s
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/T/explanation.png}
+    \includegraphics[width=1\textwidth]{images/05/explanation.png}
     \caption{.}
     \label{img:road}
 \end{figure}
@@ -165,7 +183,7 @@ bot & 27.141 & 40.139 & 38.162 & 24.812 & 40.389 & 56.746 & 29.729 & 87.301 \\ [
 TODO We can see how well methods perform in each of the dimensions of detection (x-axis) and association (y-axis) separately, with the curves in the background showing how the overall HOTA score increases as both detection and association scores increase. We can go further than just comparing detection and association. Because they are both naturally decomposable into one component.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/T/compare.png}
+    \includegraphics[width=1\textwidth]{images/05/compare.png}
     \caption{.}
     \label{img:road}
 \end{figure}
@@ -173,7 +191,7 @@ TODO We can see how well methods perform in each of the dimensions of detection 
 TODO Tu je vizualizácia sledovania reklám z videa. Na pravej strane obrázka je metóda X a na ľavej Y. Snímky sú v tomto prípade zachytené každých 10 snímok a vidíme, že metóda Y nepriradila referenciu po oklúzii správne.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/T/vs.png}
+    \includegraphics[width=1\textwidth]{images/05/vs.png}
     \caption{.}
     \label{img:road}
 \end{figure}

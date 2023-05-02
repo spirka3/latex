@@ -34,7 +34,7 @@ TODO prepojiť obrázok s textom.
 \end{figure}
 
 Nakoniec v poslednom kroku je použitý klasifikátor, napríklad \textit{support vector machine (SVM)} \cite{SVM} alebo \textit{Adaptive Boosting (Adaboost)} \cite{Adaboost} na určenie finálnej identifikácie a lokalizácie objektu.
-TODO prepojiť obrázok s textom.
+TODO prepojiť obrázok s textom. Povedať jednu-dve vety o SVM. Adaboost môže isť ptm preč.
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{images/01/svm.png}
@@ -48,8 +48,7 @@ Pri detekcii treba brať do úvahy viacero možných problémov, ktoré v nietor
 
 Neurónové siete sa na detekciu objektov využívajú už desaťročia a nie je prekvapením, že sú často používané aj pri pozorovaní dopravy. Detekcia áut, chodcov, dopravných a poznávacích značiek je z pohľadu pozorovania dopravy fundamentálna úloha, ktorá je spracovaná v mnohých prácach. Našli sme aj viaceré publikácie priamo zamerané na detekciu reklamných plôch, ktorými sa možno inšpirovať a porovnať.
 
-Autori práce \cite{SSD-YOLO} porovnávajú dva detektory objektov, \textit{Single Shot MultiBox Detector (SSD)} a \textit{You Only Look Once (YOLOv3)}. Oba detektory boli najskôr trénované na \textit{COCO} databáze \cite{Coco} a potom na sade obrázkov zobrazujúce bilbordy. V obidvoch prípadoch modely dosahujú dobré výsledky pre rôzne veľkosti reklám za rôznych svetelných podmienok s komplexným pozadím. Výsledky z experimentu naznačujú, že SSD je presnejší v tom zmysle, že robí menej chýb pri identifikácii výskytu reklamy. Na druhej strane YOLOv3 dokáže vyhodnotiť výsledok za kratší čas, ale dopúšťa sa väčšej chybovosti označovaním falošných výskytov. Čiastočne by to mohla vybalansovať zmena prahu istoty pre označenie výskytu, čo ale v práci nebolo testované. TODO prepojiť obrázok s textom.
-
+Autori práce \cite{SSD-YOLO} porovnávajú dva detektory objektov, \textit{Single Shot MultiBox Detector (SSD)} a \textit{You Only Look Once (YOLOv3)}. Oba detektory boli najskôr trénované na \textit{COCO} databáze \cite{Coco} a potom na sade obrázkov zobrazujúce bilbordy. V obidvoch prípadoch modely dosahujú dobré výsledky pre rôzne veľkosti reklám za rôznych svetelných podmienok s komplexným pozadím. Výsledky z experimentu naznačujú, že SSD je presnejší v tom zmysle, že robí menej chýb pri identifikácii výskytu reklamy. Na druhej strane YOLOv3 dokáže vyhodnotiť výsledok za kratší čas, ale dopúšťa sa väčšej chybovosti označovaním falošných výskytov. Čiastočne by to mohla vybalansovať zmena prahu istoty pre označenie výskytu, čo ale v práci nebolo testované. Na obrázku \ref{img:ssd-yolo} vidno, že YOLOv3 má vyššie hodnoty pre istotu, preto by zrejme potreboval zvýšiť prah na určenie detekcie.
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{images/01/ssd-yolo.png}
@@ -93,9 +92,6 @@ Dosah reklamy významne závisí aj od jej umiestenia. Reklamy situované na vod
 \subsubsection{Obsah reklamy}
 
 Poslednou dôležitou charakteristikou reklamy je jej obsah. Štúdie \cite{harasimczuk2021longer, meuleners2020identifying} potvrdzujú predpoklad, že reklamy s dlhším textom dosahujú dlhšie fixácie. To takisto platí pre reklamy so sexuálnym podtónom \cite{MaliszewskiNorbert2019Iosa} a pre reklamy, na ktorých sa nachádza ľudská bytosť \cite{tarnowski2017roadside}. Zároveň platí, že čím je reklama zložitejšia, tým dlhšie sa na ňu vodič pozerá \cite{marciano2017effect}. Skúmaný bol aj obsah reklamy, ktorý u vodiča vyvoláva negatívne emócie \cite{chan2013emotional}. Zistilo sa, že takisto zapríčiňuje dlhšie fixácie a zároveň vedie k zníženiu rýchlosti. Okrem toho dotazníky vyplnené vodičmi po jazde ukázali, že negatívnu reklamu si vodiči zapamätajú najviac.
-
-(keď sa k obrázkov v tejto kapitole pridá ďalší text, tak tu nebudú len 4 slová)
-
 
 % \section{Saliency map}
 
