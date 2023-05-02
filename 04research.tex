@@ -42,8 +42,8 @@ Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom j
 \\
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/04/tobiiprolab3.jpg}
-    \caption{TODO, nahradiť obrázkom, kde je zle vypočítaná oblasť pre reklamu ... nemám :(}
+    \includegraphics[width=1\textwidth]{images/04/snapshot.png}
+    \caption{Ukážka s referenčným obrázkom z iného výskumu. Naľavo je video záznam a napravo je zobrazený referenčný obrázok, na ktorý sa úspešne podarilo premietnuť pohľad z kamery.}
     \label{img:lab}
 \end{figure}
 
@@ -51,65 +51,64 @@ Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom j
 
 \section{Detektor reklám}
 
-Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a importovať do projektu priamo ako knižnica pre Python. Spolu s ňou sa do prostredia nainštalujú ďalšie dôležité knižnice ako matplotlib, opencv-python, scipy, torch, torchvision a iné. Trénovanie sa spúšťa pomocou jedného príkazu, kde argumenty špecifikujú hodnoty pre parametre.
-
-Potrebné je nastaviť tri parametre:
+Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a importovať do projektu priamo ako knižnica pre Python. Spolu s ňou sa do prostredia nainštalujú ďalšie dôležité knižnice ako matplotlib, opencv-python, scipy, torch, torchvision a iné. Trénovanie sa spúšťa pomocou jedného príkazu, kde argumenty špecifikujú hodnoty pre parametre. Potrebné je nastaviť tri parametre, ostatné majú prednastavené hodnoty podľa všeobecného odporúčania pre prvý tréning.
 
 \begin{enumerate}
-    \item zdroj dát,  v našom prípade priečinok uložený na disku, ale ako zdroj sa dá použiť aj živý záznam z kamery alebo odkaz na video zverejnené na internete
-    \item počiatočné váhy,  dajú sa stiahnuť z oficiálnej dokumentácie pre YOLOv8. Na výber je 5 modelov, ktoré sa líšia počtom parametrov, rýchlosťou a presnosťou
-    \item počet epoch, vo väčšine prípadov, sme zvolili 128 epoch, vzhľadom na to, že jeden cyklus trval približne 10 minút
+    \item Zdroj dát: v našom prípade priečinok uložený na disku, ale dá sa použiť aj živý záznam z kamery alebo odkaz na video zverejnené na internete.
+    \item Počiatočné váhy: dajú sa stiahnuť z oficiálnej dokumentácie pre YOLOv8. Na výber je 5 modelov, ktoré sa líšia počtom parametrov, rýchlosťou a presnosťou.
+    \item Počet epoch: určuje koľko krát prejdú všetky tréningové dáta sieťou. Po každej epoche sa vyhodnotí úspešnosť na validačnej sade.
 \end{enumerate}
 
-% Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecného odporúčania pre prvý tréning.
+Po natrénovaní sa dá spustiť testovanie a detekcia zo získaných váh. V prípade testovania, musia byť na vstupe okrem obrázkov aj pravdivé označenia, podľa ktorých sa vyhodnotí úspešnosť. V prípade detekcie postačí obrázok alebo video z ktorého chceme získať detekcie. V oboch prípadoch je najdôležitejším parametrom hodnota prahu pre detekciu. Táto hodnota určuje, aká vysoká musí byť pravdepodobnosť, aby sa detekcia považovala za úspešnú. Okrem toho sa dá nastaviť očakávaný výstup. Výstup môže byť textový súbor s detekciami, ale aj obrázky s vykresleným alebo vystrihnutým označením.
 
 \subsubsection{Dataset}
 
-Väčšina obrázkov v Mapillary Vistat je vyohtovených z vnútra auta, prípadne zo strechy. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
+Väčšina obrázkov v Mapillary Vistat je vyhotovená z vnútra, prípadne zo strechy vozidla. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
 
 Anotácie sú uložené vo formáte, ktorý nie je kompatibilný s formátom pre YOLO. Počas úpravy formátu sme zároveň vynechali obrázky, ktoré neobsahovali reklamu, čím sa počet obrázkov znížil na približne 20000 obrázkov. Pri prvom tréningu sme si všimli, že veľká chybovosť nastáva práve pri najmenšie označených reklamách. Najmenšie reklamy boli označené v takej diaľke, že by sa nedalo s istotou povedať, či sa vodič skutočne pozeral na reklamu, alebo na iný objekt. Preto sme z pôvodných dát vytvorili druhú verziu, kde sme ponechali len také obrázky, kde reklamná plocha tvorí aspoň 0,1\% z obrázka. Takouto úpravou mala druhá verzia dát takmer o polovicu menej obrázkov.
 
 Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 350 nových obrázkov s anotáciami reklám. Obrázky pochádzali z videí nahratých cez eyetracker, ktoré boli mimo meranú trasu. Všetky tri verzie dát sme rozdelili na tréningovú, validačnú a testovaciu sadu, v pomere 8:1:1.
 
 \subsubsection{Tréning}
-TODO, opísať tréning a jeho zlepšovanie. Pri trénovaní sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a citlivosti na validačnej sade je zobrazený na obrázku \ref{img:lab}. Vývoj mAP50 a mAP50-95 je zobrazený na obrázku \ref{img:lab}.
 
-TODO, ešte raz toľko textu opísať tréning a jeho zlepšovanie. Pri trénovaní sme mali k dispozícii informácie
-o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testova-
-nia na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom
-momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a
-citlivosti na validačnej sade je zobrazený na obrázku 5.1. Vývoj mAP50 a mAP50-95
-je zobrazený na obrázku...
+Počas celého trénovania sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade a čas trvania jednej epochy. Hodnoty váh sa po skončení epochy uložili do súboru na disk, takže v prípade neočakávaného prerušenia tréningu, sa dalo mohlo pokračovať od posledného miesta. Ak bol výsledok z testovania lepší ako v predchádzajúcich cykloch, tak sa hodnoty váh uložili do súboru, ktorý označoval najlepšie váhy. Pokiaľ sme si všimli, že sa vývoj tréningu nezlepšoval, mohli sme ho v hociktorom momente zastaviť. V prípade, že sme vývoj nesledoval a vývoj sa nezlepšoval, tak sa tréning po 50 epochách ukončil automaticky.
+
+Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktorý zobrazoval vývoj straty, presnosti a citlivosti na tréningovej a validačnej sade. Vývoj jedného tréningu je zobrazený na obrázku \ref{img:graf}. Priebeh grafu v treťom stĺpci pre test z validačnej sady ukazuje, že sa hodnota straty začala približne v 50 epoche zväčšovať. Podobný vývoj je na grafoch pre metriku recall a mAP, naopak metrika precision sa stále mierne zvyšovala. Je to znakom preučenia, kedy sa sieť naučila rozpoznávať trénovacie dáta, ale zlyháva pri rozpoznávaní nových dát. V tomto prípade malo zmysel ukonžiť tréning predčasne.
 \\
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/04/graf.png}
-    \caption{TODO.}
-    \label{img:lab}
+    \caption{Vývoj tréningu aktualizovaný po vykonanej epoche.}
+    \label{img:graf}
 \end{figure}
+
+%\subsubsection{Fine-tuning}
 
 \section{Sledovanie reklám}
 
-Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{TODO}, StrongSORT \cite{strongsort}, BoTSORT \cite{TODO} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
+Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár \cite{mikel}, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{deepocsort}, StrongSORT \cite{strongsort}, BoTSORT \cite{bot} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
-Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou. TODO prepojiť obrázk s textom \ref{img:tracking}.
+TODO, možno povedať čo robí kalman a hungarian. To zálezí od obrázka. Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou. TODO prepojiť obrázk s textom \ref{img:tracking}.
 
  \begin{figure}[ht]
      \centering
-     \includegraphics[width=1\textwidth]{images/04/flow.png}
+     \includegraphics[width=1\textwidth]{images/placeholder.png}
      \caption{TODO Postup pri sledovaní objekov vo videu.}
      \label{img:tracking}
  \end{figure}
 
-Každá metóda má konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie sekvencie a niekoľko ďalších špecifických pre jednotlivé metódy. Napríklad pre StrongSort maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
+Každá metóda má vlastný konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie novej referencie a niekoľko ďalších parametrov špecifických pre jednotlivé metódy. Napríklad pre StrongSort je to maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
 
-S tretím modelom sme na vystrihnutej časti zo záznamu vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase priradenú inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dokázala metóda StrongSort, pretože na výstup uložila najmenší počet referencií a najviac označení.
+\subsubsection{Pozorovanie metód}
+
+Na vystrihnutej časti zo záznamu sme vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase priradenú inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dosiahla metóda StrongSort, pretože na výstup uložila najmenší počet referencií a najviac označení.
+
+% DeepSORT je rozšírením pre SORT, ktorý integruje informácie o vzhľade získané z predtrénovaného modelu. Výsledkom je lepšie priradenie správnej identity čo zároveň redukuje počet vytvorených identít \cite{deepsort}. ByteTrack sa zameriava na asociáciu údajov a navrhuje novú metódu Byte, ktorá sleduje priradenie s porovnávaním každého objektu, ktorý bol doposiaľ zaznamenaný \cite{bytetrack}. OC-SORT je metóda, ktorá používa pozorovanie objektov na výpočet virtuálnej trajektórie počas prekrytia objektu, aby sa zmiernilo hromadenie chýb Kalmanovho filtra, ktoré vzniká počas oklúzie \cite{ocsort}. StrongSORT je varianta, ktorá pridáva pohybový model založený na optickom toku na zlepšenie výkonu sledovania pričom sa snaží kombinovať výhody z metódy Deep SORT a ByteTrack \cite{strongsort}. Každý model má sadu parametrov, ktoré sme jemne upravovali a sledovali zmenu vo výsledkoch. https://www.tasq.ai/blog/object-tracking/
 
 \subsection{Pomocné dáta a model}
 
 Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
-% todo pridat vyššie nejaký text, aby bol obrázok na novej strane - zrejme k trackovaniu
-\newpage
+
 \begin{figure}[ht]
      \centering
      \includegraphics[width=1\textwidth]{images/04/lab.png}
@@ -119,25 +118,24 @@ Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozho
 
 Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady na reklamu v každom videu.
 
-% Metódu s vysokou citlivosťou sme použili na detekciu reklám z každej nahrávky z merania.
-Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video.
+Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou a sledovali označenia. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video. Zmeny referencií sme zapisovali do textovho súboru. Pokiaľ išlo o falošne pozitívnu detekciu, tak sme ju jednoducho vynechali a nezapísali do súboru s opravami.
+
+Nakoniec sme skriptom premenovali referencie podľa poradového čísla reklamy, čím sme dosiahli, že v každom videu boli reklamy označené rovnakým číslom. Získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT \cite{mot}. pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referenciu reklamy, x a y súradnice ľavého horného rohu a pre rozmery reklamy.
 
 \begin{figure}[ht]
      \centering
      \includegraphics[width=1\textwidth]{images/04/mapping.jpg}
-     \caption{Premenovanie referencií podľa nášho číslého označenia.}
+     \caption{Premenovanie referencií podľa poradového čísla reklamy.}
      \label{img:mapping}
  \end{figure}
 
-Dosiahli sme tým korekciu oboch chýb a získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referenciu reklamy, x a y súradnice ľavého horného rohu a pre rozmery reklamy.
-
 \section{Významnosť reklám}
 
-Zo získaných informácií, na ktorých snímkach sa nachádza reklama, sme mohli začať analyzovať pohľady vodiča. V tomto bode sme zistili, že pohľady boli zaznamenané v počte 50 snímok za sekundu, kým video bolo nahrávané v počte 25 snímok za sekundu. To znamená, že pokiaľ bol pohľad zaznamenaný bez straty mali sme pre každú snímku z videa dva pohľady.
+Z informácií, na ktorých snímkach sa nachádza reklama, sme mohli začať analyzovať pohľady vodičov. V tomto bode sme zistili, že pohľady boli zaznamenané v počte 50 snímok za sekundu, kým video bolo nahrávané v počte 25 snímok za sekundu. To znamená, že pokiaľ eytracker zaznamenal pohľady bez straty, tak sme mali pre každú snímku z videa dva pohľady.
 
-Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, alebo dokonca oba pohľady. Pokiaľ sme pre snímok zaznamenali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou dvoch predchádzajúcich pohľadov. Pre výpadok pohľadu na viac ako dve snímky sme predikciu nepočítali a snímok sme z analýzy vynechali.
+Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, alebo dokonca oba pohľady. Pokiaľ sme pre snímku zaregistrovali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou interpolácie dvoch predchádzajúcich pohľadov. Výpadok pohľadu na viac ako dvoch snímkach sme nepočítali a snímok sme z analýzy vynechali.
 
-Pre každú snímku, na ktorej bola reklama a zaznamenaný pohľad, sme porovnali ich prienik. Získali sme tým informáciu o počte snímok, kde pohľad smeroval na reklamu. Počet snímok sme vynásobili dĺžkou trvania jednej snímky, čím sme získali časový údaj sledovanosti. Podľa dĺžky sledovanosti sme vyhodnotili významnosť reklamy pre každého vodiča samostatne a následne vypočítali konečnú významnosť pomocou mediánu.
+Pre každú snímku, na ktorej bola detekcia reklamy a zaznamenaný pohľad, sme porovnali prienik ich oblastí. Získali sme tým informáciu o počte snímok, kde pohľad vodiča smeroval na reklamu. Počet snímok sme vynásobili dĺžkou trvania jednej snímky, čím sme získali časový údaj sledovanosti. Podľa dĺžky sledovanosti sme vyhodnotili významnosť reklamy pre každého vodiča samostatne a následne vypočítali konečnú významnosť pomocou mediánu.
 
  \begin{figure}[ht]
      \centering
@@ -148,7 +146,13 @@ Pre každú snímku, na ktorej bola reklama a zaznamenaný pohľad, sme porovnal
 
 \section{Klasifikácia reklamy}
 
-TODO. Vložiť text.
+Pre každú reklamu sme vyhodnocovali celú sekvenciu.
+
+% Zo sekvencie snímok, na ktorých sa nachádzala reklama, sme pre každú reklamu samostatne vypočítali niekoľko vlastností:
+
+\newpage
+
+TODO. Pokračovanie klasifikácie.
 
 \newpage
 

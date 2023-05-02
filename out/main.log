@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  2 MAY 2023 22:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  3 MAY 2023 01:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -768,9 +768,6 @@ LaTeX Warning: Label `img:ch2' multiply defined.
 LaTeX Warning: Label `img:lab' multiply defined.
 
 
-LaTeX Warning: Label `img:lab' multiply defined.
-
-
 LaTeX Warning: Label `img:tracking' multiply defined.
 
 
@@ -939,192 +936,192 @@ $[]$ $[]$
 ]) (./01overview.tex [2]
 Kapitola 1.
 
-Package natbib Warning: Citation `CV-vs-DL' on page 3 undefined on input line 1
-3.
+Package natbib Warning: Citation `CV-vs-DL' on page 3 undefined on input line 9
+.
 
 [3
 
 ]
 
 Package natbib Warning: Citation `sel-search' on page 4 undefined on input line
- 25.
+ 21.
 
 
-Package natbib Warning: Citation `HOG' on page 4 undefined on input line 27.
+Package natbib Warning: Citation `HOG' on page 4 undefined on input line 23.
 
 
-Package natbib Warning: Citation `SURF' on page 4 undefined on input line 27.
+Package natbib Warning: Citation `SURF' on page 4 undefined on input line 23.
 
 
-Package natbib Warning: Citation `SIFT' on page 4 undefined on input line 27.
+Package natbib Warning: Citation `SIFT' on page 4 undefined on input line 23.
 
 <images/01/sift.jpeg, id=235, 451.6875pt x 223.83624pt>
 File: images/01/sift.jpeg Graphic file (type jpg)
 <use images/01/sift.jpeg>
-Package pdftex.def Info: images/01/sift.jpeg  used on input line 31.
+Package pdftex.def Info: images/01/sift.jpeg  used on input line 27.
 (pdftex.def)             Requested size: 264.61333pt x 131.13664pt.
 
-Package natbib Warning: Citation `sift-img' on page 4 undefined on input line 3
-2.
+Package natbib Warning: Citation `sift-img' on page 4 undefined on input line 2
+8.
 
 
-Package natbib Warning: Citation `sift-img' on page 4 undefined on input line 3
-2.
+Package natbib Warning: Citation `sift-img' on page 4 undefined on input line 2
+8.
 
 
-Package natbib Warning: Citation `SVM' on page 4 undefined on input line 36.
+Package natbib Warning: Citation `SVM' on page 4 undefined on input line 32.
 
 
 Package natbib Warning: Citation `Adaboost' on page 4 undefined on input line 3
-6.
+2.
 
 <images/01/svm.png, id=236, 769.37437pt x 531.48563pt>
 File: images/01/svm.png Graphic file (type png)
 <use images/01/svm.png>
-Package pdftex.def Info: images/01/svm.png  used on input line 40.
+Package pdftex.def Info: images/01/svm.png  used on input line 36.
 (pdftex.def)             Requested size: 264.61333pt x 182.79504pt.
 [4{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 } <./images/01/sift.jpeg>]
+
+Package natbib Warning: Citation `SSD-YOLO' on page 5 undefined on input line 4
+7.
+
+
+Package natbib Warning: Citation `Coco' on page 5 undefined on input line 47.
+
+<images/01/ssd-yolo.png, id=246, 804.00375pt x 529.98pt>
+File: images/01/ssd-yolo.png Graphic file (type png)
+<use images/01/ssd-yolo.png>
+Package pdftex.def Info: images/01/ssd-yolo.png  used on input line 50.
+(pdftex.def)             Requested size: 264.61333pt x 174.4249pt.
 
 Package natbib Warning: Citation `SSD-YOLO' on page 5 undefined on input line 5
 1.
 
 
-Package natbib Warning: Citation `Coco' on page 5 undefined on input line 51.
-
-<images/01/ssd-yolo.png, id=246, 804.00375pt x 529.98pt>
-File: images/01/ssd-yolo.png Graphic file (type png)
-<use images/01/ssd-yolo.png>
-Package pdftex.def Info: images/01/ssd-yolo.png  used on input line 54.
-(pdftex.def)             Requested size: 264.61333pt x 174.4249pt.
-
 Package natbib Warning: Citation `SSD-YOLO' on page 5 undefined on input line 5
-5.
-
-
-Package natbib Warning: Citation `SSD-YOLO' on page 5 undefined on input line 5
-5.
+1.
 
 [5 <./images/01/svm.png (PNG copy)>]
 
-Package natbib Warning: Citation `Hossari' on page 6 undefined on input line 66
+Package natbib Warning: Citation `Hossari' on page 6 undefined on input line 62
 .
 
 
 Package natbib Warning: Citation `simonyan2015deep' on page 6 undefined on inpu
-t line 66.
+t line 62.
 
 
 Package natbib Warning: Citation `Mapillary' on page 6 undefined on input line 
-66.
+62.
 
 
-Package natbib Warning: Citation `GeoTag' on page 6 undefined on input line 68.
+Package natbib Warning: Citation `GeoTag' on page 6 undefined on input line 64.
 
 
 
-Package natbib Warning: Citation `AlexNet' on page 6 undefined on input line 68
+Package natbib Warning: Citation `AlexNet' on page 6 undefined on input line 64
 .
 
 [6 <./images/01/ssd-yolo.png (PNG copy)>]
 
-Package natbib Warning: Citation `WF' on page 7 undefined on input line 78.
+Package natbib Warning: Citation `WF' on page 7 undefined on input line 70.
 
 
 Package natbib Warning: Citation `stavrinos2016visual' on page 7 undefined on i
-nput line 80.
+nput line 72.
 
 
 Package natbib Warning: Citation `belyusar2016field' on page 7 undefined on inp
-ut line 80.
+ut line 72.
 
 
 Package natbib Warning: Citation `EDQUIST2011619' on page 7 undefined on input 
-line 80.
+line 72.
 
 
 Package natbib Warning: Citation `horberry200813' on page 7 undefined on input 
-line 80.
+line 72.
 
 
 Package natbib Warning: Citation `bendak2010role' on page 7 undefined on input 
-line 80.
+line 72.
 
 [7]
 
 Package natbib Warning: Citation `OVIEDOTRESPALACIOS201985' on page 8 undefined
- on input line 87.
+ on input line 80.
 
 
-Package natbib Warning: Citation `beijer' on page 8 undefined on input line 87.
+Package natbib Warning: Citation `beijer' on page 8 undefined on input line 80.
 
 
 
-Package natbib Warning: Citation `brome' on page 8 undefined on input line 87.
+Package natbib Warning: Citation `brome' on page 8 undefined on input line 80.
 
 
-Package natbib Warning: Citation `n1' on page 8 undefined on input line 87.
+Package natbib Warning: Citation `n1' on page 8 undefined on input line 80.
 
 
-Package natbib Warning: Citation `brome' on page 8 undefined on input line 87.
+Package natbib Warning: Citation `brome' on page 8 undefined on input line 80.
 
 
 Package natbib Warning: Citation `mollu2018driving' on page 8 undefined on inpu
-t line 87.
+t line 80.
 
 
-Package natbib Warning: Citation `beijer' on page 8 undefined on input line 87.
+Package natbib Warning: Citation `beijer' on page 8 undefined on input line 80.
 
 
 
 Package natbib Warning: Citation `yellappan2016exposure' on page 8 undefined on
- input line 87.
+ input line 80.
 
 
 Package natbib Warning: Citation `smiley2005traffic' on page 8 undefined on inp
-ut line 87.
+ut line 80.
 
 
-Package natbib Warning: Citation `costa' on page 8 undefined on input line 90.
+Package natbib Warning: Citation `costa' on page 8 undefined on input line 84.
 
 
-Package natbib Warning: Citation `crundall' on page 8 undefined on input line 9
-0.
+Package natbib Warning: Citation `crundall' on page 8 undefined on input line 8
+4.
 
 
 Package natbib Warning: Citation `zalesinska2018impact' on page 8 undefined on 
-input line 90.
+input line 84.
 
 
-Package natbib Warning: Citation `costa' on page 8 undefined on input line 90.
+Package natbib Warning: Citation `costa' on page 8 undefined on input line 84.
 
 
 Package natbib Warning: Citation `mollu2018driving' on page 8 undefined on inpu
-t line 90.
+t line 84.
 
 
 Package natbib Warning: Citation `harasimczuk2021longer' on page 8 undefined on
- input line 94.
+ input line 88.
 
 
 Package natbib Warning: Citation `meuleners2020identifying' on page 8 undefined
- on input line 94.
+ on input line 88.
 
 
 Package natbib Warning: Citation `MaliszewskiNorbert2019Iosa' on page 8 undefin
-ed on input line 94.
+ed on input line 88.
 
 
 Package natbib Warning: Citation `tarnowski2017roadside' on page 8 undefined on
- input line 94.
+ input line 88.
 
 
 Package natbib Warning: Citation `marciano2017effect' on page 8 undefined on in
-put line 94.
+put line 88.
 
 
 Package natbib Warning: Citation `chan2013emotional' on page 8 undefined on inp
-ut line 94.
+ut line 88.
 
 [8]) (./02theory.tex [9]
 Kapitola 2.
@@ -1141,161 +1138,159 @@ n input line 3.
 
 
 Package natbib Warning: Citation `Shanmuganathan2016' on page 10 undefined on i
-nput line 11.
+nput line 7.
 
 
 Package natbib Warning: Citation `DettmersTim2019SNfS' on page 10 undefined on 
-input line 13.
+input line 9.
 
 <images/02/mynn.png, id=273, 1281.28688pt x 859.71187pt>
 File: images/02/mynn.png Graphic file (type png)
 <use images/02/mynn.png>
-Package pdftex.def Info: images/02/mynn.png  used on input line 17.
+Package pdftex.def Info: images/02/mynn.png  used on input line 13.
 (pdftex.def)             Requested size: 264.61333pt x 177.54076pt.
 [10
 
 ]
 
 Package natbib Warning: Citation `sigmoid' on page 11 undefined on input line 3
-4.
+0.
 
 
-Package natbib Warning: Citation `relu' on page 11 undefined on input line 34.
+Package natbib Warning: Citation `relu' on page 11 undefined on input line 30.
 
 
-Package natbib Warning: Citation `prelu' on page 11 undefined on input line 34.
+Package natbib Warning: Citation `prelu' on page 11 undefined on input line 30.
 
 
 <images/02/relu_prelu.png, id=281, 2621.795pt x 1031.855pt>
 File: images/02/relu_prelu.png Graphic file (type png)
 <use images/02/relu_prelu.png>
-Package pdftex.def Info: images/02/relu_prelu.png  used on input line 38.
+Package pdftex.def Info: images/02/relu_prelu.png  used on input line 34.
 (pdftex.def)             Requested size: 264.61333pt x 104.13623pt.
 
-Package natbib Warning: Citation `prelu' on page 11 undefined on input line 39.
+Package natbib Warning: Citation `prelu' on page 11 undefined on input line 35.
 
 
 
-Package natbib Warning: Citation `prelu' on page 11 undefined on input line 39.
+Package natbib Warning: Citation `prelu' on page 11 undefined on input line 35.
 
 
 [11 <./images/02/mynn.png (PNG copy)>] [12 <./images/02/relu_prelu.png (PNG cop
 y)>]
 
-Package natbib Warning: Citation `loss' on page 13 undefined on input line 56.
+Package natbib Warning: Citation `loss' on page 13 undefined on input line 48.
 
 
-Package natbib Warning: Citation `bp' on page 13 undefined on input line 58.
+Package natbib Warning: Citation `bp' on page 13 undefined on input line 50.
 
 
 Package natbib Warning: Citation `Goodfellow-et-al-2016' on page 13 undefined o
-n input line 62.
+n input line 52.
 
 <images/02/grad.png, id=301, 1601.2322pt x 824.32968pt>
 File: images/02/grad.png Graphic file (type png)
 <use images/02/grad.png>
-Package pdftex.def Info: images/02/grad.png  used on input line 66.
+Package pdftex.def Info: images/02/grad.png  used on input line 56.
 (pdftex.def)             Requested size: 220.50887pt x 113.51863pt.
 
-Package natbib Warning: Citation `grad' on page 13 undefined on input line 67.
+Package natbib Warning: Citation `grad' on page 13 undefined on input line 57.
 
 
-Package natbib Warning: Citation `grad' on page 13 undefined on input line 67.
+Package natbib Warning: Citation `grad' on page 13 undefined on input line 57.
 
 [13] [14 <./images/02/grad.png (PNG copy)>]
 
 Package natbib Warning: Citation `cnn-intro' on page 15 undefined on input line
- 89.
+ 73.
 
 <images/02/filters2.png, id=312, 2195.20125pt x 781.41937pt>
 File: images/02/filters2.png Graphic file (type png)
 <use images/02/filters2.png>
-Package pdftex.def Info: images/02/filters2.png  used on input line 102.
+Package pdftex.def Info: images/02/filters2.png  used on input line 86.
 (pdftex.def)             Requested size: 308.71106pt x 109.88683pt.
 
-Package natbib Warning: Citation `filters' on page 15 undefined on input line 1
-03.
+Package natbib Warning: Citation `filters' on page 15 undefined on input line 8
+7.
 
 
-Package natbib Warning: Citation `filters' on page 15 undefined on input line 1
-03.
+Package natbib Warning: Citation `filters' on page 15 undefined on input line 8
+7.
 
 [15]
 
 Package natbib Warning: Citation `cnn-intro' on page 16 undefined on input line
- 109.
+ 93.
 
 <images/02/pooling.png, id=322, 514.92375pt x 233.87375pt>
 File: images/02/pooling.png Graphic file (type png)
 <use images/02/pooling.png>
-Package pdftex.def Info: images/02/pooling.png  used on input line 113.
+Package pdftex.def Info: images/02/pooling.png  used on input line 97.
 (pdftex.def)             Requested size: 220.50887pt x 100.14978pt.
 
-Package natbib Warning: Citation `pool' on page 16 undefined on input line 114.
+Package natbib Warning: Citation `pool' on page 16 undefined on input line 98.
 
 
-
-Package natbib Warning: Citation `pool' on page 16 undefined on input line 114.
-
+Package natbib Warning: Citation `pool' on page 16 undefined on input line 98.
 
 
-Package natbib Warning: Citation `lenet' on page 16 undefined on input line 124
+Package natbib Warning: Citation `lenet' on page 16 undefined on input line 108
 .
 
 [16 <./images/02/filters2.png (PNG copy)> <./images/02/pooling.png>]
 <images/02/lenet5.png, id=331, 166.10056pt x 31.43745pt>
 File: images/02/lenet5.png Graphic file (type png)
 <use images/02/lenet5.png>
-Package pdftex.def Info: images/02/lenet5.png  used on input line 128.
+Package pdftex.def Info: images/02/lenet5.png  used on input line 112.
 (pdftex.def)             Requested size: 441.01773pt x 83.47334pt.
 
 
-Package natbib Warning: Citation `lenet' on page 17 undefined on input line 129
+Package natbib Warning: Citation `lenet' on page 17 undefined on input line 113
 .
 
 
-Package natbib Warning: Citation `lenet' on page 17 undefined on input line 129
+Package natbib Warning: Citation `lenet' on page 17 undefined on input line 113
 .
 
 
 Package natbib Warning: Citation `AlexNet' on page 17 undefined on input line 1
-33.
+17.
 
 
-Package natbib Warning: Citation `ilsvrc' on page 17 undefined on input line 13
-3.
+Package natbib Warning: Citation `ilsvrc' on page 17 undefined on input line 11
+7.
 
 [17 <./images/02/lenet5.png>]
 <images/placeholder.png, id=339, 401.5pt x 200.75pt>
 File: images/placeholder.png Graphic file (type png)
 <use images/placeholder.png>
-Package pdftex.def Info: images/placeholder.png  used on input line 146.
+Package pdftex.def Info: images/placeholder.png  used on input line 130.
 (pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 18 undefined on i
-nput line 152.
+nput line 136.
 
 [18 <./images/placeholder.png>]
 <images/02/challenge2.png, id=348, 920.68968pt x 487.8225pt>
 File: images/02/challenge2.png Graphic file (type png)
 <use images/02/challenge2.png>
-Package pdftex.def Info: images/02/challenge2.png  used on input line 169.
+Package pdftex.def Info: images/02/challenge2.png  used on input line 149.
 (pdftex.def)             Requested size: 441.01773pt x 233.67575pt.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 19 undefined on i
-nput line 170.
+nput line 150.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 19 undefined on i
-nput line 170.
+nput line 150.
 
 ) (./03proposal.tex [19] [20 <./images/02/challenge2.png (PNG copy)>]
 Kapitola 3.
 
-Package natbib Warning: Citation `yolov8' on page 21 undefined on input line 11
-.
+Package natbib Warning: Citation `yolov8' on page 21 undefined on input line 7.
+
 
 [21
 
@@ -1303,21 +1298,21 @@ Package natbib Warning: Citation `yolov8' on page 21 undefined on input line 11
 <images/03/glasses.jpg, id=367, 715.67375pt x 387.4475pt>
 File: images/03/glasses.jpg Graphic file (type jpg)
 <use images/03/glasses.jpg>
-Package pdftex.def Info: images/03/glasses.jpg  used on input line 38.
+Package pdftex.def Info: images/03/glasses.jpg  used on input line 22.
 (pdftex.def)             Requested size: 220.50887pt x 119.37439pt.
 
 
-Package natbib Warning: Citation `tobii' on page 22 undefined on input line 39.
+Package natbib Warning: Citation `tobii' on page 22 undefined on input line 23.
 
 
 
-Package natbib Warning: Citation `tobii' on page 22 undefined on input line 39.
+Package natbib Warning: Citation `tobii' on page 22 undefined on input line 23.
 
 
 <images/03/map.png, id=369, 1717.91812pt x 749.04843pt>
 File: images/03/map.png Graphic file (type png)
 <use images/03/map.png>
-Package pdftex.def Info: images/03/map.png  used on input line 52.
+Package pdftex.def Info: images/03/map.png  used on input line 36.
 (pdftex.def)             Requested size: 441.01773pt x 192.29065pt.
 [22 <./images/03/glasses.jpg> <./images/03/map.png (PNG copy)>])
 (./04research.tex [23]
@@ -1325,70 +1320,77 @@ Kapitola 4.
 [24
 
 ]
-<images/04/tobiiprolab3.jpg, id=387, 1927.2pt x 1033.8625pt>
-File: images/04/tobiiprolab3.jpg Graphic file (type jpg)
-<use images/04/tobiiprolab3.jpg>
-Package pdftex.def Info: images/04/tobiiprolab3.jpg  used on input line 45.
-(pdftex.def)             Requested size: 441.01773pt x 236.58444pt.
- [25] [26 <./images/04/tobiiprolab3.jpg>]
-<images/04/graf.png, id=402, 867.24pt x 433.62pt>
+<images/04/snapshot.png, id=387, 871.75688pt x 499.11469pt>
+File: images/04/snapshot.png Graphic file (type png)
+<use images/04/snapshot.png>
+Package pdftex.def Info: images/04/snapshot.png  used on input line 45.
+(pdftex.def)             Requested size: 441.01773pt x 252.49644pt.
+ [25] [26 <./images/04/snapshot.png (PNG copy)>] [27]
+<images/04/graf.png, id=407, 867.24pt x 433.62pt>
 File: images/04/graf.png Graphic file (type png)
 <use images/04/graf.png>
-Package pdftex.def Info: images/04/graf.png  used on input line 86.
+Package pdftex.def Info: images/04/graf.png  used on input line 80.
 (pdftex.def)             Requested size: 441.01773pt x 220.50809pt.
- [27]
 
-Package natbib Warning: Citation `ocsort' on page 28 undefined on input line 93
+
+Package natbib Warning: Citation `mikel' on page 28 undefined on input line 89.
+
+
+
+Package natbib Warning: Citation `ocsort' on page 28 undefined on input line 89
 .
 
 
-Package natbib Warning: Citation `TODO' on page 28 undefined on input line 93.
+Package natbib Warning: Citation `deepocsort' on page 28 undefined on input lin
+e 89.
 
 
 Package natbib Warning: Citation `strongsort' on page 28 undefined on input lin
-e 93.
+e 89.
 
 
-Package natbib Warning: Citation `TODO' on page 28 undefined on input line 93.
+Package natbib Warning: Citation `bot' on page 28 undefined on input line 89.
 
 
 Package natbib Warning: Citation `bytetrack' on page 28 undefined on input line
- 93.
+ 89.
 
 
-Package natbib Warning: Citation `sort' on page 28 undefined on input line 93.
+Package natbib Warning: Citation `sort' on page 28 undefined on input line 89.
 
-<images/04/flow.png, id=412, 1333.98375pt x 423.08063pt>
-File: images/04/flow.png Graphic file (type png)
-<use images/04/flow.png>
-Package pdftex.def Info: images/04/flow.png  used on input line 99.
-(pdftex.def)             Requested size: 441.01773pt x 139.8688pt.
 [28 <./images/04/graf.png>]
+File: images/placeholder.png Graphic file (type png)
+<use images/placeholder.png>
+Package pdftex.def Info: images/placeholder.png  used on input line 95.
+(pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
+ [29]
 
-Package natbib Warning: Citation `v7' on page 29 undefined on input line 110.
+Package natbib Warning: Citation `v7' on page 30 undefined on input line 110.
 
-[29 <./images/04/flow.png (PNG copy)>]
-<images/04/lab.png, id=426, 1130.72438pt x 663.22781pt>
+<images/04/lab.png, id=423, 1130.72438pt x 663.22781pt>
 File: images/04/lab.png Graphic file (type png)
 <use images/04/lab.png>
-Package pdftex.def Info: images/04/lab.png  used on input line 115.
+Package pdftex.def Info: images/04/lab.png  used on input line 114.
 (pdftex.def)             Requested size: 441.01773pt x 258.67804pt.
-<images/04/mapping.jpg, id=427, 1868.9825pt x 1083.04625pt>
+
+Package natbib Warning: Citation `mot' on page 30 undefined on input line 123.
+
+[30]
+<images/04/mapping.jpg, id=429, 1868.9825pt x 1083.04625pt>
 File: images/04/mapping.jpg Graphic file (type jpg)
 <use images/04/mapping.jpg>
 Package pdftex.def Info: images/04/mapping.jpg  used on input line 127.
 (pdftex.def)             Requested size: 441.01773pt x 255.55704pt.
- [30 <./images/04/lab.png (PNG copy)>]
-<images/04/iou.jpg, id=433, 1927.2pt x 1084.05pt>
+ [31 <./images/04/lab.png (PNG copy)>]
+<images/04/iou.jpg, id=436, 1927.2pt x 1084.05pt>
 File: images/04/iou.jpg Graphic file (type jpg)
 <use images/04/iou.jpg>
-Package pdftex.def Info: images/04/iou.jpg  used on input line 144.
+Package pdftex.def Info: images/04/iou.jpg  used on input line 142.
 (pdftex.def)             Requested size: 441.01773pt x 248.06912pt.
-
-[31 <./images/04/mapping.jpg>] [32 <./images/04/iou.jpg>]) (./05results.tex
-[33]
+ [32 <./images/04/mapping.jpg>]
+[33 <./images/04/iou.jpg>]) (./05results.tex [34]
 Kapitola 5.
-[34
+[35
 
 ]
 
@@ -1409,9 +1411,9 @@ File: images/placeholder.png Graphic file (type png)
 Package pdftex.def Info: images/placeholder.png  used on input line 44.
 (pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
 
-Package natbib Warning: Citation `hota' on page 35 undefined on input line 51.
+Package natbib Warning: Citation `hota' on page 36 undefined on input line 51.
 
-<images/05/loc.png, id=457, 852.18375pt x 402.75468pt>
+<images/05/loc.png, id=459, 852.18375pt x 402.75468pt>
 File: images/05/loc.png Graphic file (type png)
 <use images/05/loc.png>
 Package pdftex.def Info: images/05/loc.png  used on input line 61.
@@ -1420,7 +1422,7 @@ File: images/placeholder.png Graphic file (type png)
 <use images/placeholder.png>
 Package pdftex.def Info: images/placeholder.png  used on input line 68.
 (pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
-[35] [36 <./images/05/loc.png (PNG copy)>]
+[36] [37 <./images/05/loc.png (PNG copy)>]
 File: images/placeholder.png Graphic file (type png)
 <use images/placeholder.png>
 Package pdftex.def Info: images/placeholder.png  used on input line 97.
@@ -1440,8 +1442,8 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[37]
-<images/05/explanation.png, id=482, 1394.20876pt x 852.18375pt>
+[38]
+<images/05/explanation.png, id=485, 1394.20876pt x 852.18375pt>
 File: images/05/explanation.png Graphic file (type png)
 <use images/05/explanation.png>
 Package pdftex.def Info: images/05/explanation.png  used on input line 150.
@@ -1452,25 +1454,25 @@ Overfull \hbox (0.70287pt too wide) in paragraph at lines 155--158
 aná hod-nota HOTA []5.7[]. TODO
  []
 
-[38 <./images/05/explanation.png (PNG copy)>]
+[39 <./images/05/explanation.png (PNG copy)>]
 Overfull \hbox (8.27548pt too wide) in paragraph at lines 168--179
  [][] 
  []
 
-<images/05/compare.png, id=493, 1194.71344pt x 429.85594pt>
+<images/05/compare.png, id=496, 1194.71344pt x 429.85594pt>
 File: images/05/compare.png Graphic file (type png)
 <use images/05/compare.png>
 Package pdftex.def Info: images/05/compare.png  used on input line 186.
 (pdftex.def)             Requested size: 441.01773pt x 158.6769pt.
-<images/05/vs.png, id=494, 672.26157pt x 291.33844pt>
+<images/05/vs.png, id=497, 672.26157pt x 291.33844pt>
 File: images/05/vs.png Graphic file (type png)
 <use images/05/vs.png>
 Package pdftex.def Info: images/05/vs.png  used on input line 194.
 (pdftex.def)             Requested size: 441.01773pt x 191.12369pt.
-[39 <./images/05/compare.png (PNG copy)>]) (./06conclusion.tex [40 <./images/05
-/vs.png (PNG copy)>] [41
+[40 <./images/05/compare.png (PNG copy)>]) (./06conclusion.tex [41 <./images/05
+/vs.png (PNG copy)>] [42
 
-]) [42]
+]) [43]
 No file main.bbl.
 
 Package caption Warning: Unused \captionsetup[sub] on input line 62.
@@ -1487,10 +1489,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 413CBE29C7D11F3ECF94D8EFC95A6AC8;4982.
  ) 
 Here is how much of TeX's memory you used:
- 18279 strings out of 476001
- 316689 string characters out of 5789205
+ 18275 strings out of 476001
+ 316542 string characters out of 5789205
  1864074 words of memory out of 5000000
- 38253 multiletter control sequences out of 15000+600000
+ 38248 multiletter control sequences out of 15000+600000
  527547 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  77i,9n,77p,1280b,617s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1511,11 +1513,11 @@ ve/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive
 3/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/
 texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2023/te
 xmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (51 pages, 768
-6494 bytes).
+Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (52 pages, 797
+0492 bytes).
 PDF statistics:
- 629 PDF objects out of 1000 (max. 8388607)
- 503 compressed objects within 6 object streams
- 149 named destinations out of 1000 (max. 500000)
- 387 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 633 PDF objects out of 1000 (max. 8388607)
+ 507 compressed objects within 6 object streams
+ 151 named destinations out of 1000 (max. 500000)
+ 382 words of extra memory for PDF output out of 10000 (max. 10000000)
 

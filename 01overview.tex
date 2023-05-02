@@ -2,10 +2,6 @@
 
 V úvodnej kapitole opíšeme základné poznatky z problematiky, ktoré treba zohľadniť pri neskoršom vytváraní návrhu riešenia. Kapitola obsahuje zhrnutie viacerých predošlých prác zaoberajúcich sa podobnými problémami. Problematiku môžeme rozdeliť na dve väčšie časti, detekcia a významnosť reklám.
 
-%   A
-%   NEW
-%   SECTION
-
 \section{Detekcia objektov}
 
 Hlavným účelom detekcie objektov je identifikovať a lokalizovať jeden alebo viacero hľadaných objektov na obrázku alebo videu. Detektor je prispôsobený na množinu tried, pre ktorú bol vytvorený. Na lokalizáciu sa používa \textit{bounding box}, ktorý pomocou súradníc z obrázka opisuje priestor, v ktorom sa identifikovaný objekt nachádza. V prípade videa sa za pomoci ďalších techník dokáže sledovať pohyb objektu v scéne. Ide o stavebný kameň umelej inteligencie, ktorá umožňuje počítačovým systémom „vidieť“, čím ponúka riešenie pre mnohé praktické úlohy.
@@ -67,10 +63,6 @@ V práci \cite{Hossari} na detekciu reklám autori navrhli \textit{Advert detect
 
 V práci \cite{GeoTag} bola ako základ použitá architektúra AlexNet \cite{AlexNet}, ktorej cieľom bolo vyhodnotiť nahrávané video v reálnom čase a nahlásiť polohu reklamy s jej obsahom. Výsledky na vlastnej databáze dosiahli významne menšiu presnosť a to najmä na detekcii menších reklamných plôch. Autori opisujú vývoj trénovania skúšaním rôznych parametrov. Nakoniec dosiahli úspešnosť tréningu 92.7\%, ale výsledky na testovacích dátach dopadli približne o 20\% horšie, čo je zjavne spôsobené prehnaným trénovaním. Detekcie reklám boli ďalším procesom rozdelené do kategórií ako nehnuteľnosti, kampaň, produkty a mnohé iné, avšak bližšie výsledky v práci neboli uvedené.
 
-%   A
-%   NEW
-%   SECTION
-
 \section{Významnosť reklám}
 
 Pozornosť vodiča je kritickým problémom, ktorému sa v posledných rokoch venuje veľká pozornosť. Je nevyhnutné, aby vodiči zostali počas jazdy sústredení  a aby sa vyhli nebezpečným situáciám na ceste. Ľudská pozornosť je častokrát ľahko ovplyvniteľná a existuje veľa rušivých prvkov, ktoré môžu odviesť pozornosť vodiča. Jedným z takýchto rozptýlení môže byť reklama, ktorá má potenciál odvrátiť pozornosť vodičov od cesty. Štúdie ukázali, že aj chvíľkové rozptýlenie môže mať pri šoférovaní vážne následky. Napríklad vodič, ktorý v meste odtrhne oči od vozovky len na dve sekundy, aby si prečítal obsah reklamy prejde vzdialenosť približne 28 metrov. Keď sa to skombinuje so situáciou, kedy vodič musí reagovať na náhlu zmenu v premávke, nemusí mať dostatok času odvrátiť nehodu.
@@ -84,9 +76,11 @@ Vplyv na správanie vodiča závisí od charakteristiky reklamy a od samotného 
 Podľa prečítaných prác by sa charakteristika reklám dala rozdeliť  na základe nasledujúcich troch parametrov.
 
 \subsubsection{Typ reklamy}
+
 Viaceré práce ukazujú, že elektronické bilbordy dosahujú dlhší pohľad v porovnaní s tradičnou reklamou, ktorá nevyžaruje svetlo \cite{OVIEDOTRESPALACIOS201985, beijer, brome}. Naopak v práci \cite{n1} toto tvrdenie nebolo potvrdené, pretože sa nenašli žiadne zásadne rozdiely medzi tradičnými a elektronickými bilbordmi. Experiment v práci \cite{brome} ukazuje, že elektronické bilbordy, ktoré v krátkych intervaloch striedajú obsah priťahujú vodičovú pozornosť častejšie, ale celková dĺžka fixácia nie je výrazne odlišná. Autori sa v prácach \cite{mollu2018driving} a \cite{beijer} zhodujú s tým, že vysoká svietivosť v prípade elektronickej reklamy môže byť príčinou dopravnej nehody, nakoľko najdlhšie ovplyvnia správanie vodiča. Potvrdili to aj účastníci experimentu svojimi názormi v dotazníku, ktorý vyplnili krátko po ukončení jazdy. Obzvlášť veľkú pozornosť pútajú elektronické bilbordy s video obsahom. Práve takýto typ reklamy je kvôli priemernej dĺžke fixácií najnebezpečnejší \cite{yellappan2016exposure, smiley2005traffic}.
 
 \subsubsection{Umiestnenie reklamy}
+
 Dosah reklamy významne závisí aj od jej umiestenia. Reklamy situované na vodičovej strane cesty zaznamenali viacej fixácii než na opačnej strane cesty. Predpoklad, že výška umiestnenia reklamy predĺži trvanie fixácie bol negatívne potvrdený v práci \cite{costa} a \cite{crundall}. Autori zistili, že vodiči sa viac pozerali na reklamy na úrovni cesty než na reklamy vyvýšené tri a viac metrov nad zemou. Výnimkou sú prípady, kedy vodiči cielene vyhľadávajú reklamy, vtedy sa obzerajú viac do výšky. Okrem toho niektoré práce brali do úvahy uhol reklamnej plochy \cite{zalesinska2018impact}, náročnosť dopravného úseku, typ prostredia a jeho komplexnosť \cite{costa, mollu2018driving} pričom sa ukázalo, že všetky tieto prvky do istej miery vplývajú na sledovanosť reklamy.
 
 \subsubsection{Obsah reklamy}

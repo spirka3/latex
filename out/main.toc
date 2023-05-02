@@ -34,13 +34,14 @@
 \contentsline {section}{\numberline {4.2}Tobii Pro Lab}{25}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Detektor reklám}{26}{section.4.3}%
 \contentsline {subsubsection}{Dataset}{27}{section*.33}%
-\contentsline {subsubsection}{Tréning}{27}{section*.34}%
-\contentsline {section}{\numberline {4.4}Sledovanie reklám}{28}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{29}{subsection.4.4.1}%
+\contentsline {subsubsection}{Tréning}{28}{section*.34}%
+\contentsline {section}{\numberline {4.4}Sledovanie reklám}{29}{section.4.4}%
+\contentsline {subsubsection}{Pozorovanie metód}{30}{section*.37}%
+\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{30}{subsection.4.4.1}%
 \contentsline {section}{\numberline {4.5}Významnosť reklám}{31}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{32}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Vyhodnotenie výsledkov}{34}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Detekcia}{34}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Sledovanie reklám}{35}{section.5.2}%
-\contentsline {subsubsection}{Lokalizácia}{35}{section*.43}%
-\contentsline {subsubsection}{Citlivosť a presnosť}{36}{section*.46}%
+\contentsline {chapter}{\numberline {5}Vyhodnotenie výsledkov}{35}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Detekcia}{35}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Sledovanie reklám}{36}{section.5.2}%
+\contentsline {subsubsection}{Lokalizácia}{36}{section*.44}%
+\contentsline {subsubsection}{Citlivosť a presnosť}{37}{section*.47}%
