@@ -72,7 +72,7 @@ To čo sme opísali je len základný zjednodušený princíp učenia. V skutoč
 
 % todo definovať niektoré parametre a naznačiť ako sa tým mení opísaný princíp; ideálne tie, ktoré potom budeme ladiť v riešení
 
-Napokon je dôležité, aby dataset obsahoval veľa obrázkov, ktoré sú dobre označené. Objekty, ktoré chceme detegovať by mali mať dostatočnú diverzitu a približne rovnakú distribúciu. Dataset je spravidla rozdelený do troch častí. Trénovacia sada je najväčšia, aby mala sieť čo najviac dát. Validačná sada je oddelená od trénovacej sady a používa sa na overenie výkonnosti modelu počas trénovania. Model sa učí na trénovacej sade a súčasne sa po každej vykonanej epoche vykonáva hodnotenie modelu na validačnej sade. Hlavnou myšlienkou validačnej sady je zabrániť prehnanému trénovaniu modelu. Posledná testovacia sada slúži na určenie toho ako dobre sa neurónovú sieť podarilo natrénovať.
+Napokon je dôležité, aby dataset obsahoval veľa obrázkov, ktoré sú dobre označené. Objekty, ktoré chceme detegovať by mali mať dostatočnú diverzitu a približne rovnakú distribúciu. Dataset je spravidla rozdelený do troch častí. Trénovacia sada je najväčšia, aby mala sieť čo najviac dát. Validačná sada je oddelená od trénovacej sady a používa sa na overenie výkonnosti modelu počas trénovania. Model sa učí na trénovacej sade a súčasne sa po každej vykonanej epoche vykonáva hodnotenie modelu na validačnej sade. Hlavnou myšlienkou validačnej sady je zabrániť prehnanému trénovaniu modelu. Testovacia sada slúži na určenie toho ako dobre sa neurónovú sieť podarilo natrénovať.
 
 %   A
 %   NEW
@@ -132,6 +132,9 @@ Obrázok \ref{img:lenet} zobrazuje prvú konvolučnú neurónovú sieť, ktorú 
 
 Prvou konvolučnou sieťou, ktorá vyhral majstrovstvá súťaže ILSVRC bola sieť AlexNet v roku 2012. Bola vytvorená zo základnej architektúry LeNet-5. Pozostáva z piatich konvolučných vrstiev, troch pooling vrstiev a troch plne prepojených vrstiev, s celkovým počtom 60 miliónov parametrov \cite{AlexNet}. Na testovacej sade ILSVRC chybovosť dosiahla úroveň 15,3\%, s výrazným rozdielom oproti druhému miestu s chybou 26,2\% \cite{ilsvrc}. Úspech siete AlexNet bol spôsobený viacerými vylepšeniami. Napríklad rozšírením trénovacích údajov pomocou úprav originálnych obrázkov, použitím aktivačnej funkcii ReLu, ktorá vtedy nebola bežne používaná a náhodným odstránim spojitých neurónov pomocou regularizačnej metódy \textit{dropout}.
 
+\subsubsection{YOLO}
+TODO.
+
 %   A
 %   NEW
 %   SECTION
@@ -150,9 +153,17 @@ Vo všeobecnosti si trénovanie môže dovoliť trvať dlhý čas, no výpočtov
 % todo, pridať nejakú bližšiu analýzu
 
 \subsubsection{Podobnosť a variácia trieď}
-Objekty, ktoré sa snaží počítač vidieť a rozoznať sa môžu medzi sebou veľmi podobať a napriek tomu byť označené rozdielnymi triedami. Vonkajšia podobnosť môže ľahko spôsobiť nesprávne priradenie triedy objektu. Na druhej strane, jedna trieda môže mať veľmi veľa variácií. Predovšetkým sa to stáva pre objekty vytvorené človekom alebo prírodou.  
+Objekty, ktoré sa snaží počítač vidieť a rozoznať sa môžu medzi sebou veľmi podobať a napriek tomu byť označené rozdielnymi triedami. Vonkajšia podobnosť môže ľahko spôsobiť nesprávne priradenie triedy objektu. Na druhej strane, jedna trieda môže mať veľmi veľa variácií. Predovšetkým sa to stáva pre objekty vytvorené človekom alebo prírodou. Napríklad na obrázku \ref{img:ch2} vidíme rôzne podoby stoličky, ktoré sa výrazne líšia, ale nemáme problém povedať, že ide o stoličku. Pokiaľ niektorá nezvyčajná podoba stoličky nie je v trénovacích dátach, tak pravdepodobne nebude rozoznaná. Druhá časť obrázku \ref{img:ch2} ukazuje, že aj keď sú objekty z rôznych tried, tak sa môžu veľmi podobať. Napríklad mačka a puma sú si veľmi podobné, ale sú z rôznych tried. Toto môže spôsobiť, že sa mačka označí ako puma alebo naopak.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/02/challenge2.png}
+    \caption{Príklad variácie vrámci jednej triedy (a–c) a príklad podobnosti medzi triedami (d–f) \cite{RosinPaulL2019RIAa}.}
+    \label{img:ch2}
+\end{figure}
 
 \subsubsection{Osvetlenie, oklúzia a deformácia}
-V neposlednom rade výsledky komplikujú podmienky, pri ktorých bol hľadaný objekt zachytený. Príkladom môže byť opäť autonómne riadenie vozidla, ktoré musí fungovať počas celého dňa, čiže za každých svetelných podmienok a to aj v extrémnych situáciách. Oklúzia nastáva keď objekt nie je viditeľný celý kvôli jeho prekrytiu. Deformácia nastáva hlavne pre objekty, ktoré nie sú pevné a tak sa môžu vyskytovať v rôznych formách.
+V neposlednom rade výsledky komplikujú podmienky, pri ktorých je hľadaný objekt zachytený. Príkladom môže byť autonómne riadenie vozidla, ktoré musí fungovať počas celého dňa, čiže za každých svetelných podmienok a to aj v extrémnych situáciách. Oklúzia nastáva keď objekt nie je viditeľný celý kvôli jeho prekrytiu. Deformácia nastáva hlavne pre objekty, ktoré nie sú pevné a tak sa môžu vyskytovať v rôznych formách. TODO zlepšiť odsek, obrázok netreba.
 
-% todo, posledné dve spojiť a pridať informáciu, akým spôsobom sa s tým sieť dokáze vysporiadať
+% The occlusion problem occurs when an object in an image is partially or completely obscured by another object, making it difficult for the neural network to correctly identify or classify the object. The illumination problem arises when the lighting conditions in an image are poor or inconsistent, making it difficult for the neural network to distinguish between different objects or features. Finally, the deformation problem occurs when an object in an image is not in its typical or expected shape or position, making it difficult for the neural network to correctly identify or classify it.
+

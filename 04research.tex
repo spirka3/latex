@@ -1,5 +1,4 @@
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}\chapter{Realizácia riešenia}\label{chap:research}
+\chapter{Realizácia riešenia}\label{chap:research}
 
 Kapitola opísuje priebeh realizácie riešenia. Postup sa vo veľkej miere držal návrhu, avšak počas vývoja došlo k malým doplnkom. Na prácu s výpočtovo zložitými operáciami sme mali k dispozícii školský server, ktorý má dve grafické karty NVIDIA GeForce RTX 3060, každá 12 GB pamäte, CPU AMD Ryzen 9 5900X a 64 GB RAM. Na prihlásenie a vykonávanie príkazov na vzdialenom počítači bol použitý štandardný sieťový protokol. Prístup k serveru je zdieľaný medzi úzkou skupinou ľudí, preto pri jeho používaní trebalo brať ohľad aj na druhých používateľov.
 
@@ -12,7 +11,7 @@ Počas jedného týždňa sa na meraní zúčastnilo osem ľudí. Všetci zúča
 Jedna polovica účastníkov poznala celú trasu a druhá len určitú časť. V každom prípade bol vodič pred jazdou oboznámený, ktorou trasou pôjde a zároveň bol počas jazdy navigovaný spolujazdcom. Väčšia časť ľudí poznala čo je predmetom výskumu. V tabuľke \ref{table:1} sú uložené informácie k jednotlivým účastníkom.
 
 V nahrávacom softvéry so po dokončení nahrávania zobrazila informácia o tom, pre akú percentuálnu časť záznamu boli zaznamenané pohľady. Nízke percento mohlo byť zapríčinené sveteľnými podmienkami a slabšou kalibráciou. Priemerná nameraná hodnota bola 63,6\%. Okuliare sú určené predovšetkým na interný priestor a pre vonkajší sa odporúča použiť nástavec na tienenie, ktorý sme nemali k dispozícii.
-
+\\
 \begin{table}[ht]
 \centering
 \begin{tabular}{ |c c c c c|  }
@@ -43,7 +42,7 @@ Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom j
 \\
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/02/tobiiprolab3.jpg}
+    \includegraphics[width=1\textwidth]{images/04/tobiiprolab3.jpg}
     \caption{TODO, nahradiť obrázkom, kde je zle vypočítaná oblasť pre reklamu ... nemám :(}
     \label{img:lab}
 \end{figure}
@@ -64,6 +63,15 @@ Potrebné je nastaviť tri parametre:
 
 Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecného odporúčania pre prvý tréning. Okrem 
 
+Pri trénovaní sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade. Pokiaľ sa vývoj nezlepšoval, mohli sme tréning v hociktorom momente zastaviť. Z najlepších výsledkov sa ukončili váhy na disk. Vývoj presnosti a citlivosti na validačnej sade je zobrazený na obrázku \ref{img:lab}. Vývoj mAP50 a mAP50-95 je zobrazený na obrázku \ref{img:lab}.
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/04/graf.png}
+    \caption{TODO.}
+    \label{img:lab}
+\end{figure}
+
 \subsubsection{Dataset}
 
 Väčšina obrázkov v Mapillary Vistat je vyohtovených z vnútra auta, prípadne zo strechy. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
@@ -76,25 +84,42 @@ Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 3
 
 Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{TODO}, StrongSORT \cite{strongsort}, BoTSORT \cite{TODO} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
-Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou \ref{img:tracking}.
+Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou. TODO prepojiť obrázk s textom \ref{img:tracking}.
 
  \begin{figure}[ht]
      \centering
-     \includegraphics[width=1\textwidth]{images/02/placeholder.png}
-     \caption{Postup pri sledovaní objekov vo videu.}
+     \includegraphics[width=1\textwidth]{images/04/flow.png}
+     \caption{TODO Postup pri sledovaní objekov vo videu.}
      \label{img:tracking}
  \end{figure}
 
 Každá metóda má konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie sekvencie a niekoľko ďalších špecifických pre jednotlivé metódy. Napríklad pre StrongSort maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
 
+S tretím modelom sme na vystrihnutej časti zo záznamu vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase priradenú inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dokázala metóda StrongSort, pretože na výstup uložila najmenší počet referencií a najviac označení.
+
 \subsection{Pomocné dáta a model}
 
 Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
+% todo pridat vyššie nejaký text, aby bol obrázok na novej strane - zrejme k trackovaniu
+\newpage
+\begin{figure}[ht]
+     \centering
+     \includegraphics[width=1\textwidth]{images/04/lab.png}
+     \caption{Prostredie na vytváranie anotácii vo webovej aplikácie Darwin v7labs.}
+     \label{img:lab}
+ \end{figure}
 
 Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady na reklamu v každom videu.
 
 % Metódu s vysokou citlivosťou sme použili na detekciu reklám z každej nahrávky z merania.
 Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video.
+
+\begin{figure}[ht]
+     \centering
+     \includegraphics[width=1\textwidth]{images/04/mapping.jpg}
+     \caption{Premenovanie referencií podľa nášho číslého označenia.}
+     \label{img:mapping}
+ \end{figure}
 
 Dosiahli sme tým korekciu oboch chýb a získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referenciu reklamy, x a y súradnice ľavého horného rohu a pre rozmery reklamy.
 
@@ -108,12 +133,18 @@ Pre každú snímku, na ktorej bola reklama a zaznamenaný pohľad, sme porovnal
 
  \begin{figure}[ht]
      \centering
-     \includegraphics[width=1\textwidth]{images/02/placeholder.png}
-     \caption{Ukážka prieniku a neprieniku, obrázok a), b).}
+     \includegraphics[width=1\textwidth]{images/04/iou.jpg}
+     \caption{Na obrázku sú detekované dve reklamy, na jednej z nich sa nechádza prienik.}
      \label{img:tracking}
  \end{figure}
 
 \section{Klasifikácia reklamy}
+
+TODO. Vložiť text.
+
+\newpage
+
+TODO. Pokračovanie klasifikácie.
 
 % can object tracking improve object detection?
 

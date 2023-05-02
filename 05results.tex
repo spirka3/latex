@@ -2,33 +2,24 @@
 
 \section{Detekcia}
 
-Postupne sme natrénovali tri modely, každý s inou verziou dát. Všetky modely mali pre tréning rovnako nastavené parametre, líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large.
+Postupne sme natrénovali tri modely, každý s inou verziou dát. Všetky modely mali pre tréning rovnako nastavené parametre, líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte.
 \\
 \begin{table}[ht]
 \centering
-\begin{tabular}{ |c c c c c|  }
+\begin{tabular}{ |c c c c c| }
 \hline
-model  &  presnosť & citlivosť & mAP50 & mAP50-95 \\
+model & presnosť & citlivosť & mAP50 & mAP50-95 \\
 \hline
 M1  & 0.473 & 0.352	& 0.327	& 0.195 \\
-M2  & 0.659 & 0.565 & 0.656 & 0.467 \\
-M3  & 0.623 & 0.575 & 0.636 & 0.456 \\
+M2  & 0.554	& 0.505	& 0.492	& 0.311 \\
+M3  & 0.577	& 0.504	& 0.503	& 0.324 \\
 \hline
 \end{tabular}
 \caption{Výsledky prvých troch trénovaní. Modely sú označené číslom podľa verzie dát.}
 \label{table:test1}
 \end{table}
 
-TODO Pri trénovaní sme mali k dispozícii výpis a tensorboard. bla bla
-\\
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/02/placeholder.png}
-    \caption{Výpis alebo tensorboard.}
-    \label{img:lab}
-\end{figure}
-
-V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testovacej sade. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky a preto je najvhodnejší na pokračovanie v práci.
+V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testovacej sade. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme si pripravili testovaciu vzorku obrázkov tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky a preto je najvhodnejší na pokračovanie v práci.
 \\
 \begin{table}[ht]
 \centering
@@ -37,39 +28,42 @@ V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testov
 model & presnosť & citlivosť & mAP50 & mAP50-95 \\ 
 \hline
 M1  & 0.473	& 0.352	& 0.327	& 0.195 \\
-M2  & 0.659 & 0.565 & 0.656 & 0.467 \\
-M3  & 0.623 & 0.575 & 0.636 & 0.456 \\
+M2  & 0.659 & 0.565 & 0.653 & 0.467 \\
+M3  & 0.715 & 0.541 & 0.656 & 0.480 \\
 \hline
 \end{tabular}
 \caption{Výsledky troch modelov na testovacej vzorke obrázkov.}
 \label{table:test2}
 \end{table}
 
-\subsubsection{Testovanie modelov}
-Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme si pripravili testovaciu vzorku obrázkov tvorenú zo snímok z experimentálneho merania. Najlepšie dopadom tretí model.
-
-\section{Sledovanie}
-
-S tretím modelom sme na vystrihnutej časti zo záznamu vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase priradenú inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dokázala metóda StrongSort, pretože na výstup uložila najmenší počet referencií a najviac označení
-
-Porovnanie výsledkov na pomocnom dataset pre 3. a 4. model \ref{table:test3}.
 \\
-\begin{table}[ht]
-\centering
-\begin{tabular}{ |c c c c c c| }
-\hline
-model & dáta & presnosť & citlivosť & mAP50 & mAP50-95 \\ 
-\hline
-M4 & testovacia sada & 0.473	& 0.352	& 0.327	& 0.195 \\
-M3 & celý dataset & 0.659 & 0.565 & 0.656 & 0.467 \\
-\hline
-\end{tabular}
-\caption{TODO, výsledky 3.}
-\label{table:test3}
-\end{table}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{TODO. Ukážka dobrej a zlej detekcie.}
+    \label{img:lab}
+\end{figure}
+
+\section{Sledovanie reklám}
+
+%Porovnanie výsledkov na pomocnom dataset pre 3. a 4. model \ref{table:test3}.
+%\\
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{ |c c c c c c| }
+%\hline
+%model & dáta & presnosť & citlivosť & mAP50 & mAP50-95 \\
+%\hline
+%M4 & testovacia sada & 0.473	& 0.352	& 0.327	& 0.195 \\
+%M3 & celý dataset & 0.659 & 0.565 & 0.656 & 0.467 \\
+%\hline
+%\end{tabular}
+%\caption{výsledky 3.}
+%\label{table:test3}
+%\end{table}
 
 \subsubsection{Testovanie sledovania}
-V tomto momente sme už mohli vyhodnotiť úspešnosť sledovacích metód v porovnaní s pripravenými údajmi.
+%V tomto momente sme už mohli vyhodnotiť úspešnosť sledovacích metód v porovnaní s pripravenými údajmi.
 
 Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Dlhodobo používané metriky sú CLEAR MOT \cite{clear}, VACE \cite{vace}, IDF1 \cite{idf} a MOTA \cite{mota}. V roku 2020 bola publikovaná práca, v ktorej autori navrhli novú metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}. Práca dokazuje, že predchádzajúce metriky nedokážu zachytiť toľko informácií ako HOTA, ktorá je navyše pomerne intuitívna. Metrika HOTA sa dá rozložiť na viacero menších častí, čím sa dajú vyhodnotiť viaceré aspekty sledovania.
 
