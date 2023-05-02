@@ -45,7 +45,7 @@ Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom j
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/02/tobiiprolab3.jpg}
-    \caption{TODO, hľa softvér, nahradiť obrázkom, kde je zle vypočítaná oblasť pre reklamu... taký obrázok nemám }
+    \caption{TODO, nahradiť obrázkom, kde je zle vypočítaná oblasť pre reklamu ... nemám :(}
     \label{img:lab}
 \end{figure}
 
@@ -67,7 +67,7 @@ Ostatné parametre pre tréning majú hodnoty prednastavené podľa všeobecnéh
 
 \subsubsection{Dataset}
 
-Väčšina obrázkov v Mapillary Vistat je vytvorených z vnútra auta, prípadne zo strechy. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
+Väčšina obrázkov v Mapillary Vistat je vyohtovených z vnútra auta, prípadne zo strechy. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
 
 Anotácie sú uložené vo formáte, ktorý nie je kompatibilný s formátom pre YOLO. Počas úpravy formátu sme zároveň vynechali obrázky, ktoré neobsahovali reklamu, čím sa počet obrázkov znížil na približne 20000 obrázkov. Pri prvom tréningu sme si všimli, že veľká chybovosť nastáva práve pri najmenšie označených reklamách. Najmenšie reklamy boli označené v takej diaľke, že by sa nedalo s istotou povedať, či sa vodič skutočne pozeral na reklamu, alebo na iný objekt. Preto sme z pôvodných dát vytvorili druhú verziu, kde sme ponechali len také obrázky, kde reklamná plocha tvorí aspoň 0,1\% z obrázka. Takouto úpravou mala druhá verzia dát takmer o polovicu menej obrázkov.
 
@@ -77,12 +77,12 @@ Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 3
 
 Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{TODO}, StrongSORT \cite{strongsort}, BoTSORT \cite{TODO} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
-Vstupné video sa spracováva postupne jednej snímke po snímku. Zo snímky sa pomocou modelu získajú detekcie, ktoré sú potom posielané na do zvolenej sledovacej metódy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou \ref{img:tracking}.
+Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou \ref{img:tracking}.
 
  \begin{figure}[ht]
      \centering
      \includegraphics[width=1\textwidth]{images/02/placeholder.png}
-     \caption{Postup pri sledovaní objetu z videa.}
+     \caption{Postup pri sledovaní objekov vo videu.}
      \label{img:tracking}
  \end{figure}
 
@@ -90,28 +90,32 @@ Každá metóda má konfiguračný súbor, kde sa dá nastaviť viacero parametr
 
 \subsection{Pomocné dáta a model}
 
-Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každú druhý obrázok, ktorých spolu bolo takmer tisíc.
+Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
 
-Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady reklamu v každom videu.
+Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady na reklamu v každom videu.
 
-Metódu s vysokou citlivosťou sme použili na detekciu reklám z každej nahrávky z merania. Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video. 
+% Metódu s vysokou citlivosťou sme použili na detekciu reklám z každej nahrávky z merania.
+Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video.
 
-Dosiahli sme tým korektúru oboch chýb a získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referencie reklamy, x a y súradnice ľavého horného rohu reklamy a pre rozmery reklamy.
+Dosiahli sme tým korekciu oboch chýb a získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referenciu reklamy, x a y súradnice ľavého horného rohu a pre rozmery reklamy.
 
 \section{Významnosť reklám}
 
-Po tom čo sa nám podarilo získať informácie, na ktorých snímkach sa nachádza reklama, sme mohli začať analyzovať pohľady vodiča. V tomto bode sme zistili, že pohľady boli zaznamenané v počte 50 snímok za sekundu, kým video bolo nahrávané v počte 25 snímok za sekundu. To znamená, že pokiaľ bol pohľad zaznamenaná bez straty mali sme pre každú snímku z videa dva pohľady. Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, či dokonca oba pohľady. Pokiaľ sme pre snímok zaznamenali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou. Predikciu sme počítali pomocou dvoch predchádzajúcich pohľadov. Pre výpadok pohľadu na viac ako dve snímky sme predikciu nepočítali a snímok sme z analýzy vynechali.
+Zo získaných informácií, na ktorých snímkach sa nachádza reklama, sme mohli začať analyzovať pohľady vodiča. V tomto bode sme zistili, že pohľady boli zaznamenané v počte 50 snímok za sekundu, kým video bolo nahrávané v počte 25 snímok za sekundu. To znamená, že pokiaľ bol pohľad zaznamenaný bez straty mali sme pre každú snímku z videa dva pohľady.
+
+Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, alebo dokonca oba pohľady. Pokiaľ sme pre snímok zaznamenali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou dvoch predchádzajúcich pohľadov. Pre výpadok pohľadu na viac ako dve snímky sme predikciu nepočítali a snímok sme z analýzy vynechali.
+
+Pre každú snímku, na ktorej bola reklama a zaznamenaný pohľad, sme porovnali ich prienik. Získali sme tým informáciu o počte snímok, kde pohľad smeroval na reklamu. Počet snímok sme vynásobili dĺžkou trvania jednej snímky, čím sme získali časový údaj sledovanosti. Podľa dĺžky sledovanosti sme vyhodnotili významnosť reklamy pre každého vodiča samostatne a následne vypočítali konečnú významnosť pomocou mediánu.
+
+ \begin{figure}[ht]
+     \centering
+     \includegraphics[width=1\textwidth]{images/02/placeholder.png}
+     \caption{Postup pri sledovaní objekov vo videu.}
+     \label{img:tracking}
+ \end{figure}
 
 \section{Klasifikácia reklamy}
-% optimalizácia hyperparametre, Under/over-fitting
-% augmentacia pred trenovanim, pri testovani (Test time augmentation)
-% porovnanie precision a recall pre detector vs tracker
 
 % can object tracking improve object detection?
 
 % Yes, object tracking can improve object detection. Object tracking can be used to refine the object detection process by providing additional information about the location and movement of objects in a video stream. By tracking objects across multiple frames, object tracking algorithms can help to reduce false positives and false negatives in the object detection process. For example, if an object detection algorithm detects an object in one frame but fails to detect it in the next frame, an object tracking algorithm can use the object's previous position and movement to predict its location in the current frame. This can help to reduce the number of false negatives and improve the accuracy of the object detection algorithm. Additionally, object tracking can be used to filter out false positives in the object detection process. By tracking an object across multiple frames, an object tracking algorithm can verify that the object is indeed present and is not just a false positive detection. This can help to improve the precision of the object detection algorithm. Overall, object tracking and object detection are complementary techniques that can be used together to improve the accuracy and robustness of computer vision systems.
-
-
-% porovnať chybosť kategorizácie, kebyže sa to počíta zo standardného modelu
-
-% porovnať chybosť klasifikácie, kebyže sa to počíta zo standardného modelu

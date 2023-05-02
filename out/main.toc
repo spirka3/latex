@@ -32,13 +32,13 @@
 \contentsline {section}{\numberline {4.1}Experimentálne meranie}{22}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Tobii Pro Lab}{23}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Detektor reklám}{24}{section.4.3}%
-\contentsline {subsubsection}{Dataset}{24}{section*.27}%
+\contentsline {subsubsection}{Dataset}{25}{section*.27}%
 \contentsline {section}{\numberline {4.4}Sledovanie reklám}{25}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{25}{subsection.4.4.1}%
-\contentsline {section}{\numberline {4.5}Významnosť reklám}{26}{section.4.5}%
+\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{26}{subsection.4.4.1}%
+\contentsline {section}{\numberline {4.5}Významnosť reklám}{27}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{27}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Vyhodnotenie získaných výsledkov}{28}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Detekcia}{28}{section.5.1}%
-\contentsline {subsubsection}{Testovanie modelov}{29}{section*.31}%
+\contentsline {subsubsection}{Testovanie modelov}{29}{section*.32}%
 \contentsline {section}{\numberline {5.2}Sledovanie}{29}{section.5.2}%
-\contentsline {subsubsection}{Testovanie sledovania}{30}{section*.33}%
+\contentsline {subsubsection}{Testovanie sledovania}{30}{section*.34}%
