@@ -33,15 +33,21 @@
 \contentsline {section}{\numberline {4.1}Experimentálne meranie}{24}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Tobii Pro Lab}{25}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Detektor reklám}{26}{section.4.3}%
-\contentsline {subsubsection}{Dataset}{27}{section*.33}%
-\contentsline {subsubsection}{Tréning}{28}{section*.34}%
-\contentsline {section}{\numberline {4.4}Sledovanie reklám}{29}{section.4.4}%
-\contentsline {subsubsection}{Pozorovanie metód}{30}{section*.37}%
-\contentsline {subsection}{\numberline {4.4.1}Pomocné dáta a model}{30}{subsection.4.4.1}%
-\contentsline {section}{\numberline {4.5}Významnosť reklám}{31}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Klasifikácia reklamy}{32}{section.4.6}%
+\contentsline {subsection}{\numberline {4.3.1}Dataset}{27}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tréning}{28}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Sledovanie reklám}{29}{subsection.4.3.3}%
+\contentsline {subsubsection}{Pozorovanie metód}{30}{section*.35}%
+\contentsline {subsection}{\numberline {4.3.4}Pomocný model}{30}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Významnosť reklám}{31}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Klasifikátor reklám}{32}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Extrahovanie príznakov}{33}{subsection.4.5.1}%
+\contentsline {subsubsection}{Počet snímok v sekvencii}{33}{section*.38}%
+\contentsline {subsubsection}{Lokalizácia reklamy}{33}{section*.39}%
+\contentsline {subsubsection}{Veľkosť reklamy}{34}{section*.40}%
+\contentsline {subsubsection}{Mapa význačností}{34}{section*.41}%
+\contentsline {subsubsection}{Entropia reklamy}{34}{section*.42}%
 \contentsline {chapter}{\numberline {5}Vyhodnotenie výsledkov}{35}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Detekcia}{35}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Sledovanie reklám}{36}{section.5.2}%
-\contentsline {subsubsection}{Lokalizácia}{36}{section*.44}%
-\contentsline {subsubsection}{Citlivosť a presnosť}{37}{section*.47}%
+\contentsline {section}{\numberline {5.1}Detekcia reklám}{35}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Sledovanie reklám}{37}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Významnosť reklám}{39}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Klasifikácia reklám}{40}{section.5.4}%

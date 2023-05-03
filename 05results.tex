@@ -1,11 +1,55 @@
 \chapter{Vyhodnotenie výsledkov}\label{chap:results}
 
-Vyhodnotenie získaných výsledkov sme rozdelili na tri časti. V prvej časti sme sa zamerali na detekciu, v druhej na klasifikáciu a v tretej na kombináciu oboch. V každej časti sme porovnali výsledky jednotlivých modelov a zároveň sme porovnali výsledky jednotlivých verzií dát.
+TODO: Vyhodnotenie získaných výsledkov sme rozdelili na tri časti. V prvej časti sme sa zamerali na detekciu, v druhej na klasifikáciu a v tretej na kombináciu oboch. V každej časti sme porovnali výsledky jednotlivých modelov a zároveň sme porovnali výsledky jednotlivých verzií dát.
 
-\section{Detekcia}
+\section{Detekcia reklám}
 
-Natrénovali sme tri modely, ktoré mali pri tréningu rovnako nastavené parametre a líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte.
-\\
+Nazačiatku sme natrénovali tri modely, ktoré mali pri tréningu rovnako nastavené parametre a líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server spracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte. Dĺžka trénovanie jednej epochy bola približne 20 minút pre pôvodnú verziu dát a 10 minúť pre obe odfiltrované verzie.
+
+Na vyhodnotenie modelu sa počíta pomer medzi prienikom a zjednotením detekovanej plochy so skutočnou plochou objektu. Táto hodnota sa označuje skratkou IoU (Intersection over Union). Nastavením požadovanej hodnoty pre IoU sa určujú tri základné stavy detekcie:
+
+\begin{itemize}
+  \item skutočne pozitívna detekcia (true positive, TP)
+  \item falošne pozitívna detekcia (false positive, FP)
+  \item falošne negativna detakcia (false negative, FN)
+\end{itemize}
+
+Na obrázku \ref{img:ious} sú znázornené všetky tri situácie s prahovou hodnotou 0.5. Pokiaľ by sme zmenili hodnotu prahu na 0.9, tak aj v prvom prípade by bola detekcia vyhodnotená ako FP.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/05/ious.png}
+    \caption{Vyhodnotenie detekcie podľa prahovej hodnoty IoU.}
+    \label{img:ious}
+\end{figure}
+
+Na základe takýchto elementárnych vyhodnotení sa počíta viacero metrík. Metrika precision určuje koľko detekcií bolo skutočne pozitívnych a metrika recall určuje koľko skutočne pravdivých označení bolo odhalených skutočne pozitívnou detekciou.
+
+%\begingroup
+%\begin{equation}
+%Precision = \frac{|TP|}{|TP| + |FP|}
+%\label{e:DetPr}
+%\end{equation}
+%
+%\begin{equation}
+%Recall = \frac{|TP|}{|TP| + |FN|}
+%\label{e:DetRe}
+%\end{equation}
+%
+%\begin{equation}
+%DetA = \frac{|TP|}{|TP| + |FN| + |FP|}
+%\label{e:DetA}
+%\end{equation}
+%\endgroup
+
+Presnosť a citlivosť je okrem prahovej hodnoty IoU ovplyvnená ešte prahovou hodnotou istoty (confidence), ktorá je vypočítaná pre každú detekciu. Confidence hodnota určuje istotu modelu, že je daná detekcia správna. Model zaznačí len také detekcie, ktoré majú istotu vyššiu ako je nastavená prahová hodnota.
+
+Závislosť medzi presnosťou a citlivosťou sa znázorňuje pomocou grafu. Obsah plochy pod krivkou je označovaný ako mAP (mean Average Precision). Výsledná hodnota mAP50 je priemer presnosti pre hodnotu prahu IoU = 0.5. V prípade metriky mAP50-95 je priemer počítaný pre prah IoU od 0.5 do 0.95.
+
+V tabuľke \ref{table:test1} je každý model otestovaný na testovacej sade príslušnej verzie. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme mali pripravenú testovaciu vzorku obrázkov, tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky. Model M1, ktorý na testovacej sade dosiahol výrazne horšie výsledky, bol napokon porovnateľný s ostatnými modelmi pri vyhodnotení na spoločnej testovacej vzorke. Metriky boli počítané pre prahovú hodnotu IoU = 0.5 s istotou väčšou ako 0.3.
+
+\newpage
+
 \begin{table}[ht]
 \centering
 \begin{tabular}{ |c c c c c| }
@@ -17,157 +61,76 @@ M2  & 0.554	& 0.505	& 0.492	& 0.311 \\
 M3  & 0.577	& 0.504	& 0.503	& 0.324 \\
 \hline
 \end{tabular}
-\caption{Výsledky prvých troch trénovaní. Modely sú označené číslom podľa verzie dát.}
+\caption{Výsledky z trénovania. Modely sú označené číslom podľa verzie dát.}
 \label{table:test1}
 \end{table}
 
-V tabuľke \ref{table:test1} je každý model otestovaný na príslušnej testovacej sade. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme si pripravili testovaciu vzorku obrázkov, tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky a preto bol najvhodnejší na získanie detekcií pri sledovaní reklám.
-\\
 \begin{table}[ht]
 \centering
 \begin{tabular}{ |c c c c c|  }
 \hline
-model & presnosť & citlivosť & mAP50 & mAP50-95 \\ 
+model & presnosť & citlivosť & mAP50 & mAP50-95 \\
 \hline
-M1  & 0.473	& 0.352	& 0.327	& 0.195 \\
+M1  & 0.692	& 0.522	& 0.615	& 0.446 \\
 M2  & 0.659 & 0.565 & 0.653 & 0.467 \\
 M3  & 0.715 & 0.541 & 0.656 & 0.480 \\
 \hline
 \end{tabular}
-\caption{Výsledky troch modelov na testovacej vzorke obrázkov.}
+\caption{Výsledky tých istých modelov na spoločnej testovacej vzorke obrázkov.}
 \label{table:test2}
 \end{table}
 
-\\
+Na obrázku \ref{img:dt7} je vizualizácia detekcií z vybranej snímky. Označenie detekcie má číselnú hodnotu, ktorá určuje istotu detekcie. V tomto prípade vidíme detekciu vo väčšej vzdialenosti a aj detekciu reklamy s výrazným prekrytím.
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{Ukážka dobrej a zlej detekcie.}
-    \label{img:lab}
+    \includegraphics[width=1\textwidth]{images/05/120.jpg}
+    \caption{Ukážka detekcií zo snímky s väčším počtom reklám.}
+    \label{img:dt7}
 \end{figure}
 
 \section{Sledovanie reklám}
 
-Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Rozhodli sme sa použiť metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}, ktorá sa dá rozložiť na viacero menších častí, čím sa dajú vyhodnotiť viaceré aspekty sledovania.
+Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Rozhodli sme sa použiť metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}, ktorá sa kladá z menších častí, podľa ktorých sa dajú vyhodnotiť tri aspekty sledovania:
 
-\subsubsection{Lokalizácia}
+\begin{itemize}
+    \item lokalizácia
+    \item detekcia
+    \item asociácia
+\end{itemize}
 
-%HOTA is calculated at a number of different localisation thresholds α, and the final HOTA score is the average of the HOTAα scores calculated at each threshold. This formulation ensures that the final HOTA score takes the actual localisation accuracy into account.
+Lokalizácia a detekcia sa meria rovnako ako pri testovaní detektorov. Asociácia meria ako dobre sa podarilo spojiť detekciu s referenciou. Podobne ako pri detekcii môžu nastať tri stavy, ktoré určujú správnosť asociácie:
 
-Lokalizácia (Loc) meria priestorové zarovnanie medzi predikovanou detekciou a skutočnou hodnotou. Vypočíta sa ako pomer ich prieniku a zjednotenia. Keď sa Loc skóre zvýši, predikované a skutočné detekcie sú priestorovo lepšie zarovnané a lokalizácia je zlepšía.
-\\
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/05/loc.png}
-    \caption{TODO.}
-    \label{img:loc}
-\end{figure}
-\\
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{Ukážka dobrej a zlej lokalizácie.}
-    \label{img:loc-img}
-\end{figure}
+\begin{itemize}
+  \item skutočne pozitívna asociácia (true positive association, TP)
+  \item falošne pozitívna asociácia (false positive association, FP)
+  \item falošne negativna asociácia (false negative association, FN)
+\end{itemize}
 
-\subsubsection{Citlivosť a presnosť}
-
-Citlivosť a presnosť detekcie (DetRe a DetPr) je definovaná rovnakým spôsobom ako pri vyhodnocovaní detektora. Detekcie, ktoré sú zhodné so skutočne pravdivým označením sa volajú skutočne pozitívne (TP) a detekcie, ktoré nie sú zhodné sa volajú falošne pozitívne (FP). Na základe toho sa dajú sformulovať tri rovnice.
-Rovnica \ref{e:DetRe} opisuje koľko TP detekcií bolo nájdených zo všetkých skutočne pravdivých označení, rovnica \ref{e:DetPr} opisuje úspešnosť pravdivosti pre TP detekcie a napokon rovnica \ref{e:DetA} celkovú úspešnosť detekcií.
-
-\begingroup
-\begin{equation}
-DetRe = \frac{|TP|}{|TP| + |FN|}
-\label{e:DetRe}
-\end{equation}
-
-\begin{equation}
-DetPr = \frac{|TP|}{|TP| + |FP|}
-\label{e:DetPr}
-\end{equation}
-
-\begin{equation}
-DetA = \frac{|TP|}{|TP| + |FN| + |FP|}
-\label{e:DetA}
-\end{equation}
-\endgroup
-\\
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{Ukážka dobrej a zlej detekcie.}
-    \label{img:det-img}
-\end{figure}
-
-%\begin{align}
-%
-%    DetRe &= \frac{A}{B} \\
-%
-%    DetPr &= \frac{A}{B} \\
-%
-%    DetA &= \frac{A}{B}
-%\end{align}
-
-%\begin{gather}
-%
-%    DetRe = \frac{A}{B}
-%
-%DetPr = \frac{A}{B}
-%
-%DetA = \frac{A}{B}
-%
-%\end{gather}
-
-\\
 % https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1
-Asociácia meria ako dobre sa podarilo spojiť detekciu s referenciou.  The intersection between two tracks can be measured as the number of True Positive matches between the two tracks, we call these True Positive Associations (TPA). Any remaining detections in the predicted track (which are either matched to other ground-truth tracks or none at all) are False Positive Associations (FPA) and any remaining detections in the ground-truth track False Negative Associations (FNA). The Association IoU (Ass-IoU) can then be calculated in a similar way as seen previously.
 
-\begingroup
-\begin{equation}
-AssRe = \frac{A}{B}
-\label{e:AssRe}
-\end{equation}
-
-\begin{equation}
-AssPr = \frac{A}{B}
-\label{e:AssPr}
-\end{equation}
-
-\begin{equation}
-AssA = \frac{A}{B}
-\label{e:AssA}
-\end{equation}
-\endgroup
-\\
 We can see a visual example of the definitions TPA, FNA and FPA below. The red square indicates the matched TP pair of a prediction and ground-truth detection, for which we want to find an association score. In order to measure how good the temporal association aligns between these detections, we find all the detections in these two tracks which match between these tracks (TPAs in green) and all the detections where they don’t match (FPAs in yellow and FNAs in brown).
 
-% A visual explanation of the concepts of TPA, FPA and FNA. The different TPAs, FPAs and FNAs are highlighted for the TP of interest c. The TPAs (green) for c (red) are the matches which have the same prID and the same gtID. The FPAs have the same prID but either a different or no gtID. The FNAs have the same gtID but either a different or no prID. In the diagram, c has five TPAs, four FPAs and three FNAs. Conceptually these concepts are trying to answer the question: For the matched TP c, how accurate is the alignment between the gtTraj for this TP (large dark blue circles) and the prTraj for this TP (small black circles).
-
-% https://arxiv.org/pdf/2009.07736.pdf 
-
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/05/explanation.png}
+    \includegraphics[width=0.7\textwidth]{images/05/explanation.png}
     \caption{.}
     \label{img:road}
 \end{figure}
 
-Nakoniec kompozíciou detekcie a asociácie je vypočítaná hodnota HOTA \ref{e:hota}. TODO We see that HOTA is equal to the geometric mean of a detection score and an association score. This formulation ensures that both detection and association are evenly balanced, unlike many other tracking metrics, and that the final score is somewhere between the two. It also ensures that both the detection score and association score have the same structure.
-\begingroup
-\large
-\begin{equation}
-LocA = \frac{A}{B}
-\label{e:hota}
-\end{equation}
-\endgroup
-\\
-Každá sledovacia metóda bola spustená viackrát s iným nastavením. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}. Po vyhodnotení vidno, že náš odhad najlepšej metódy sa potvrdil.
+% A visual explanation of the concepts of TPA, FPA and FNA. The different TPAs, FPAs and FNAs are highlighted for the TP of interest c. The TPAs (green) for c (red) are the matches which have the same prID and the same gtID. The FPAs have the same prID but either a different or no gtID. The FNAs have the same gtID but either a different or no prID. In the diagram, c has five TPAs, four FPAs and three FNAs. Conceptually these concepts are trying to answer the question: For the matched TP c, how accurate is the alignment between the gtTraj for this TP (large dark blue circles) and the prTraj for this TP (small black circles).
+
+% https://arxiv.org/pdf/2009.07736.pdf
+
+Geometrickým priemerom detekcie a asociácie je vypočítaná hodnota HOTA. Táto formulácia zabezpečuje, že detekcia aj asociácia sú na rozdiel od mnohých iných metrík sledovania rovnomerne vyvážené a že konečné skóre je niekde medzi nimi.
+
+Každá sledovacia metóda bola spustená viackrát s iným nastavením. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}.
 \\
 \begin{table}[ht]
 \centering
-\begin{tabular}{|c c c c c c c c c|} 
+\begin{tabular}{|c c c c c c c c c|}
  \hline
-TODO metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & LocA \\ [0.5ex] 
+TODO metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & LocA \\ [0.5ex]
  \hline
 strongsort & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
 deep & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
@@ -196,14 +159,16 @@ TODO Tu je vizualizácia sledovania reklám z videa. Na pravej strane obrázka j
     \label{img:road}
 \end{figure}
 
-To či sa vodič pozrel na reklamy sme vyhodnotili vypočítaním prieniku označenej reklamy so zaznamenanou súradnicou s polomerom 20 pixlov. Dokopy bolo na zvolenej trase nájdených 145 reklám, ktoré sa podľa počtu prienikov rozdelili do štyroch kategórií. V tabuľke \ref{table:cat} je pre každú kategóriu zapísané časové rozmedzie korešpondujúce počtu snímok s prienikom, počet reklám vyhodnotených do príslušnej kategórie a priemerný počet účastníkov, ktorý sa na reklamu danej kategórie pozreli.
+\section{Významnosť reklám}
+
+Dokopy bolo na zvolenej trase nájdených 145 reklám, ktoré sa podľa počtu prienikov rozdelili do štyroch kategórií. V tabuľke \ref{table:cat} je pre každú kategóriu zapísané časové rozmedzie korešpondujúce počtu snímok s prienikom, počet reklám vyhodnotených do príslušnej kategórie a priemerný počet účastníkov, ktorý sa na reklamu danej kategórie pozreli.
 % todo pridať obrázok, kde je fixácia
 \\
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c c c c|}
  \hline
- kategória &	rozmedzie &	počet reklám &	počet účastníkov \\ [0.5ex] 
+ kategória &	rozmedzie &	počet reklám &	počet účastníkov \\ [0.5ex]
  \hline
 slabá &	0 ms &	27 &	- \\ [0.1ex]
 nízka &	1-249 ms &	66 &	2.95 \\ [0.1ex]
@@ -215,10 +180,19 @@ vysoká &	500+ ms &	3 &	2 \\ [0.1ex]
 \label{table:cat}
 \end{table}
 
-% optimalizácia hyperparametre, Under/over-fitting
-% augmentacia pred trenovanim, pri testovani (Test time augmentation)
-% porovnanie precision a recall pre detector vs tracker
-% porovnať chybosť kategorizácie, kebyže sa to počíta zo standardného modelu
-% porovnať chybosť klasifikácie, kebyže sa to počíta zo standardného modelu
+ \begin{figure}[ht]
+     \centering
+     \includegraphics[width=1\textwidth]{images/04/iou.jpg}
+     \caption{Na obrázku sú detekované dve reklamy, na jednej z nich sa nachádza prienik s pohľadom vodiča.}
+     \label{img:tracking}
+ \end{figure}
+
+\section{Klasifikácia reklám}
+
+Jedna.
+
+\newpage
+
+Dva.
 
 %If your use-case contains many occlussions and the motion trajectiories are not too complex, you will most certainly benefit from updating the Kalman Filter by its own predicted state. Select the number of predictions that suits your needs here: https://github.com/mikel-brostrom/Yolov5_StrongSORT_OSNet/blob/b1da64717ef50e1f60df2f1d51e1ff91d3b31ed4/trackers/strong_sort/configs/strong_sort.yaml#L7

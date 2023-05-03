@@ -59,9 +59,16 @@ Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a impo
     \item Počet epoch: určuje koľko krát prejdú všetky tréningové dáta sieťou. Po každej epoche sa vyhodnotí úspešnosť na validačnej sade.
 \end{enumerate}
 
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[width=1\textwidth]{images/04/cmd.png}
+%    \caption{Ukážka .}
+%    \label{img:cmd}
+%\end{figure}
+
 Po natrénovaní sa dá spustiť testovanie a detekcia zo získaných váh. V prípade testovania, musia byť na vstupe okrem obrázkov aj pravdivé označenia, podľa ktorých sa vyhodnotí úspešnosť. V prípade detekcie postačí obrázok alebo video z ktorého chceme získať detekcie. V oboch prípadoch je najdôležitejším parametrom hodnota prahu pre detekciu. Táto hodnota určuje, aká vysoká musí byť pravdepodobnosť, aby sa detekcia považovala za úspešnú. Okrem toho sa dá nastaviť očakávaný výstup. Výstup môže byť textový súbor s detekciami, ale aj obrázky s vykresleným alebo vystrihnutým označením.
 
-\subsubsection{Dataset}
+\subsection{Dataset}
 
 Väčšina obrázkov v Mapillary Vistat je vyhotovená z vnútra, prípadne zo strechy vozidla. Obrázky zachytávajú premávku vo vnútri mesta, kde sa nachádza veľa budov, chodníkov, dopravných značení a mnoho iných objektov z cestnej premávky vrátene reklamných plôch.
 
@@ -69,7 +76,7 @@ Anotácie sú uložené vo formáte, ktorý nie je kompatibilný s formátom pre
 
 Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 350 nových obrázkov s anotáciami reklám. Obrázky pochádzali z videí nahratých cez eyetracker, ktoré boli mimo meranú trasu. Všetky tri verzie dát sme rozdelili na tréningovú, validačnú a testovaciu sadu, v pomere 8:1:1.
 
-\subsubsection{Tréning}
+\subsection{Tréning}
 
 Počas celého trénovania sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade a čas trvania jednej epochy. Hodnoty váh sa po skončení epochy uložili do súboru na disk, takže v prípade neočakávaného prerušenia tréningu, sa dalo mohlo pokračovať od posledného miesta. Ak bol výsledok z testovania lepší ako v predchádzajúcich cykloch, tak sa hodnoty váh uložili do súboru, ktorý označoval najlepšie váhy. Pokiaľ sme si všimli, že sa vývoj tréningu nezlepšoval, mohli sme ho v hociktorom momente zastaviť. V prípade, že sme vývoj nesledoval a vývoj sa nezlepšoval, tak sa tréning po 50 epochách ukončil automaticky.
 
@@ -82,9 +89,7 @@ Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktor�
     \label{img:graf}
 \end{figure}
 
-%\subsubsection{Fine-tuning}
-
-\section{Sledovanie reklám}
+\subsection{Sledovanie reklám}
 
 Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár \cite{mikel}, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{deepocsort}, StrongSORT \cite{strongsort}, BoTSORT \cite{bot} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
@@ -105,9 +110,9 @@ Na vystrihnutej časti zo záznamu sme vyskúšali všetky metódy s rôznym nas
 
 % DeepSORT je rozšírením pre SORT, ktorý integruje informácie o vzhľade získané z predtrénovaného modelu. Výsledkom je lepšie priradenie správnej identity čo zároveň redukuje počet vytvorených identít \cite{deepsort}. ByteTrack sa zameriava na asociáciu údajov a navrhuje novú metódu Byte, ktorá sleduje priradenie s porovnávaním každého objektu, ktorý bol doposiaľ zaznamenaný \cite{bytetrack}. OC-SORT je metóda, ktorá používa pozorovanie objektov na výpočet virtuálnej trajektórie počas prekrytia objektu, aby sa zmiernilo hromadenie chýb Kalmanovho filtra, ktoré vzniká počas oklúzie \cite{ocsort}. StrongSORT je varianta, ktorá pridáva pohybový model založený na optickom toku na zlepšenie výkonu sledovania pričom sa snaží kombinovať výhody z metódy Deep SORT a ByteTrack \cite{strongsort}. Každý model má sadu parametrov, ktoré sme jemne upravovali a sledovali zmenu vo výsledkoch. https://www.tasq.ai/blog/object-tracking/
 
-\subsection{Pomocné dáta a model}
+\subsection{Pomocný model}
 
-Na priblíženie sa ku skutočným výskytom reklám v nahrávkach, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
+Na priblíženie sa ku skutočným výskytom reklám, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
 
 \begin{figure}[ht]
      \centering
@@ -137,27 +142,39 @@ Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, alebo d
 
 Pre každú snímku, na ktorej bola detekcia reklamy a zaznamenaný pohľad, sme porovnali prienik ich oblastí. Získali sme tým informáciu o počte snímok, kde pohľad vodiča smeroval na reklamu. Počet snímok sme vynásobili dĺžkou trvania jednej snímky, čím sme získali časový údaj sledovanosti. Podľa dĺžky sledovanosti sme vyhodnotili významnosť reklamy pre každého vodiča samostatne a následne vypočítali konečnú významnosť pomocou mediánu.
 
- \begin{figure}[ht]
-     \centering
-     \includegraphics[width=1\textwidth]{images/04/iou.jpg}
-     \caption{Na obrázku sú detekované dve reklamy, na jednej z nich sa nechádza prienik.}
-     \label{img:tracking}
- \end{figure}
+\section{Klasifikátor reklám}
 
-\section{Klasifikácia reklamy}
+S predchádzajúcimi krokmi sa nám podarilo pripraviť databázu reklám s priradenou významnosťou. Pre každú reklamu sme mali uložené všetky snímky s detekciou. Snímky boli rozdelené pre každú reklamu a pre každé video samostatne. Snímky, na ktorých sa nachádzala jedna a tá istá reklama sme nazvali sekvenciou. Pre každú sekvenciu sme vypočítali vlastnosti, ktoré sme použili na klasifikáciu.
 
-Pre každú reklamu sme vyhodnocovali celú sekvenciu.
+Na to aby sme vedeli predikovať významnosť reklamy, sme natrénovali Random Forest Classifier (RFC). Podobne ako pri trénovaní neurónovej siete sme databázu rozdelili na dve časti v pomere 8:2. Tentokrát sme nepotrebovali validačnú sadu. V tréningovej sade sa nachádzalo 115 reklám a v testovacej 30.
 
-% Zo sekvencie snímok, na ktorých sa nachádzala reklama, sme pre každú reklamu samostatne vypočítali niekoľko vlastností:
+RFC na základe hodnôt vlastností v tréningovej sade náhodne vygeneruje viacero rozhodovacích stromov. Rozhodovací strom je tvorený z vrcholov, v ktorých sa nachádza podmienka, podľa ktorej sa zo vstupných údajov vytvorí cesta ku listu. Podmienka porovnáva hodnotu danej vlastnosti s navrhnutou prahovou hodnotou. Na konci vetvy je v liste uložená trieda, ktorá určuje významnosť reklamy.
 
-\newpage
+Pri testovaní sa významnosť reklamy predikuje tak, že sa vstupné údaje (vektor príznakov) vložia do rozhodovacieho stromu a podľa podmienok sa vypočíta hodnota významnosti. Významnosť reklamy je určená hodnotou triedy, ktorá sa vyskytovala najčastejšie zo všetkých rozhodovacích stromov.
+% todo nahradiť slovo vlasnosť za slovo príznak; skupina príznakov sa nazýva vektor príznakov
 
-TODO. Pokračovanie klasifikácie.
+\subsection{Extrahovanie príznakov}
 
-\newpage
+Každý reklama mala nanajvýš 8 sekvencíí. V niektorých videách nebol detekovaný úplný počet reklám, kvôli tomu že reklamu mohlo zakrývať auto alebo bola v takom uhle, že keď bol vodič vo vzdialenejšom jazdnom pruhu, tak ju nebolo vidno. Hodnota vlastnosti bola vypočítaná ako priemerná hodnota zo všetkých sekvencií reklamy.
 
-TODO. Pokračovanie klasifikácie.
+\subsubsection{Počet snímok v sekvencii}
 
-% can object tracking improve object detection?
+Najjednoduchšia vlastnosť je počet snímok, ktoré sa nachádzajú v sekvencii. Táto vlastnosť nám hovorí o tom, ako dlho bola reklama viditeľná. Čím dlhšie bola reklama viditeľná, tým väčšiu mala šancu, že ju vodič zaregistruje.
 
-% Yes, object tracking can improve object detection. Object tracking can be used to refine the object detection process by providing additional information about the location and movement of objects in a video stream. By tracking objects across multiple frames, object tracking algorithms can help to reduce false positives and false negatives in the object detection process. For example, if an object detection algorithm detects an object in one frame but fails to detect it in the next frame, an object tracking algorithm can use the object's previous position and movement to predict its location in the current frame. This can help to reduce the number of false negatives and improve the accuracy of the object detection algorithm. Additionally, object tracking can be used to filter out false positives in the object detection process. By tracking an object across multiple frames, an object tracking algorithm can verify that the object is indeed present and is not just a false positive detection. This can help to improve the precision of the object detection algorithm. Overall, object tracking and object detection are complementary techniques that can be used together to improve the accuracy and robustness of computer vision systems.
+\subsubsection{Lokalizácia reklamy}
+
+Z lokalizácie reklamy sme vypocítali dva príznaky. Prvý príznak určoval, na ktorej strane obrazu sa reklama nachádzala najdlhšie. Obraz sme rozdelili na ľavú, právu a strednú časť. Stredná časť bola definovaná v rozmedzí 20\% od stredového bodu, ľavá a práva časť zaberala po 40\% plochy.
+
+Vodiči majú tendenciu pozerať sa do stredu obrazu, preto reklamy, ktoré sa nachádzali v strede obrazu, mali väčšiu šancu, že ich vodič zaregistruje. Na základe toho sme vypočítali druhý príznak, ktorý určoval euklidovskú vzdialenosť stredného bodu reklamy od stredu bodu obrazu.
+
+\subsubsection{Veľkosť reklamy}
+
+Veľkosť sme vypočítali ako pomer reklamnej plochy a plochy snímky. Ak bola reklama detekovaná vo väčšej vzdialenosti, tak jej priemerná veľkosť bola menšia než v prípade reklamy detekovanej v bližšej vzdialenosti aj napriek rovnakému rozmeru. Vozidlo sa k reklame približovalo, preto sme okrem priemernej veľkosti z celej sekvencie vypočítali aj priemernú veľkosť v posledných desiatich snímkach.
+
+\subsubsection{Mapa význačností}
+
+TODO: Na výpočet význačnosti sme použili existujúce neurónové siete. Význačnosť bola vypočítaná ako priemerná hodnota význačnosti z celej sekvencie. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON.
+
+\subsubsection{Entropia reklamy}
+
+TODO: Entropia bola vypočítaná ako priemerná hodnota entropie z celej sekvencie. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON.
