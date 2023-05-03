@@ -53,13 +53,11 @@ Významosť reklamy sme plánovali rozdeliť do štyroch kategórií podľa prie
 
 \section{Klasifikácia reklám}
 
-Významnosť reklamy sme napokon potrebovali odhadnúť bez informácie o zaznamenanom pohľade vodiča. Na klasifikáciu sme použili metódy zo strojového učenia, Random forest classifier (RFC), Support vector machine (SVM) a K-nearest neighbours (K-NN).
-
-Pre každú reklamu sme ako vstupné údaje do klasifikačných metód navrhli vypočítať nasledujúce vlastnosti, podľa ktorých by sa rozhodlo o významnosti reklamy:
+Významnosť reklamy sme napokon potrebovali odhadnúť bez informácie o zaznamenanom pohľade vodiča. Na klasifikáciu sme použil Random forest classifier (RFC) \cite{rfc}. Pre každú reklamu sme ako vstupné údaje do klasifikačnej metódy navrhli vypočítať nasledujúce vlastnosti:
 
 \begin{itemize}
-  \item strana, na ktorej bola reklama najdlhšie
   \item počet snímok, na ktorých bola reklama viditeľná
+  \item strana, na ktorej bola reklama najdlhšie
   \item priemerná vzdialenosť reklamy od stredu obrazu
   \item priemerná veľkosť reklamy
   \item priemerná hodnota mapy význačností v oblasti reklamy
