@@ -1,6 +1,6 @@
 \chapter{Vyhodnotenie výsledkov}\label{chap:results}
 
-TODO: Vyhodnotenie získaných výsledkov sme rozdelili na tri časti. V prvej časti sme sa zamerali na detekciu, v druhej na klasifikáciu a v tretej na kombináciu oboch. V každej časti sme porovnali výsledky jednotlivých modelov a zároveň sme porovnali výsledky jednotlivých verzií dát.
+Vyhodnotenie získaných výsledkov sme rozdelili na štyri časti. V prvej časti sme sa zamerali na detekciu, v druhej na sledovanie a v tretej na určenie významnosti. Posledná časť je venovaná výsledkom z klasifikácie.
 
 \section{Detekcia reklám}
 
@@ -108,35 +108,32 @@ Lokalizácia a detekcia sa meria rovnako ako pri testovaní detektorov. Asociác
 \end{itemize}
 
 % https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1
+% https://arxiv.org/pdf/2009.07736.pdf
 
-We can see a visual example of the definitions TPA, FNA and FPA below. The red square indicates the matched TP pair of a prediction and ground-truth detection, for which we want to find an association score. In order to measure how good the temporal association aligns between these detections, we find all the detections in these two tracks which match between these tracks (TPAs in green) and all the detections where they don’t match (FPAs in yellow and FNAs in brown).
+Obrázok \ref{cite:usecase} vysvetľuje koncepty TPA, FPA a FNA na objekte, ktorý je označený v červenom štvorci. Zelená farba označuje stav TPA, v ktorom je predikovaná referencia rovnaká so skutočnou referenciou objektu. Žltá farba označuje FPA, ktorá je v prvom prípade zapríčinená FP detekciou a v druhom prípade tým, že asociácia vstupuje to trajektórie iného objektu. Hnedá farba označuje FNA v prípade, kde sa nepodarilo zachytiť skutočnú časť trajektórie.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/05/explanation.png}
-    \caption{.}
-    \label{img:road}
+    \includegraphics[width=0.7\textwidth]{images/05/usecase.png}
+    \caption{Vizualizácia všetkých možností, ktoré môžu vzniknúť pri sledovaní \cite{hota}.}
+    \label{img:usecase}
 \end{figure}
-
-% A visual explanation of the concepts of TPA, FPA and FNA. The different TPAs, FPAs and FNAs are highlighted for the TP of interest c. The TPAs (green) for c (red) are the matches which have the same prID and the same gtID. The FPAs have the same prID but either a different or no gtID. The FNAs have the same gtID but either a different or no prID. In the diagram, c has five TPAs, four FPAs and three FNAs. Conceptually these concepts are trying to answer the question: For the matched TP c, how accurate is the alignment between the gtTraj for this TP (large dark blue circles) and the prTraj for this TP (small black circles).
-
-% https://arxiv.org/pdf/2009.07736.pdf
 
 Geometrickým priemerom detekcie a asociácie je vypočítaná hodnota HOTA. Táto formulácia zabezpečuje, že detekcia aj asociácia sú na rozdiel od mnohých iných metrík sledovania rovnomerne vyvážené a že konečné skóre je niekde medzi nimi.
 
-Každá sledovacia metóda bola spustená viackrát s iným nastavením. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}.
+Každá sledovacia metóda bola spustená viackrát s rôznou konfiguráciou. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}.
 \\
 \begin{table}[ht]
 \centering
-\begin{tabular}{|c c c c c c c c c|}
+\begin{tabular}{|l l l l l l l l l|}
  \hline
-TODO metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & LocA \\ [0.5ex]
+metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & LocA \\ [0.5ex]
  \hline
-strongsort & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
-deep & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
-oc & 37.936 & 58.479 & 54.554 & 40.455 & 74.731 & 42.579 & 35.638 & 88.581 \\ [0.1ex]
-byte & 27.760 & 37.434 & 34.147 & 22.085 & 57.887 & 47.258 & 34.957 & 88.027 \\ [0.1ex]
-bot & 27.141 & 40.139 & 38.162 & 24.812 & 40.389 & 56.746 & 29.729 & 87.301 \\ [0.1ex]
+OC-SORT & 37.936 & 58.479 & 54.554 & 40.455 & 74.731 & 42.579 & 35.638 & 88.581 \\ [0.1ex]
+DeepOC-SORT & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
+StrongSORT & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
+BotSORT & 27.141 & 40.139 & 38.162 & 24.812 & 40.389 & 56.746 & 29.729 & 87.301 \\ [0.1ex]
+ByteTrack & 27.760 & 37.434 & 34.147 & 22.085 & 57.887 & 47.258 & 34.957 & 88.027 \\ [0.1ex]
  \hline
 \end{tabular}
 \caption{TODO, výsledky 4.}
@@ -180,12 +177,7 @@ vysoká &	500+ ms &	3 &	2 \\ [0.1ex]
 \label{table:cat}
 \end{table}
 
- \begin{figure}[ht]
-     \centering
-     \includegraphics[width=1\textwidth]{images/04/iou.jpg}
-     \caption{Na obrázku sú detekované dve reklamy, na jednej z nich sa nachádza prienik s pohľadom vodiča.}
-     \label{img:tracking}
- \end{figure}
+
 
 \section{Klasifikácia reklám}
 
@@ -194,5 +186,9 @@ Jedna.
 \newpage
 
 Dva.
+
+\newpage
+
+Tri.
 
 %If your use-case contains many occlussions and the motion trajectiories are not too complex, you will most certainly benefit from updating the Kalman Filter by its own predicted state. Select the number of predictions that suits your needs here: https://github.com/mikel-brostrom/Yolov5_StrongSORT_OSNet/blob/b1da64717ef50e1f60df2f1d51e1ff91d3b31ed4/trackers/strong_sort/configs/strong_sort.yaml#L7

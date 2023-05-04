@@ -80,7 +80,7 @@ Pripravili sme ešte tretiu verziu dát, kde sme k vytriedeným dátam pridali 3
 
 Počas celého trénovania sme mali k dispozícii informácie o priebežných výsledkoch. Po každej vykonenej epoche sa vypísal výsledok z testovania na validačnej sade a čas trvania jednej epochy. Hodnoty váh sa po skončení epochy uložili do súboru na disk, takže v prípade neočakávaného prerušenia tréningu, sa dalo mohlo pokračovať od posledného miesta. Ak bol výsledok z testovania lepší ako v predchádzajúcich cykloch, tak sa hodnoty váh uložili do súboru, ktorý označoval najlepšie váhy. Pokiaľ sme si všimli, že sa vývoj tréningu nezlepšoval, mohli sme ho v hociktorom momente zastaviť. V prípade, že sme vývoj nesledoval a vývoj sa nezlepšoval, tak sa tréning po 50 epochách ukončil automaticky.
 
-Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktorý zobrazoval vývoj straty, presnosti a citlivosti na tréningovej a validačnej sade. Vývoj jedného tréningu je zobrazený na obrázku \ref{img:graf}. Priebeh grafu v treťom stĺpci pre test z validačnej sady ukazuje, že sa hodnota straty začala približne v 50 epoche zväčšovať. Podobný vývoj je na grafoch pre metriku recall a mAP, naopak metrika precision sa stále mierne zvyšovala. Je to znakom preučenia, kedy sa sieť naučila rozpoznávať trénovacie dáta, ale zlyháva pri rozpoznávaní nových dát. V tomto prípade malo zmysel ukonžiť tréning predčasne.
+Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktorý zobrazoval vývoj straty, presnosti a citlivosti na tréningovej a validačnej sade. Vývoj jedného tréningu je zobrazený na obrázku \ref{img:graf}. Priebeh grafu v treťom stĺpci pre test z validačnej sady ukazuje, že sa hodnota straty začala približne v 50 epoche zväčšovať. Podobný vývoj je na grafoch pre metriku recall a mAP, kým metrika precision stále mierne zvyšovala svoju hodnotu. Je to znakom preučenia, kedy sa sieť naučila rozpoznávať trénovacie dáta, ale zlyháva pri rozpoznávaní nových dát. V tomto prípade malo zmysel ukonžiť tréning predčasne.
 \\
 \begin{figure}[ht]
     \centering
@@ -91,26 +91,28 @@ Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktor�
 
 \subsection{Sledovanie reklám}
 
+% https://velog.io/@mink7878/Object-Tracking-Simple-Online-and-Realtime-Tracking-SORT-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0
+
 Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár \cite{mikel}, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{deepocsort}, StrongSORT \cite{strongsort}, BoTSORT \cite{bot} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
-TODO, možno povedať čo robí kalman a hungarian. To zálezí od obrázka. Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objety a triedy. Výstupom sledovacej metódy sú detekcie s priradenou referenciou. TODO prepojiť obrázk s textom \ref{img:tracking}.
+Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objekty a triedy. Tak ako vidno na obrázku \ref{img:tracking}, výstupom sledovacej metódy sú detekcie s priradenou referenciou, ktoré vytvárajú trajektóriu sledovaného objektu.
 
  \begin{figure}[ht]
      \centering
-     \includegraphics[width=1\textwidth]{images/placeholder.png}
-     \caption{TODO Postup pri sledovaní objekov vo videu.}
+     \includegraphics[width=0.7\textwidth]{images/04/tracking.png}
+     \caption{Sekvencia piatich snímok, získané sú najkôr detekcie a potom referencie.}
      \label{img:tracking}
  \end{figure}
 
-Každá metóda má vlastný konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie novej referencie a niekoľko ďalších parametrov špecifických pre jednotlivé metódy. Napríklad pre StrongSort je to maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
+Každá metóda má vlastný konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie novej referencie a niekoľko ďalších parametrov špecifických pre jednotlivé metódy. Napríklad pre StrongSORT je to maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
 
 \subsubsection{Pozorovanie metód}
 
-Na vystrihnutej časti zo záznamu sme vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase priradenú inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dosiahla metóda StrongSort, pretože na výstup uložila najmenší počet referencií a najviac označení.
+Na vystrihnutej časti zo záznamu sme vyskúšali všetky metódy s rôznym nastavením parametrov. V tomto momente sme výsledky vyhodnotili iba pozorovaním, pretože sme nemali skutočne pravdivé údaje o výskyte reklám. Bolo vidno, že niektoré reklamy vôbec neboli objavené a pre niektoré chýbali detekcie len v určitých snímkach. Ďalšia chybovosť bola v priraďovaní referencií. Stávalo sa, že niektorá reklama dostala po čase inú referenciu ako na mala na začiatku. Opačný prípad bol, keď reklama viac nebola viditeľná a tá istá referencia bola priradená pre novú reklamu. Odhadli sme, že najlepšie výsledky dosiahla metóda StrongSORT, pretože na výstup uložila najmenší počet referencií a najviac označení.
 
 % DeepSORT je rozšírením pre SORT, ktorý integruje informácie o vzhľade získané z predtrénovaného modelu. Výsledkom je lepšie priradenie správnej identity čo zároveň redukuje počet vytvorených identít \cite{deepsort}. ByteTrack sa zameriava na asociáciu údajov a navrhuje novú metódu Byte, ktorá sleduje priradenie s porovnávaním každého objektu, ktorý bol doposiaľ zaznamenaný \cite{bytetrack}. OC-SORT je metóda, ktorá používa pozorovanie objektov na výpočet virtuálnej trajektórie počas prekrytia objektu, aby sa zmiernilo hromadenie chýb Kalmanovho filtra, ktoré vzniká počas oklúzie \cite{ocsort}. StrongSORT je varianta, ktorá pridáva pohybový model založený na optickom toku na zlepšenie výkonu sledovania pričom sa snaží kombinovať výhody z metódy Deep SORT a ByteTrack \cite{strongsort}. Každý model má sadu parametrov, ktoré sme jemne upravovali a sledovali zmenu vo výsledkoch. https://www.tasq.ai/blog/object-tracking/
 
-\subsection{Pomocný model}
+\subsection{Pomocné dáta a model}
 
 Na priblíženie sa ku skutočným výskytom reklám, sme sa rozhodli natrénovať nový pomocný model. Pre tento účel sme pripravili dataset, ktorý bol vytvorený zo snímok vystrihnutých z nahrávok experimentu. Reklamné plochy na vystrihnutých snímkam sme najskôr dali detegovať pomocou najlepšieho modelu, ktorý sme v tom momente mali. Získané označenia sme spolu s obrázkami pridali do webovej aplikácie Darwin v7labs \cite{v7}, kde sme následne opravili vzniknuté chyby z detekcie. Opraviť bolo treba približne každý druhý obrázok, ktorých spolu bolo takmer tisíc.
 
@@ -141,6 +143,13 @@ Z informácií, na ktorých snímkach sa nachádza reklama, sme mohli začať an
 Kvôli nedokonalému nahrávaniu na niektorých snímkach chýbal jeden, alebo dokonca oba pohľady. Pokiaľ sme pre snímku zaregistrovali chýbajúci pohľad, vypočítali sme jeho predikciu pomocou interpolácie dvoch predchádzajúcich pohľadov. Výpadok pohľadu na viac ako dvoch snímkach sme nepočítali a snímok sme z analýzy vynechali.
 
 Pre každú snímku, na ktorej bola detekcia reklamy a zaznamenaný pohľad, sme porovnali prienik ich oblastí. Získali sme tým informáciu o počte snímok, kde pohľad vodiča smeroval na reklamu. Počet snímok sme vynásobili dĺžkou trvania jednej snímky, čím sme získali časový údaj sledovanosti. Podľa dĺžky sledovanosti sme vyhodnotili významnosť reklamy pre každého vodiča samostatne a následne vypočítali konečnú významnosť pomocou mediánu.
+
+ \begin{figure}[ht]
+     \centering
+     \includegraphics[width=1\textwidth]{images/04/iou.jpg}
+     \caption{Na obrázku sú detekované dve reklamy, na jednej z nich sa nachádza prienik s pohľadom vodiča.}
+     \label{img:tracking}
+ \end{figure}
 
 \section{Klasifikátor reklám}
 
@@ -173,8 +182,18 @@ Veľkosť sme vypočítali ako pomer reklamnej plochy a plochy snímky. Ak bola 
 
 \subsubsection{Mapa význačností}
 
-TODO: Na výpočet význačnosti sme použili existujúce neurónové siete. Význačnosť bola vypočítaná ako priemerná hodnota význačnosti z celej sekvencie. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Význačnosť bola vypočítaná pre každý snímok zvlášť. Význačnosť bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON.
+Na výpočet sme použili existujúcu neurónovu sieť HD2S \cite{hd2s}, určenú na získavanie máp význačností z videí. V tom čase mala najlepšie výsledky na viacerých testovacích databázach, ak nepočítame sieť ViNet \cite{jain2021vinet}, z ktorej sa nám nepodarilo získať žiadny výstup.
+
+Každú video nahrávku sme vložili celú na vstup a neurónová sieť nám vrátila mapu význačností pre každú snímku. Podobne ako v predchádzajúcich prípadoch, sme vypočítali hodnotu príznaku pre každú sekvenciu samostatne. V tomto prípade nás zaujímali dve veci. Priemerná hodnota význačnosti v celej snímke a priemerná hodnota význačnosti v oblasti ohraničenia reklamy.
+
+Veľká časť snímky mala nulové, prípadne iné nízke hodnoty, ktoré výrazne znižovali priemer. Preto sme priemer počítali len z významnejších oblastiach. Prahovú hodnotu sme nastavili na X. Nakoniec sme pre každú sekvenciu uložili ešte tretí príznak, ktorý bol pomer medzi priemernou hodnotou význačnosti v oblasti ohraničenia reklamy a priemernou hodnotou význačnosti v celej snímke.
+
+TODO prečo.
 
 \subsubsection{Entropia reklamy}
 
-TODO: Entropia bola vypočítaná ako priemerná hodnota entropie z celej sekvencie. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON. Entropia bola vypočítaná pre každý snímok zvlášť. Entropia bola vypočítaná pomocou neurónovej siete, ktorá bola natrénovaná na datasete SALICON.
+TODO prečo.
+
+TODO ako.
+
+TODO kód.

@@ -4,9 +4,9 @@ V teoretickej kapitole sa budeme podrobnejšie venovať neurónových sieťam be
 
 \section{Úvod do neurónových sietí}
 
-Neurónové siete, sú podskupinou strojového učenia a jadrom algoritmov hlbokého učenia. Ich názov a štruktúra sú často prirovnávané k ľudskému mozgu, pretože pripomínajú spôsob, akým si biologické neuróny navzájom signalizujú procesy \cite{Shanmuganathan2016}. Umelá neurónová sieť bez cyklov sa v angličtine označuje aj ako \textit{feed forward neural network (FNN)}. Je tvorená neurónmi, ktoré sa skladajú do vrstiev. Neuróny v susedných vrstvách sú medzi sebou spojené jedným smerom a podobne ako biologický neurón nesú číselnú hodnotu. 
+Neurónové siete, sú podskupinou strojového učenia a jadrom algoritmov hlbokého učenia. Ich názov a štruktúra sú často prirovnávané k ľudskému mozgu, pretože pripomínajú spôsob, akým si biologické neuróny navzájom signalizujú procesy \cite{Shanmuganathan2016}. Umelá neurónová sieť bez cyklov sa v angličtine označuje aj ako \textit{feed forward neural network (FNN)}. Je tvorená neurónmi, ktoré sa skladajú do vrstiev. Neuróny v susedných vrstvách sú medzi sebou spojené jedným smerom a podobne ako biologický neurón nesú číselnú hodnotu.
 
-Na prvú, vstupnú vrstvu sú prenesené údaje, ktoré vchádzajú do siete. Do neurónovej siete môžu ísť obrázky, zvuk a prakticky ľubovoľné dáta, ktoré sa dajú vyjadriť číselne. V tejto práci sa budeme zaujímať výhradne o obrázkové vstupy a videá. Neuróny zo vstupnej vrstvy sú ďalej prepojené s jednou, alebo viacerými skrytými vrstvami nasledujúcimi po sebe. Posledná skrytá vrstva sa spája s výstupnou vrstvou. Neuróny vo výstupnej vrstve nesú výsledok vypočítaný zo vstupných údajov. Na obrázku \ref{img:network} je každý neurón v susednej vrstve prepojený so všetkými neurónmi z predchádzajúcej vrstvy. To vo všeobecnosti nemusí byť pravidlom, pretože môžu existovať také siete, kedy sa niektoré spojenia neurónov úmyselne prerušia \cite{DettmersTim2019SNfS}. 
+Na prvú, vstupnú vrstvu sú prenesené údaje, ktoré vchádzajú do siete. Do neurónovej siete môžu ísť obrázky, zvuk a prakticky ľubovoľné dáta, ktoré sa dajú vyjadriť číselne. V tejto práci sa budeme zaujímať výhradne o obrázkové vstupy a videá. Neuróny zo vstupnej vrstvy sú ďalej prepojené s jednou, alebo viacerými skrytými vrstvami nasledujúcimi po sebe. Posledná skrytá vrstva sa spája s výstupnou vrstvou. Neuróny vo výstupnej vrstve nesú výsledok vypočítaný zo vstupných údajov. Na obrázku \ref{img:network} je každý neurón v susednej vrstve prepojený so všetkými neurónmi z predchádzajúcej vrstvy. To vo všeobecnosti nemusí byť pravidlom, pretože môžu existovať také siete, kedy sa niektoré spojenia neurónov úmyselne prerušia \cite{DettmersTim2019SNfS}.
 \\
 \begin{figure}[ht]
     \centering
@@ -21,7 +21,7 @@ Vstupom siete je vektor \begin{math}x\end{math}, ktorý je spojený s neurónmi 
 \large
 \begin{equation}a^{i+1} = \sigma \left ( \sum_{j=1}^{n^i} w_{j}^i a_{j}^i + bias^{i+1} \right ) \end{equation}
 \endgroup
- 
+
 kde \begin{math}n^{i}\end{math} je počet spojení s neurónom, \begin{math}a^{i}\end{math} sú hodnoty spojených neurónov z predchádzajúcej vrstvy a \begin{math}w^{i}\end{math} sú hodnoty spojení. Do výpočtu zasahuje ešte hodnota \begin{math}bias\end{math}, ktorá sa vzťahuje na počítaný neurón. Každý neurón je v zásade funkčnou hodnotou aktivačnej funkcie \begin{math}\sigma\end{math} po násobení matíc a pripočítaní hodnoty \begin{math}bias\end{math}. Podobne ako biologický neurón dokáže aktivovať svojho suseda, tak aj pre umelý neurón platí, že čím má väčšiu hodnotu, tým viac ovplyvňuje hodnotu neurónu v susednej vrstve.
 
 % formula: https://youtu.be/aircAruvnKk?t=905
@@ -41,11 +41,11 @@ Aktivačné funkcie zohrávajú dôležitú úlohu v neurónových sieťach, tý
 Neurónové siete využívajú heuristický spôsob učenia. Učenie sa vzťahuje na proces úpravy váh tak, aby boli špecializované vykonávať konkrétnu úlohu. Učenie by nebolo možné bez vstupných údajov, od ktorých sú neurónové siete závislé. Teoreticky platí, že čím viac je k dispozícií kvalitných dát, tým má sieť väčší potenciál dosiahnuť lepšie výsledky pri učení. Keď je neurónová sieť natrénovaná, môže byť použitá na predpovedanie informácií o nových vstupných údajoch, ktoré počas učenia nevidela. Výkon neurónovej siete na týchto nových údajoch je mierou toho, ako dobre je sieť naučená vykonávať svoju úlohu.
 
 \subsection{Učenie s pomocou učiteľa}
-Prístup učenia s pomocou učiteľa sa spolieha na správne označené dáta pri riešení úloh akým sú klasifikácia, lokalizácia, detekcia a segmentácia. Ak ide o trénovanie siete za účelom klasifikácie obrázka, tak je každý obrázok označený informáciou, do ktorej triedy patrí. Ak ide o detekciu objektov, tak okrem informácie o výskyte konkrétneho objektu sa označuje príslušný bounding box, ktorý vymedzuje jeho polohu. Počiatočné váhy medzi uzlami sú vygenerované náhodne, prípadne sa zvyknú použiť už natrénované váhy z blízkej sady obrázkov pre lepší nástup trénovania. Spôsob, kedy sa použijú natrénované váhy sa nazýva prenášané učenie (\textit{transfer learning}). 
+Prístup učenia s pomocou učiteľa sa spolieha na správne označené dáta pri riešení úloh akým sú klasifikácia, lokalizácia, detekcia a segmentácia. Ak ide o trénovanie siete za účelom klasifikácie obrázka, tak je každý obrázok označený informáciou, do ktorej triedy patrí. Ak ide o detekciu objektov, tak okrem informácie o výskyte konkrétneho objektu sa označuje príslušný bounding box, ktorý vymedzuje jeho polohu. Počiatočné váhy medzi uzlami sú vygenerované náhodne, prípadne sa zvyknú použiť už natrénované váhy z blízkej sady obrázkov pre lepší nástup trénovania. Spôsob, kedy sa použijú natrénované váhy sa nazýva prenášané učenie (\textit{transfer learning}).
 
 Postup akým sa sieť učí, môžeme demonštrovať na úlohe klasifikácie obrázkov do troch tried. Údaje z obrázka sa prenesú na vstupnú vrstvu a postupným počítaním prechádzajú každou vrstvou. Na poslednej vrstve každý neurón reprezentuje jednu triedu klasifikácie. Hodnoty pre výstupné neuróny môžeme určiť napríklad pomocou \textit{Softmax} funkcie. Pri tejto konkrétnej funkcii sa dá výstup chápať ako pravdepodobnosť, podľa ktorej je sieť rozhodnutá klasifikovať obrázok do konkrétnej triedy. Sieť klasifikuje vstupný obrázok triedou, ktorá prislúcha neurónu s najvyššou hodnotou na výstupnej vrstve. Súčet pravdepodobností je rovný číslu 1. Najlepší možný výsledok by vyzeral tak, že neurón označujúci správnu triedu by mal hodnotu 1, kým ostatné neuróny hodnotu 0. Takýto výsledok však nie je pravdepodobný a ani to nie je nutné na dosiahnutie vysokej presnosti klasifikátora.
 
-Počas učenia sa výstup zo siete porovnáva s pôvodným označením obrázka. Porovnanie klasifikácie pomocou možností správne a nesprávne na učenie nestačí. Do úvahy sa berú všetky hodnoty na výstupnej vrstve, z ktorých sa počíta celková chyba klasifikácie podľa stratovej funkcie. Výber stratovej funkcie opäť nie je jednoznačne daný, ale často používanými funkciami sú napríklad \textit{Cross-entropy loss} alebo \textit{Hinge loss} \cite{loss}. Aby sme natrénovali neurónovú sieť na vykonanie úlohy, musíme upraviť váhy takým spôsobom, aby sa zmenšila chyba vypočítaná stratovou funkciou. 
+Počas učenia sa výstup zo siete porovnáva s pôvodným označením obrázka. Porovnanie klasifikácie pomocou možností správne a nesprávne na učenie nestačí. Do úvahy sa berú všetky hodnoty na výstupnej vrstve, z ktorých sa počíta celková chyba klasifikácie podľa stratovej funkcie. Výber stratovej funkcie opäť nie je jednoznačne daný, ale často používanými funkciami sú napríklad \textit{Cross-entropy loss} alebo \textit{Hinge loss} \cite{loss}. Aby sme natrénovali neurónovú sieť na vykonanie úlohy, musíme upraviť váhy takým spôsobom, aby sa zmenšila chyba vypočítaná stratovou funkciou.
 
 Na zníženie chyby sa využíva proces spätnej propagácie (backpropagation) \cite{bp}, pomocou ktorého sa mierne zvyšujú alebo znižujú váhy od výstupných vrstiev smerom dozadu podľa vypočítaného gradientu. Gradient descent je iteračný algoritmus, ktorý hľadá lokálne minimum stratovej funkcie pomocou gradientu, ktorého smer otočí a podľa zvoleného kroku sa posunie. Opakovaným procesom sa hodnota stratovej funkcie znižuje spolu so zmenou váh medzi uzlami, až kým je nie dosiahnutá požadovaná presnosť alebo kým nie sú splnené iné podmienky na ukončenie. Inou podmienkou okrem presnosti môže byť dosiahnutie pevného počtu iterácií alebo situácia keď, chyba sa po viacerých iteráciách za sebou nezmenšuje.
 
@@ -117,20 +117,40 @@ Obrázok \ref{img:lenet} zobrazuje prvú konvolučnú neurónovú sieť, ktorú 
 Prvou konvolučnou sieťou, ktorá vyhral majstrovstvá súťaže ILSVRC bola sieť AlexNet v roku 2012. Bola vytvorená zo základnej architektúry LeNet-5. Pozostáva z piatich konvolučných vrstiev, troch pooling vrstiev a troch plne prepojených vrstiev, s celkovým počtom 60 miliónov parametrov \cite{AlexNet}. Na testovacej sade ILSVRC chybovosť dosiahla úroveň 15,3\%, s výrazným rozdielom oproti druhému miestu s chybou 26,2\% \cite{ilsvrc}. Úspech siete AlexNet bol spôsobený viacerými vylepšeniami. Napríklad rozšírením trénovacích údajov pomocou úprav originálnych obrázkov, použitím aktivačnej funkcii ReLu, ktorá vtedy nebola bežne používaná a náhodným odstránim spojitých neurónov pomocou regularizačnej metódy \textit{dropout}.
 
 \subsubsection{YOLO}
-TODO. (just dummy copy-paste) The first 20 convolution layers of the model are pre-trained using ImageNet by plugging in a temporary average pooling and fully connected layer. Then, this pre-trained model is converted to perform detection since previous research showcased that adding convolution and connected layers to a pre-trained network improves performance. YOLO’s final fully connected layer predicts both class probabilities and bounding box coordinates.
 
-YOLO divides an input image into an S × S grid. If the center of an object falls into a grid cell, that grid cell is responsible for detecting that object. Each grid cell predicts B bounding boxes and confidence scores for those boxes. These confidence scores reflect how confident the model is that the box contains an object and how accurate it thinks the predicted box is.
+V súčasnosti sa na detekciu používajú klasifikátory, ktoré na detekciu objektu využijú klasifikátor objektu a vyhodnocujú ho na rôznych miestach a mierkach v testovanom obraze. Niektoré systémy ako napr. DPM (deformable parts model) využívajú metódu pohyblivých okien, ktoré klasifikátor kontroluje na rovnomerne veľkých plochách celého obrazu.
+Modernejším prístupom by bolo použitie KNN na vygenerovanie potenciálnych hraničných oblastí a použitie klasifikátora len na tieto oblasti.
 
-YOLO predicts multiple bounding boxes per grid cell. At training time, we only want one bounding box predictor to be responsible for each object. YOLO assigns one predictor to be “responsible” for predicting an object based on which prediction has the highest current IOU with the ground truth. This leads to specialization between the bounding box predictors. Each predictor gets better at forecasting certain sizes, aspect ratios, or classes of objects, improving the overall recall score.
-
-One key technique used in the YOLO models is non-maximum suppression (NMS). NMS is a post-processing step that is used to improve the accuracy and efficiency of object detection. In object detection, it is common for multiple bounding boxes to be generated for a single object in an image. These bounding boxes may overlap or be located at different positions, but they all represent the same object. NMS is used to identify and remove redundant or incorrect bounding boxes and to output a single bounding box for each object in the image.
+Tieto spomenuté postupy sú ale pomalé a je ťažké ich optimalizovať pretože každá individuálna súčasť musí byť trénovaná samostatne. YOLO sa teda stavia k hľadaniu objektov komplexne a rieši detekciu objektov od vstupu až po výsledné hraničné oblasti. Jedna konvolučná sieť predikuje hraničné oblasti a pravdepodobnosti príslušnosti k jednotlivým triedam. Tento proces prebieha naraz nad celým obrazom a je analyzovaný napriek všetkými triedami. Aj napriek vysokej výkonnosti v porovnaní s ostatným sieťami ako napr. Fast R-CNN nie je YOLO dokonalá sieť a problémy má hlavne s hľadaním objektov menších rozmerov alebo takých objektov, ktoré sa v obraze vyskytujú v skupinkách.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{YOLO.}
+    \includegraphics[width=0.6\textwidth]{images/02/yolo.jpeg}
+    \caption{YOLO}
     \label{img:ch2}
 \end{figure}
+
+Vstupný obraz je rozdelený na mriežku s rozmermi S x S. Na to aby mohol byť určené, že objekt patrí ku konkrétnemu štvorcu v mriežke sú vyrátavané skóre, ktoré určí ako si je model istý, že našiel objekt a ako presne si odhaduje, že ho našiel. Ak nastane situácia, že bol objekt objavený a spadá do konkrétneho štvorca z mriežky, tak je od toho momentu daný štvorec zodpovedný za detegovanie toho objektu.
+
+Je bežným javom, že sa pri detekcii objektov pre jeden detegovaný objekt vygenerujú viaceré hraničné oblasti. Tie bývajú umiestnené na rôznych pozíciách alebo sa môžu aj prekrývať. Takéto výskyty je z pohľadu zlepšenia účinnosti detekcie a zároveň aj jej presnosti najlepšie odstrániť. Na tento účel slúži nemaximálna supresia a tej výstupom je len jedna hraničná oblasť na každý detegovaný objekt
+
+%https://www.geeksforgeeks.org/r-cnn-region-based-cnns/
+
+%V súčasnosti sa na detekciu využívajú klasifikátory objektov, ktoré vyhodnocujú objekt na rôznych miestach a mierkach v testovanom obraze. Niektoré systémy, ako napríklad DPM (deformable parts model), využívajú metódu pohyblivých okien, ktoré klasifikátor kontroluje na rovnomerne veľkých plochách celého obrazu. Modernejším prístupom by bolo použitie CNN na vygenerovanie potenciálnych hraničných oblastí a použitie klasifikátora len na tieto oblasti.
+%
+%Tieto spomenuté postupy sú pomalé a je ťažké ich optimalizovať, pretože každá individuálna súčasť musí byť trénovaná samostatne. YOLO sa stavia ku hľadaniu objektov komplexne a rieši detekciu objektov od vstupu až po výsledné hraničné oblasti. Jedna konvolučná sieť predikuje hraničné oblasti a pravdepodobnosti príslušnosti k jednotlivým triedam. Tento proces prebieha naraz nad celým obrazom a je analyzovaný napriek všetkými triedami. Aj napriek vysokej výkonnosti v porovnaní s ostatným sieťami ako napríklad Fast R-CNN, nie je YOLO dokonalá sieť a problémy má hlavne s hľadaním objektov menších rozmerov alebo takých objektov, ktoré sa v obraze vyskytujú v skupinkách \cite{RedmonJoseph2016YOLO}.
+%
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[width=0.7\textwidth]{images/02/yolo.png}
+%    \caption{Základný princíp fungovania siete YOLO \cite{RedmonJoseph2016YOLO}.}
+%    \label{img:yolo}
+%\end{figure}
+%
+%Vstupný obraz je rozdelený na mriežku s rozmermi S x S. Na to aby mohlo byť určené, že objekt patrí ku konkrétnemu štvorcu v mriežke je vyrátavané skóre, ktoré určuje ako si je model istý, že našiel v danej oblasti hľadný objekt. Ak nastane situácia, že bol objekt objavený a spadá do konkrétneho štvorca z mriežky, tak je od toho momentu daný štvorec zodpovedný za detegovanie daného objektu.
+%
+%Je bežným javom, že sa pre jeden detegovaný objekt vygenerujú viaceré hraničné oblasti. Tie bývajú umiestnené na rôznych pozíciách často sa prekrývajú. Na tento účel slúži nemaximálna supresia, ktorej výstupom sú  a jej výstupom je len jedna hraničná oblasť na každý detegovaný objekt.
+
 
 \section{Výzvy neurónových sietí}
 Použitie neurónových sieti mnohokrát prináša veľmi dobré výsledky pre mnohé projekty a úroveň state-of-art sa rokmi zlepšuje. Bohužiaľ mnohé práce narážajú na niekoľko problémov, ktoré bránia dosiahnuť dobrú presnosť neurónovej siete \cite{RosinPaulL2019RIAa}.
