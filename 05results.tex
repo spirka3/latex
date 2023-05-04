@@ -140,19 +140,19 @@ ByteTrack & 27.760 & 37.434 & 34.147 & 22.085 & 57.887 & 47.258 & 34.957 & 88.02
 \label{table:hota1}
 \end{table}
 \\
-TODO We can see how well methods perform in each of the dimensions of detection (x-axis) and association (y-axis) separately, with the curves in the background showing how the overall HOTA score increases as both detection and association scores increase. We can go further than just comparing detection and association. Because they are both naturally decomposable into one component.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{images/05/compare.png}
-    \caption{.}
-    \label{img:road}
-\end{figure}
+% We can see how well methods perform in each of the dimensions of detection (x-axis) and association (y-axis) separately, with the curves in the background showing how the overall HOTA score increases as both detection and association scores increase. We can go further than just comparing detection and association. Because they are both naturally decomposable into one component.
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[width=1\textwidth]{images/05/compare.png}
+%    \caption{.}
+%    \label{img:road}
+%\end{figure}
 
-TODO Tu je vizualizácia sledovania reklám z videa. Na pravej strane obrázka je metóda X a na ľavej Y. Snímky sú v tomto prípade zachytené každých 10 snímok a vidíme, že metóda Y nepriradila referenciu po oklúzii správne.
+TODO nahradiť obrázok. Tu je vizualizácia sledovania reklám z videa. Na pravej strane obrázka je metóda X a na ľavej Y. Snímky sú v tomto prípade zachytené každých 10 snímok a vidíme, že metóda Y nepriradila referenciu po oklúzii správne.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/05/vs.png}
-    \caption{.}
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{Obrázok zo sledovania - s trajektóriou.}
     \label{img:road}
 \end{figure}
 
@@ -163,32 +163,67 @@ Dokopy bolo na zvolenej trase nájdených 145 reklám, ktoré sa podľa počtu p
 \\
 \begin{table}[ht]
 \centering
-\begin{tabular}{|c c c c|}
+\begin{tabular}{|l l l l|}
  \hline
- kategória &	rozmedzie &	počet reklám &	počet účastníkov \\ [0.5ex]
+ kategória &	rozmedzie &	počet reklám &	priemerný počet fixácii \\ [0.5ex]
  \hline
-slabá &	0 ms &	27 &	- \\ [0.1ex]
-nízka &	1-249 ms &	66 &	2.95 \\ [0.1ex]
-stredná &	250-499 ms &	18 &	5.11 \\ [0.1ex]
-vysoká &	500+ ms &	3 &	2 \\ [0.1ex]
+slabá &	0 ms &	45 &	- \\ [0.1ex]
+nízka &	1-249 ms &	60 &	3 \\ [0.1ex]
+stredná &	250-499 ms &	14 &	5 \\ [0.1ex]
+vysoká &	500+ ms &	26 &	2 \\ [0.1ex]
  \hline
 \end{tabular}
 \caption{TODO, výsledky 5.}
 \label{table:cat}
 \end{table}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/05/front.png}
+    \caption{Grafické porovnanie metód.}
+    \label{img:road}
+\end{figure}
+
 
 
 \section{Klasifikácia reklám}
 
-Jedna.
+Plánujem napísať
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/05/rfc.png}
+    \caption{Matica klasifikácie.}
+    \label{img:road}
+\end{figure}
 
 \newpage
 
-Dva.
+dve strany
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/05/frame.png}
+    \caption{.}
+    \label{img:Saliency map.}
+\end{figure}
 
 \newpage
 
-Tri.
+... snáď aj tri.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/05/importance.png}
+    \caption{Dôležitosť príznakov.}
+    \label{img:road}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/placeholder.png}
+    \caption{Obrázok klasifikácie.}
+    \label{img:road}
+\end{figure}
 
 %If your use-case contains many occlussions and the motion trajectiories are not too complex, you will most certainly benefit from updating the Kalman Filter by its own predicted state. Select the number of predictions that suits your needs here: https://github.com/mikel-brostrom/Yolov5_StrongSORT_OSNet/blob/b1da64717ef50e1f60df2f1d51e1ff91d3b31ed4/trackers/strong_sort/configs/strong_sort.yaml#L7

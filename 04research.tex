@@ -186,14 +186,14 @@ Na výpočet sme použili existujúcu neurónovu sieť HD2S \cite{hd2s}, určen�
 
 Každú video nahrávku sme vložili celú na vstup a neurónová sieť nám vrátila mapu význačností pre každú snímku. Podobne ako v predchádzajúcich prípadoch, sme vypočítali hodnotu príznaku pre každú sekvenciu samostatne. V tomto prípade nás zaujímali dve veci. Priemerná hodnota význačnosti v celej snímke a priemerná hodnota význačnosti v oblasti ohraničenia reklamy.
 
-Veľká časť snímky mala nulové, prípadne iné nízke hodnoty, ktoré výrazne znižovali priemer. Preto sme priemer počítali len z významnejších oblastiach. Prahovú hodnotu sme nastavili na X. Nakoniec sme pre každú sekvenciu uložili ešte tretí príznak, ktorý bol pomer medzi priemernou hodnotou význačnosti v oblasti ohraničenia reklamy a priemernou hodnotou význačnosti v celej snímke.
+Veľká časť snímky mala nulové, prípadne iné nízke hodnoty, ktoré výrazne znižovali priemer. Preto sme priemer počítali len z významnejších oblastiach. Prahovú hodnotu sme nastavili na 100 z maximálnej 255. Nakoniec sme pre každú sekvenciu uložili ešte tretí príznak, ktorý bol pomer medzi priemernou hodnotou význačnosti v oblasti ohraničenia reklamy a priemernou hodnotou význačnosti v celej snímke.
 
-TODO prečo.
+%TODO prečo.
 
-\subsubsection{Entropia reklamy}
-
-TODO prečo.
-
-TODO ako.
-
-TODO kód.
+%\subsubsection{Entropia reklamy}
+%
+%TODO prečo.
+%
+%TODO ako.
+%
+%TODO kód.

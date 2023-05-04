@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  4 MAY 2023 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  4 MAY 2023 17:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -802,6 +802,15 @@ LaTeX Warning: Label `img:road' multiply defined.
 
 LaTeX Warning: Label `img:road' multiply defined.
 
+
+LaTeX Warning: Label `img:road' multiply defined.
+
+
+LaTeX Warning: Label `img:road' multiply defined.
+
+
+LaTeX Warning: Label `img:road' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -1282,30 +1291,30 @@ Package natbib Warning: Citation `ilsvrc' on page 17 undefined on input line 11
 7.
 
 [17 <./images/02/lenet5.png>]
-<images/02/yolo.jpeg, id=365, 602.25pt x 382.42876pt>
-File: images/02/yolo.jpeg Graphic file (type jpg)
-<use images/02/yolo.jpeg>
-Package pdftex.def Info: images/02/yolo.jpeg  used on input line 128.
-(pdftex.def)             Requested size: 264.61333pt x 168.03575pt.
+<images/02/yolo.png, id=365, 923.45pt x 604.2575pt>
+File: images/02/yolo.png Graphic file (type png)
+<use images/02/yolo.png>
+Package pdftex.def Info: images/02/yolo.png  used on input line 128.
+(pdftex.def)             Requested size: 264.61333pt x 173.14641pt.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 18 undefined on i
-nput line 154.
+nput line 156.
 
-[18 <./images/02/yolo.jpeg>]
-<images/02/challenge2.png, id=373, 920.68968pt x 487.8225pt>
+[18 <./images/02/yolo.png>]
+<images/02/challenge2.png, id=374, 920.68968pt x 487.8225pt>
 File: images/02/challenge2.png Graphic file (type png)
 <use images/02/challenge2.png>
-Package pdftex.def Info: images/02/challenge2.png  used on input line 167.
+Package pdftex.def Info: images/02/challenge2.png  used on input line 169.
 (pdftex.def)             Requested size: 441.01773pt x 233.67575pt.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 19 undefined on i
-nput line 168.
+nput line 170.
 
 
 Package natbib Warning: Citation `RosinPaulL2019RIAa' on page 19 undefined on i
-nput line 168.
+nput line 170.
 
 ) (./03proposal.tex [19] [20 <./images/02/challenge2.png (PNG copy)>]
 Kapitola 3.
@@ -1316,7 +1325,7 @@ Package natbib Warning: Citation `yolov8' on page 21 undefined on input line 7.
 [21
 
 ]
-<images/03/glasses.jpg, id=392, 715.67375pt x 387.4475pt>
+<images/03/glasses.jpg, id=393, 715.67375pt x 387.4475pt>
 File: images/03/glasses.jpg Graphic file (type jpg)
 <use images/03/glasses.jpg>
 Package pdftex.def Info: images/03/glasses.jpg  used on input line 22.
@@ -1330,7 +1339,7 @@ Package natbib Warning: Citation `tobii' on page 22 undefined on input line 23.
 Package natbib Warning: Citation `tobii' on page 22 undefined on input line 23.
 
 
-<images/03/map.png, id=394, 1717.91812pt x 749.04843pt>
+<images/03/map.png, id=395, 1717.91812pt x 749.04843pt>
 File: images/03/map.png Graphic file (type png)
 <use images/03/map.png>
 Package pdftex.def Info: images/03/map.png  used on input line 36.
@@ -1344,13 +1353,13 @@ Kapitola 4.
 [24
 
 ]
-<images/04/snapshot.png, id=412, 871.75688pt x 499.11469pt>
+<images/04/snapshot.png, id=413, 871.75688pt x 499.11469pt>
 File: images/04/snapshot.png Graphic file (type png)
 <use images/04/snapshot.png>
 Package pdftex.def Info: images/04/snapshot.png  used on input line 45.
 (pdftex.def)             Requested size: 441.01773pt x 252.49644pt.
  [25] [26 <./images/04/snapshot.png (PNG copy)>] [27]
-<images/04/graf.png, id=431, 867.24pt x 433.62pt>
+<images/04/graf.png, id=432, 867.24pt x 433.62pt>
 File: images/04/graf.png Graphic file (type png)
 <use images/04/graf.png>
 Package pdftex.def Info: images/04/graf.png  used on input line 87.
@@ -1383,7 +1392,7 @@ Package natbib Warning: Citation `bytetrack' on page 28 undefined on input line
 Package natbib Warning: Citation `sort' on page 28 undefined on input line 96.
 
 [28 <./images/04/graf.png>]
-<images/04/tracking.png, id=441, 1189.44376pt x 522.45187pt>
+<images/04/tracking.png, id=442, 1189.44376pt x 522.45187pt>
 File: images/04/tracking.png Graphic file (type png)
 <use images/04/tracking.png>
 Package pdftex.def Info: images/04/tracking.png  used on input line 102.
@@ -1392,7 +1401,7 @@ Package pdftex.def Info: images/04/tracking.png  used on input line 102.
 
 Package natbib Warning: Citation `v7' on page 30 undefined on input line 117.
 
-<images/04/lab.png, id=449, 1130.72438pt x 663.22781pt>
+<images/04/lab.png, id=450, 1130.72438pt x 663.22781pt>
 File: images/04/lab.png Graphic file (type png)
 <use images/04/lab.png>
 Package pdftex.def Info: images/04/lab.png  used on input line 121.
@@ -1401,13 +1410,13 @@ Package pdftex.def Info: images/04/lab.png  used on input line 121.
 
 Package natbib Warning: Citation `mot' on page 31 undefined on input line 130.
 
-<images/04/mapping.jpg, id=455, 1868.9825pt x 1083.04625pt>
+<images/04/mapping.jpg, id=456, 1868.9825pt x 1083.04625pt>
 File: images/04/mapping.jpg Graphic file (type jpg)
 <use images/04/mapping.jpg>
 Package pdftex.def Info: images/04/mapping.jpg  used on input line 134.
 (pdftex.def)             Requested size: 441.01773pt x 255.55704pt.
 [31 <./images/04/mapping.jpg>]
-<images/04/iou.jpg, id=461, 1927.2pt x 1084.05pt>
+<images/04/iou.jpg, id=462, 1927.2pt x 1084.05pt>
 File: images/04/iou.jpg Graphic file (type jpg)
 <use images/04/iou.jpg>
 Package pdftex.def Info: images/04/iou.jpg  used on input line 149.
@@ -1421,42 +1430,42 @@ Package natbib Warning: Citation `hd2s' on page 34 undefined on input line 185.
 Package natbib Warning: Citation `jain2021vinet' on page 34 undefined on input 
 line 185.
 
-[34]) (./05results.tex [35]
+) (./05results.tex [34]
 Kapitola 5.
-[36
+[35
 
 ]
-<images/05/ious.png, id=489, 1153.30875pt x 430.60875pt>
+<images/05/ious.png, id=485, 1153.30875pt x 430.60875pt>
 File: images/05/ious.png Graphic file (type png)
 <use images/05/ious.png>
 Package pdftex.def Info: images/05/ious.png  used on input line 21.
 (pdftex.def)             Requested size: 441.01773pt x 164.6646pt.
- [37 <./images/05/ious.png (PNG copy)>]
-<images/05/120.jpg, id=500, 1927.2pt x 1084.05pt>
+ [36 <./images/05/ious.png (PNG copy)>]
+<images/05/120.jpg, id=496, 1927.2pt x 1084.05pt>
 File: images/05/120.jpg Graphic file (type jpg)
 <use images/05/120.jpg>
 Package pdftex.def Info: images/05/120.jpg  used on input line 87.
 (pdftex.def)             Requested size: 441.01773pt x 248.06912pt.
 
 
-Package natbib Warning: Citation `hota' on page 38 undefined on input line 94.
+Package natbib Warning: Citation `hota' on page 37 undefined on input line 94.
 
-[38 <./images/05/120.jpg>]
+[37 <./images/05/120.jpg>]
 
-LaTeX Warning: Reference `cite:usecase' on page 39 undefined on input line 113.
+LaTeX Warning: Reference `cite:usecase' on page 38 undefined on input line 113.
 
 
-<images/05/usecase.png, id=506, 880.79062pt x 619.56468pt>
+<images/05/usecase.png, id=502, 880.79062pt x 619.56468pt>
 File: images/05/usecase.png Graphic file (type png)
 <use images/05/usecase.png>
 Package pdftex.def Info: images/05/usecase.png  used on input line 117.
 (pdftex.def)             Requested size: 308.71106pt x 217.1534pt.
 
-Package natbib Warning: Citation `hota' on page 39 undefined on input line 118.
+Package natbib Warning: Citation `hota' on page 38 undefined on input line 118.
 
 
 
-Package natbib Warning: Citation `hota' on page 39 undefined on input line 118.
+Package natbib Warning: Citation `hota' on page 38 undefined on input line 118.
 
 
 
@@ -1464,22 +1473,48 @@ Overfull \hbox (9.7418pt too wide) in paragraph at lines 128--139
  [][] 
  []
 
-<images/05/compare.png, id=508, 1194.71344pt x 429.85594pt>
-File: images/05/compare.png Graphic file (type png)
-<use images/05/compare.png>
-Package pdftex.def Info: images/05/compare.png  used on input line 146.
-(pdftex.def)             Requested size: 441.01773pt x 158.6769pt.
-[39 <./images/05/usecase.png (PNG copy)>]
-<images/05/vs.png, id=514, 672.26157pt x 291.33844pt>
-File: images/05/vs.png Graphic file (type png)
-<use images/05/vs.png>
-Package pdftex.def Info: images/05/vs.png  used on input line 154.
-(pdftex.def)             Requested size: 441.01773pt x 191.12369pt.
- [40 <./images/05/compare.png (PNG copy)>] [41 <./images/05/vs.png (PNG copy)>]
- [42]) (./06conclusion.tex [43]
-[44
 
-]) [45]
+Underfull \hbox (badness 10000) in paragraph at lines 124--150
+
+ []
+
+[38 <./images/05/usecase.png (PNG copy)>]
+<images/placeholder.png, id=509, 401.5pt x 200.75pt>
+File: images/placeholder.png Graphic file (type png)
+<use images/placeholder.png>
+Package pdftex.def Info: images/placeholder.png  used on input line 154.
+(pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
+ [39 <./images/placeholder.png>]
+<images/05/front.png, id=519, 477.28313pt x 353.82187pt>
+File: images/05/front.png Graphic file (type png)
+<use images/05/front.png>
+Package pdftex.def Info: images/05/front.png  used on input line 182.
+(pdftex.def)             Requested size: 308.71106pt x 228.85312pt.
+<images/05/rfc.png, id=520, 478.78876pt x 358.33875pt>
+File: images/05/rfc.png Graphic file (type png)
+<use images/05/rfc.png>
+Package pdftex.def Info: images/05/rfc.png  used on input line 195.
+(pdftex.def)             Requested size: 220.50887pt x 165.03467pt.
+
+[40 <./images/05/front.png (PNG copy)>]
+<images/05/frame.png, id=527, 1534.98468pt x 837.1275pt>
+File: images/05/frame.png Graphic file (type png)
+<use images/05/frame.png>
+Package pdftex.def Info: images/05/frame.png  used on input line 206.
+(pdftex.def)             Requested size: 220.50887pt x 120.24992pt.
+ [41 <./images/05/rfc.png (PNG copy)> <./images/05/frame.png (PNG copy)>]
+<images/05/importance.png, id=534, 163.3603pt x 143.78719pt>
+File: images/05/importance.png Graphic file (type png)
+<use images/05/importance.png>
+Package pdftex.def Info: images/05/importance.png  used on input line 217.
+(pdftex.def)             Requested size: 220.50887pt x 194.08896pt.
+File: images/placeholder.png Graphic file (type png)
+<use images/placeholder.png>
+Package pdftex.def Info: images/placeholder.png  used on input line 224.
+(pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
+) (./06conclusion.tex [42 <./images/05/importance.png (PNG copy)>] [43
+
+]) [44]
 No file main.bbl.
 
 Package caption Warning: Unused \captionsetup[sub] on input line 62.
@@ -1499,10 +1534,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D0A42A2BEC0FBD18460412FECF31FCE2;5714.
  ) 
 Here is how much of TeX's memory you used:
- 19627 strings out of 476001
- 336238 string characters out of 5789205
+ 19650 strings out of 476001
+ 336810 string characters out of 5789205
  1863074 words of memory out of 5000000
- 39588 multiletter control sequences out of 15000+600000
+ 39607 multiletter control sequences out of 15000+600000
  527547 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  77i,9n,77p,1222b,617s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1523,11 +1558,11 @@ ve/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive
 3/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/
 texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2023/te
 xmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (54 pages, 843
-5888 bytes).
+Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (53 pages, 844
+7596 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 527 compressed objects within 6 object streams
- 150 named destinations out of 1000 (max. 500000)
- 432 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 662 PDF objects out of 1000 (max. 8388607)
+ 528 compressed objects within 6 object streams
+ 152 named destinations out of 1000 (max. 500000)
+ 447 words of extra memory for PDF output out of 10000 (max. 10000000)
 
