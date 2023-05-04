@@ -46,7 +46,7 @@ Presnosť a citlivosť je okrem prahovej hodnoty IoU ovplyvnená ešte prahovou 
 
 Závislosť medzi presnosťou a citlivosťou sa znázorňuje pomocou grafu. Obsah plochy pod krivkou je označovaný ako mAP (mean Average Precision). Výsledná hodnota mAP50 je priemer presnosti pre hodnotu prahu IoU = 0.5. V prípade metriky mAP50-95 je priemer počítaný pre prah IoU od 0.5 do 0.95.
 
-V tabuľke \ref{table:test1} je každý model otestovaný na testovacej sade príslušnej verzie. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Pre lepšie otestovanie modelov sme mali pripravenú testovaciu vzorku obrázkov, tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky. Model M1, ktorý na testovacej sade dosiahol výrazne horšie výsledky, bol napokon porovnateľný s ostatnými modelmi pri vyhodnotení na spoločnej testovacej vzorke. Metriky boli počítané pre prahovú hodnotu IoU = 0.5 s istotou väčšou ako 0.3.
+V tabuľke \ref{table:test1} je každý model otestovaný na testovacej sade príslušnej verzie. Tým, že má každá verzia inú testovaciu sadu, nemôžme povedať, ktorý model je najlepší. Na lepšie otestovanie modelov sme mali pripravenú testovaciu vzorku obrázkov, tvorenú zo snímok z experimentálneho merania. Vyhodnotenie modelov na testovacej vzorke v tabuľke \ref{table:test2} ukazuje, že model M3 dosahuje najlepšie výsledky. Model M1, ktorý na testovacej sade dosiahol výrazne horšie výsledky, bol napokon porovnateľný s ostatnými modelmi pri vyhodnotení na spoločnej testovacej vzorke. Metriky boli počítané pre prahovú hodnotu IoU = 0.5 s istotou väčšou ako 0.3.
 
 \newpage
 
@@ -76,7 +76,7 @@ M2  & 0.659 & 0.565 & 0.653 & 0.467 \\
 M3  & 0.715 & 0.541 & 0.656 & 0.480 \\
 \hline
 \end{tabular}
-\caption{Výsledky tých istých modelov na spoločnej testovacej vzorke obrázkov.}
+\caption{Porovnanie tých istých modelov na spoločnej testovacej vzorke obrázkov.}
 \label{table:test2}
 \end{table}
 
@@ -85,7 +85,7 @@ Na obrázku \ref{img:dt7} je vizualizácia detekcií z vybranej snímky. Označe
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/05/120.jpg}
-    \caption{Ukážka detekcií zo snímky s väčším počtom reklám.}
+    \caption{Ukážka snímky s troma detekciami reklamy.}
     \label{img:dt7}
 \end{figure}
 
@@ -121,13 +121,13 @@ Obrázok \ref{cite:usecase} vysvetľuje koncepty TPA, FPA a FNA na objekte, ktor
 
 Geometrickým priemerom detekcie a asociácie je vypočítaná hodnota HOTA. Táto formulácia zabezpečuje, že detekcia aj asociácia sú na rozdiel od mnohých iných metrík sledovania rovnomerne vyvážené a že konečné skóre je niekde medzi nimi.
 
-Každá sledovacia metóda bola spustená viackrát s rôznou konfiguráciou. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}.
-\\
+Každá sledovacia metóda bola spustená viackrát s rôznou konfiguráciou. Najlepšie výsledky pre každú metódu sú zapísané v tabuľke \ref{table:hota1}. Skratky DetPr, DetRe, DetA značia presnosť, citlivosť a celkovú úspešnosť detekcie, čo podobne to platí pre asociáciu.
+
 \begin{table}[ht]
 \centering
 \begin{tabular}{|l l l l l l l l l|}
  \hline
-metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & LocA \\ [0.5ex]
+metóda & HOTA & DetPr & DetRe & DetA & AssPr & AssRe & AssA & Loc \\ [0.5ex]
  \hline
 OC-SORT & 37.936 & 58.479 & 54.554 & 40.455 & 74.731 & 42.579 & 35.638 & 88.581 \\ [0.1ex]
 DeepOC-SORT & 39.152 & 63.357 & 54.578 & 42.673 & 70.841 & 42.888 & 35.937 & 88.932 \\ [0.1ex]
@@ -136,7 +136,7 @@ BotSORT & 27.141 & 40.139 & 38.162 & 24.812 & 40.389 & 56.746 & 29.729 & 87.301 
 ByteTrack & 27.760 & 37.434 & 34.147 & 22.085 & 57.887 & 47.258 & 34.957 & 88.027 \\ [0.1ex]
  \hline
 \end{tabular}
-\caption{TODO, výsledky 4.}
+\caption{Porovnanie výsledkov piatich sledovacích metód.}
 \label{table:hota1}
 \end{table}
 \\
@@ -148,6 +148,13 @@ ByteTrack & 27.760 & 37.434 & 34.147 & 22.085 & 57.887 & 47.258 & 34.957 & 88.02
 %    \label{img:road}
 %\end{figure}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/05/pedestian_plot.png}
+    \caption{Dôležitosť príznakov.}
+    \label{img:road}
+\end{figure}
+
 TODO nahradiť obrázok. Tu je vizualizácia sledovania reklám z videa. Na pravej strane obrázka je metóda X a na ľavej Y. Snímky sú v tomto prípade zachytené každých 10 snímok a vidíme, že metóda Y nepriradila referenciu po oklúzii správne.
 \begin{figure}[ht]
     \centering
@@ -158,7 +165,7 @@ TODO nahradiť obrázok. Tu je vizualizácia sledovania reklám z videa. Na prav
 
 \section{Významnosť reklám}
 
-Dokopy bolo na zvolenej trase nájdených 145 reklám, ktoré sa podľa počtu prienikov rozdelili do štyroch kategórií. V tabuľke \ref{table:cat} je pre každú kategóriu zapísané časové rozmedzie korešpondujúce počtu snímok s prienikom, počet reklám vyhodnotených do príslušnej kategórie a priemerný počet účastníkov, ktorý sa na reklamu danej kategórie pozreli.
+Dokopy bolo na zvolenej trase nájdených 145 reklám. V tabuľke \ref{table:cat} je pre každú kategóriu zapísané časové rozmedzie korešpondujúce počtu snímok s prienikom, počet reklám zaradených do príslušnej kategórie a priemerný počet účastníkov, ktorý sa na reklamu danej kategórie pozreli.
 % todo pridať obrázok, kde je fixácia
 \\
 \begin{table}[ht]

@@ -36,14 +36,14 @@ Zuzana & - & časť & áno & 88\% \\
 
 Spoločnosť Tobii okrem hardvéru dodáva aj softvér na analýzu záznamu, čím ponúka kompletné riešenie pre výskum. Tobii Pro Lab poskytuje grafické používateľské rozhranie a špeciálne softvérové funkcie, ktoré pomáhajú s analýzou pohľadov. V zásade podporuje dva spôsoby, podľa ktorých sa dajú získať analytické údaje. 
 
-Prvým spôsobom je označenie oblasti, na ktorom sa nachádza objekt záujmu. Ku zvýšeniu efektivity má pomôcť automatické označovanie oblastí, kde stačí označiť objekt na prvej a na poslednej snímke, na ktorej bol viditeľný. Na základe tejto informácie a predpokladaným pohybom objektu, softvér vypočíta oblasť pre všetky zvyšné snímky v sekvencii. Bohužiaľ v našej práci sa to neukázalo ako dobré riešenie, pretože pohyb reklamy v nahrávkach nebol jednoduchý. Takmer na žiadnej snímke medzi začiatkom a koncom nebola oblasť reklamy označená správne. 
+Prvým spôsobom je označenie oblasti, na ktorej sa nachádza objekt záujmu. Ku zvýšeniu efektivity má pomôcť automatické označovanie oblastí, kde stačí označiť objekt na prvej a na poslednej snímke, na ktorej bol viditeľný. Na základe predpokladaného pohybu softvér vypočíta oblasť zvoleného objektu pre všetky zvyšné snímky v sekvencii. V našej práci sa to neukázalo ako funkčné riešenie, pretože pohyb reklamy v nahrávkach nebol jednoduchý a takmer na žiadnej snímke medzi začiatkom a koncom nebola oblasť reklamy označená správne.
 
-Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom je sledovaný objekt. Potom ako sa vyberie časový interval, v ktorom sa očakáva výskyt sledovaného objektu, softvér automatický získa výstup toho, na ktorú časť objektu sa človek pozeral. Toto riešenie takisto zlyhalo, nakoľko softvér ani po viacerých pokusoch nedokázal priradiť k obrázku žiadne pohľady.
+Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom je objekt záujmu. Potom ako sa vyberie časový interval, v ktorom sa očakáva výskyt objektu, softvér automatickým spôsobom získa výstup toho, na ktorú časť objektu sa človek pozeral. Toto riešenie takisto zlyhalo, nakoľko softvér ani po viacerých pokusoch nedokázal priradiť k obrázku žiadne pohľady. Očakávané správanie druhej možnosti je zobrazené na obrázku \ref{img:lab}, ktorý bol prebraný z iného výskumu. Naľavo je zobrazený video záznam a napravo referenčný obrázok, na ktorý sa úspešne podarilo premietnuť pohľad nameraný z okuliarov.
 \\
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{images/04/snapshot.png}
-    \caption{Ukážka s referenčným obrázkom z iného výskumu. Naľavo je video záznam a napravo je zobrazený referenčný obrázok, na ktorý sa úspešne podarilo premietnuť pohľad z kamery.}
+    \caption{Analýza pohľadov pomocou referenčného obrázku v softvéri Tobii Pro Lab.}
     \label{img:lab}
 \end{figure}
 
@@ -95,16 +95,16 @@ Vývoj sa dal sledovať aj vizuálne. Po každej epoche sa vykreslil graf, ktor�
 
 Na sledovanie reklám vo videách sa nám podarilo nájsť repozitár \cite{mikel}, v ktorom je možné vyskúšať viaceré sledovacie metódy. V čase keď sme s ním pracovali, podporoval metódy OC-SORT \cite{ocsort}, Deep OC-SORT \cite{deepocsort}, StrongSORT \cite{strongsort}, BoTSORT \cite{bot} a ByteTrack \cite{bytetrack}. Všetky metódy sú implementované v jazyku Python a využívajú knižnicu PyTorch. Vychádzajú z metódy SORT (Simple Online and Realtime Tracking), ktorá na sledovanie objektov používa Kalmanov filter a Hungarian algoritmus \cite{sort}.
 
-Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objekty a triedy. Tak ako vidno na obrázku \ref{img:tracking}, výstupom sledovacej metódy sú detekcie s priradenou referenciou, ktoré vytvárajú trajektóriu sledovaného objektu.
+Vstupné video sa spracováva postupne po jednej snímke. Zo snímky sa pomocou modelu získajú detekcie, ktorým sa podľa asociácie priradí referencie. Naraz sa dajú sa sledovať viaceré objekty a triedy. Tak ako vidno na obrázku \ref{img:tracking}, výstupom sledovacej metódy sú detekcie s priradenou referenciou, ktoré opisujú trajektóriu sledovaného objektu.
 
  \begin{figure}[ht]
      \centering
      \includegraphics[width=0.7\textwidth]{images/04/tracking.png}
-     \caption{Sekvencia piatich snímok, získané sú najkôr detekcie a potom referencie.}
+     \caption{Na sekvencii piatich snímkach sú k detekciám priradené dve referencie.}
      \label{img:tracking}
  \end{figure}
 
-Každá metóda má vlastný konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, v ktorých sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie novej referencie a niekoľko ďalších parametrov špecifických pre jednotlivé metódy. Napríklad pre StrongSORT je to maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
+Každá metóda má vlastný konfiguračný súbor, kde sa dá nastaviť viacero parametrov, ktoré ovplyvňujú sledovanie objektu. Dva najdôležitejšie parametre sú prahová hodnota pre detekciu objektu a prahová hodnota pre asociáciu k objektom v predchádzajúcich snímkach. Okrem toho sa dá nastaviť počet predchádzajúcich snímok, s ktorými sa porovnáva asociácia objektov, minimálny počet snímok na vytvorenie novej referencie a niekoľko ďalších parametrov špecifických pre jednotlivé metódy. Napríklad pre StrongSORT je to maximálna vzdialenosť lokalizácie a pre OC-SORT výber asociačnej funkcie.
 
 \subsubsection{Pozorovanie metód}
 

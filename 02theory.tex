@@ -7,7 +7,6 @@ V teoretickej kapitole sa budeme podrobnejšie venovať neurónových sieťam be
 Neurónové siete, sú podskupinou strojového učenia a jadrom algoritmov hlbokého učenia. Ich názov a štruktúra sú často prirovnávané k ľudskému mozgu, pretože pripomínajú spôsob, akým si biologické neuróny navzájom signalizujú procesy \cite{Shanmuganathan2016}. Umelá neurónová sieť bez cyklov sa v angličtine označuje aj ako \textit{feed forward neural network (FNN)}. Je tvorená neurónmi, ktoré sa skladajú do vrstiev. Neuróny v susedných vrstvách sú medzi sebou spojené jedným smerom a podobne ako biologický neurón nesú číselnú hodnotu.
 
 Na prvú, vstupnú vrstvu sú prenesené údaje, ktoré vchádzajú do siete. Do neurónovej siete môžu ísť obrázky, zvuk a prakticky ľubovoľné dáta, ktoré sa dajú vyjadriť číselne. V tejto práci sa budeme zaujímať výhradne o obrázkové vstupy a videá. Neuróny zo vstupnej vrstvy sú ďalej prepojené s jednou, alebo viacerými skrytými vrstvami nasledujúcimi po sebe. Posledná skrytá vrstva sa spája s výstupnou vrstvou. Neuróny vo výstupnej vrstve nesú výsledok vypočítaný zo vstupných údajov. Na obrázku \ref{img:network} je každý neurón v susednej vrstve prepojený so všetkými neurónmi z predchádzajúcej vrstvy. To vo všeobecnosti nemusí byť pravidlom, pretože môžu existovať také siete, kedy sa niektoré spojenia neurónov úmyselne prerušia \cite{DettmersTim2019SNfS}.
-\\
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.6\textwidth]{images/02/mynn.png}
@@ -15,8 +14,7 @@ Na prvú, vstupnú vrstvu sú prenesené údaje, ktoré vchádzajú do siete. Do
     \label{img:network}
 \end{figure}
 
-Vstupom siete je vektor \begin{math}x\end{math}, ktorý je spojený s neurónmi v prvej vrstve. Spojenia medzi neurónmi sa nazývajú váhy. Na základe neurónov a váh sa počítajú hodnoty neurónov v nasledujúcej vrstve. Matematické vyjadrenie pre získanie hodnôt neurónov v nasledujúcej vrstve je opísané formulou:
-
+Vstupom siete je vektor \begin{math}x\end{math}, ktorý je spojený s neurónmi v prvej vrstve. Spojenia medzi neurónmi sa nazývajú váhy. Na základe neurónov a váh sa počítajú hodnoty neurónov v nasledujúcej vrstve. Matematické vyjadrenie na získanie hodnôt neurónov v nasledujúcej vrstve je opísané formulou:
 \begingroup
 \large
 \begin{equation}a^{i+1} = \sigma \left ( \sum_{j=1}^{n^i} w_{j}^i a_{j}^i + bias^{i+1} \right ) \end{equation}
@@ -27,8 +25,8 @@ kde \begin{math}n^{i}\end{math} je počet spojení s neurónom, \begin{math}a^{i
 % formula: https://youtu.be/aircAruvnKk?t=905
 % bias: https://youtu.be/rJmBhnLzjOM?t=133
 
-Aktivačné funkcie zohrávajú dôležitú úlohu v neurónových sieťach, tým že zabraňujú lineárnemu počítaniu. To umožňuje neurónovým sieťam vyvíjať zložité reprezentácie, ktoré by nebolo možné dosiahnuť pomocou jednoduchého lineárneho modelu. Známe aktivačné funkcie sú napríklad \textit{Sigmoid} \cite{sigmoid}, \textit{Rectified Linear Units (ReLU)} \cite{relu} a jej variácie. ReLU je často používaná vďaka jednoduchej implementácii nelineárnej transformácie a dobrému výkonu pri rôznych úlohách. Zachováva iba pozitívne prvky a všetky negatívne prvky nastaví na nulovú hodnotu. Variácie ReLU zachovávajú určitú časť informácie aj pre negatívne prvky. Na obrázku \ref{img:rr} je zobrazený priebeh ReLU s parametrom a bez parametra. Parameter pre negatívnu časť nie je konštantný, ale je adaptívny pre naučenie \cite{prelu}.
-\\
+Aktivačné funkcie zohrávajú dôležitú úlohu v neurónových sieťach, tým že zabraňujú lineárnemu počítaniu. To umožňuje neurónovým sieťam vyvíjať zložité reprezentácie, ktoré by nebolo možné dosiahnuť pomocou jednoduchého lineárneho modelu. Známe aktivačné funkcie sú napríklad \textit{Sigmoid} \cite{sigmoid}, \textit{Rectified Linear Units (ReLU)} \cite{relu} a jej variácie. ReLU je často používaná vďaka jednoduchej implementácii nelineárnej transformácie a dobrému výkonu pri rôznych úlohách. Zachováva iba pozitívne prvky a všetky negatívne prvky nastaví na nulovú hodnotu. Variácie ReLU zachovávajú určitú časť informácie aj pre negatívne prvky. Na obrázku \ref{img:rr} je zobrazený priebeh ReLU s parametrom a bez parametra. Parameter pre negatívnu časť nie je konštantný, ale je adaptívny na naučenie \cite{prelu}.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.6\textwidth]{images/02/relu_prelu.png}
@@ -41,7 +39,7 @@ Aktivačné funkcie zohrávajú dôležitú úlohu v neurónových sieťach, tý
 Neurónové siete využívajú heuristický spôsob učenia. Učenie sa vzťahuje na proces úpravy váh tak, aby boli špecializované vykonávať konkrétnu úlohu. Učenie by nebolo možné bez vstupných údajov, od ktorých sú neurónové siete závislé. Teoreticky platí, že čím viac je k dispozícií kvalitných dát, tým má sieť väčší potenciál dosiahnuť lepšie výsledky pri učení. Keď je neurónová sieť natrénovaná, môže byť použitá na predpovedanie informácií o nových vstupných údajoch, ktoré počas učenia nevidela. Výkon neurónovej siete na týchto nových údajoch je mierou toho, ako dobre je sieť naučená vykonávať svoju úlohu.
 
 \subsection{Učenie s pomocou učiteľa}
-Prístup učenia s pomocou učiteľa sa spolieha na správne označené dáta pri riešení úloh akým sú klasifikácia, lokalizácia, detekcia a segmentácia. Ak ide o trénovanie siete za účelom klasifikácie obrázka, tak je každý obrázok označený informáciou, do ktorej triedy patrí. Ak ide o detekciu objektov, tak okrem informácie o výskyte konkrétneho objektu sa označuje príslušný bounding box, ktorý vymedzuje jeho polohu. Počiatočné váhy medzi uzlami sú vygenerované náhodne, prípadne sa zvyknú použiť už natrénované váhy z blízkej sady obrázkov pre lepší nástup trénovania. Spôsob, kedy sa použijú natrénované váhy sa nazýva prenášané učenie (\textit{transfer learning}).
+Prístup učenia s pomocou učiteľa sa spolieha na správne označené dáta pri riešení úloh akým sú klasifikácia, lokalizácia, detekcia a segmentácia. Ak ide o trénovanie siete za účelom klasifikácie obrázka, tak je každý obrázok označený informáciou, do ktorej triedy patrí. Ak ide o detekciu objektov, tak okrem informácie o výskyte konkrétneho objektu sa označuje príslušný bounding box, ktorý vymedzuje jeho polohu. Počiatočné váhy medzi uzlami sú vygenerované náhodne, prípadne sa zvyknú použiť už natrénované váhy z blízkej sady obrázkov na lepší nástup trénovania. Spôsob, kedy sa použijú natrénované váhy sa nazýva prenášané učenie (\textit{transfer learning}).
 
 Postup akým sa sieť učí, môžeme demonštrovať na úlohe klasifikácie obrázkov do troch tried. Údaje z obrázka sa prenesú na vstupnú vrstvu a postupným počítaním prechádzajú každou vrstvou. Na poslednej vrstve každý neurón reprezentuje jednu triedu klasifikácie. Hodnoty pre výstupné neuróny môžeme určiť napríklad pomocou \textit{Softmax} funkcie. Pri tejto konkrétnej funkcii sa dá výstup chápať ako pravdepodobnosť, podľa ktorej je sieť rozhodnutá klasifikovať obrázok do konkrétnej triedy. Sieť klasifikuje vstupný obrázok triedou, ktorá prislúcha neurónu s najvyššou hodnotou na výstupnej vrstve. Súčet pravdepodobností je rovný číslu 1. Najlepší možný výsledok by vyzeral tak, že neurón označujúci správnu triedu by mal hodnotu 1, kým ostatné neuróny hodnotu 0. Takýto výsledok však nie je pravdepodobný a ani to nie je nutné na dosiahnutie vysokej presnosti klasifikátora.
 
@@ -50,7 +48,7 @@ Počas učenia sa výstup zo siete porovnáva s pôvodným označením obrázka.
 Na zníženie chyby sa využíva proces spätnej propagácie (backpropagation) \cite{bp}, pomocou ktorého sa mierne zvyšujú alebo znižujú váhy od výstupných vrstiev smerom dozadu podľa vypočítaného gradientu. Gradient descent je iteračný algoritmus, ktorý hľadá lokálne minimum stratovej funkcie pomocou gradientu, ktorého smer otočí a podľa zvoleného kroku sa posunie. Opakovaným procesom sa hodnota stratovej funkcie znižuje spolu so zmenou váh medzi uzlami, až kým je nie dosiahnutá požadovaná presnosť alebo kým nie sú splnené iné podmienky na ukončenie. Inou podmienkou okrem presnosti môže byť dosiahnutie pevného počtu iterácií alebo situácia keď, chyba sa po viacerých iteráciách za sebou nezmenšuje.
 
 Gradient descent hľadá minimum iba v blízkosti aktuálneho bodu na ploche stratovej funkcie. Často je výpočtovo nemožné hľadať globálne minimum na celom povrchu stratovej funkcie. Okrem toho niektoré stratové funkcie môžu mať viacero globálnych miním alebo dokonca žiadne globálne minimum. Ak má stratová funkcia viac lokálnych miním, gradient descent môže konvergovať k suboptimálnemu riešeniu. Pokiaľ lokálne minimum nemá často vysokú stratu, tak ide o prijateľné riešenie. To či bolo nájdených veľa lokálnych miním s vysokou stratou zostáva aktívnou oblasťou výskumu, ale odborníci si myslia, že pre dostatočne veľké neurónové siete má väčšina lokálnych miním nízku stratu a že nie je dôležité nájsť skutočné globálne minimum \cite{Goodfellow-et-al-2016}. Obrázok \ref{img:gradient} zobrazuje jednoduchú funkciu v dvojrozmernom priestore. V skutočnom prípade sieť pracuje s oveľa zložitejšou funkciou.
-\\
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=.5\textwidth]{images/02/grad.png}
@@ -66,7 +64,7 @@ Napokon je dôležité, aby dataset obsahoval veľa obrázkov, ktoré sú dobre 
 
 Bežné neurónové siete nepracujú dobre s väčšími údajmi. Napríklad pre obrázky veľkosti 32x32 pixlov s troma farebnými kanálmi má jeden plne pripojený neurón v prvej skrytej vrstve 3072 váh (32x32x3). Pre väčší obrázok, napríklad 420x420x3 by mal jeden neurón 529 200 spojení, ktorých trénovanie vyžaduje veľa výpočtového výkonu.
 
-Cieľom konvolučných neurónových sietí (CNN) je zmenšiť obrázky tak, aby sa dali ľahšie spracovať bez straty príznakov, ktoré sú dôležité pre čo najpresnejší výsledok. V porovnaní s bežnými neurónovými sieťami majú konvolučné siete zmenenú štruktúru vrstiev. Zahŕňajú tri typy vrstiev: konvolučnú vrstvu, pooling vrstvu a plne prepojenú vrstvu.
+Cieľom konvolučných neurónových sietí (CNN) je zmenšiť obrázky tak, aby sa dali ľahšie spracovať bez straty príznakov, ktoré sú dôležité na čo najpresnejší výsledok. V porovnaní s bežnými neurónovými sieťami majú konvolučné siete zmenenú štruktúru vrstiev. Zahŕňajú tri typy vrstiev: konvolučnú vrstvu, pooling vrstvu a plne prepojenú vrstvu.
 
 \subsection{Konvolučná vrstva}
 
@@ -135,6 +133,7 @@ Vstupný obraz je rozdelený na mriežku s rozmermi S x S. Na to aby mohol byť 
 Je bežným javom, že sa pri detekcii objektov pre jeden detegovaný objekt vygenerujú viaceré hraničné oblasti. Tie bývajú umiestnené na rôznych pozíciách alebo sa môžu aj prekrývať. Takéto výskyty je z pohľadu zlepšenia účinnosti detekcie a zároveň aj jej presnosti najlepšie odstrániť. Na tento účel slúži nemaximálna supresia a tej výstupom je len jedna hraničná oblasť na každý detegovaný objekt
 
 %https://www.geeksforgeeks.org/r-cnn-region-based-cnns/
+%https://towardsdatascience.com/intuition-and-implementation-of-non-max-suppression-algorithm-in-object-detection-d68ba938b630
 
 %V súčasnosti sa na detekciu využívajú klasifikátory objektov, ktoré vyhodnocujú objekt na rôznych miestach a mierkach v testovanom obraze. Niektoré systémy, ako napríklad DPM (deformable parts model), využívajú metódu pohyblivých okien, ktoré klasifikátor kontroluje na rovnomerne veľkých plochách celého obrazu. Modernejším prístupom by bolo použitie CNN na vygenerovanie potenciálnych hraničných oblastí a použitie klasifikátora len na tieto oblasti.
 %

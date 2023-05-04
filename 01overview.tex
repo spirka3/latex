@@ -18,7 +18,7 @@ Pri tradičných metódach môžeme uvažovať o troch základných prvkoch potr
     \item klasifikácia
 \end{itemize}
 
-Vstupný obrázok je na začiatku spracovaný algoritmom, ktorý hľadá kandidátov na potenciálnu pozíciu hľadaného objektu. V tomto kroku sa nevyžaduje, aby bola pozícia presná, dôležité je dosiahnuť vysokú hodnotu skutočných umiestnení. Takéto odfiltrovanie nepotrebných častí vstupného obrázka následne zníži nároky na výpočtový výkon. Oblasti pre kandidátov možno vygenerovať pomocou metódy  posuvných okien \cite{sel-search}.
+Vstupný obrázok je na začiatku spracovaný algoritmom, ktorý hľadá kandidátov na potenciálnu pozíciu hľadaného objektu. V tomto kroku sa nevyžaduje, aby bola pozícia presná, dôležité je dosiahnuť vysokú hodnotu skutočných umiestnení. Takéto odfiltrovanie nepotrebných častí vstupného obrázka následne zníži nároky na výpočtový výkon. Oblasti kandidátov možno vygenerovať pomocou metódy posuvných okien \cite{sel-search}.
 
 Po získaní kandidátskych oblastí sa v ďalšom kroku používajú deskriptory na hľadanie príznakov, ktoré spresňujú vstupné údaje bez straty dôležitých informácií. Najznámejšími príkladmi deskriptorov sú \textit{Histogram of Oriented Gradients (HOG)} \cite{HOG}, \textit{Speeded up robust features (SURF)} \cite{SURF} a \textit{Scale-Invariant Feature Transform (SIFT)} \cite{SIFT}. SIFT a SUFT sú navrhnuté na detekciu a deskripciu, hľadaním zaujímavých bodov v lokálnom priestore. Príklad výsledku z metódy SIFT na nasledujúcom obrázku ukazuje, že je invariantný voči mierke, rotácii a posunu.
 
@@ -38,13 +38,14 @@ TODO prepojiť obrázok s textom. Povedať jednu-dve vety o SVM. Adaboost môže
     \label{img:svm}
 \end{figure}
 
-Pri detekcii treba brať do úvahy viacero možných problémov, ktoré v nietorých prípadoch môžu predstavovať neprekonateľné prekážky pre tradičné metódy. Častými problémami je oklúzia, osvetlenie, deformácia, variácia pohľadu a variácia objektu v rámci jednej triedy. Neurónové siete majú väčšiu presnosť detekcie aj pri takýchto problémoch, čím sú oveľa robustnejšie než tradičné metódy a preto sú dobrou voľbou nielen pre našu prácu  ale aj pre množstvo použití v reálnom živote.
+Pri detekcii treba brať do úvahy viacero možných problémov, ktoré v nietorých prípadoch môžu predstavovať neprekonateľné prekážky pre tradičné metódy. Častými problémami je oklúzia, osvetlenie, deformácia, variácia pohľadu a variácia objektu v rámci jednej triedy. Neurónové siete majú väčšiu presnosť detekcie aj pri takýchto problémoch, čím sú oveľa robustnejšie než tradičné metódy a preto sú dobrou voľbou nielen na našu prácu, ale aj na množstvo použití v reálnom živote.
 
 \subsection{Detekcia reklám}
 
 Neurónové siete sa na detekciu objektov využívajú už desaťročia a nie je prekvapením, že sú často používané aj pri pozorovaní dopravy. Detekcia áut, chodcov, dopravných a poznávacích značiek je z pohľadu pozorovania dopravy fundamentálna úloha, ktorá je spracovaná v mnohých prácach. Našli sme aj viaceré publikácie priamo zamerané na detekciu reklamných plôch, ktorými sa možno inšpirovať a porovnať.
 
-Autori práce \cite{SSD-YOLO} porovnávajú dva detektory objektov, \textit{Single Shot MultiBox Detector (SSD)} a \textit{You Only Look Once (YOLOv3)}. Oba detektory boli najskôr trénované na \textit{COCO} databáze \cite{Coco} a potom na sade obrázkov zobrazujúce bilbordy. V obidvoch prípadoch modely dosahujú dobré výsledky pre rôzne veľkosti reklám za rôznych svetelných podmienok s komplexným pozadím. Výsledky z experimentu naznačujú, že SSD je presnejší v tom zmysle, že robí menej chýb pri identifikácii výskytu reklamy. Na druhej strane YOLOv3 dokáže vyhodnotiť výsledok za kratší čas, ale dopúšťa sa väčšej chybovosti označovaním falošných výskytov. Čiastočne by to mohla vybalansovať zmena prahu istoty pre označenie výskytu, čo ale v práci nebolo testované. Na obrázku \ref{img:ssd-yolo} vidno, že YOLOv3 má vyššie hodnoty pre istotu, preto by zrejme potreboval zvýšiť prah na určenie detekcie.
+Autori práce \cite{SSD-YOLO} porovnávajú dva detektory objektov, \textit{Single Shot MultiBox Detector (SSD)} a \textit{You Only Look Once (YOLOv3)}. Oba detektory boli najskôr trénované na \textit{COCO} databáze \cite{Coco} a potom na sade obrázkov zobrazujúce bilbordy. V obidvoch prípadoch modely dosahujú dobré výsledky pre rôzne veľkosti reklám za rôznych svetelných podmienok s komplexným pozadím. Výsledky z experimentu naznačujú, že SSD je presnejší v tom zmysle, že robí menej chýb pri identifikácii výskytu reklamy. Na druhej strane YOLOv3 dokáže vyhodnotiť výsledok za kratší čas, ale dopúšťa sa väčšej chybovosti označovaním falošných výskytov. Čiastočne by to mohla vybalansovať zmena prahu istoty pre označenie výskytu, čo ale v práci nebolo testované. Na obrázku \ref{img:ssd-yolo} vidno, že YOLOv3 má vyššie hodnoty pre istoty, preto by zrejme potreboval zvýšiť prah na určenie správnej detekcie.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=.6\textwidth]{images/01/ylssd.png}
