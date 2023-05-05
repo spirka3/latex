@@ -4,7 +4,7 @@ V teoretickej kapitole sa budeme podrobnejšie venovať neurónových sieťam be
 
 \section{Úvod do neurónových sietí}
 
-Neurónové siete, sú podskupinou strojového učenia a jadrom algoritmov hlbokého učenia. Ich názov a štruktúra sú často prirovnávané k ľudskému mozgu, pretože pripomínajú spôsob, akým si biologické neuróny navzájom signalizujú procesy \cite{Shanmuganathan2016}. Umelá neurónová sieť bez cyklov sa v angličtine označuje aj ako \textit{feed forward neural network (FNN)}. Je tvorená neurónmi, ktoré sa skladajú do vrstiev. Neuróny v susedných vrstvách sú medzi sebou spojené jedným smerom a podobne ako biologický neurón nesú číselnú hodnotu.
+Neurónové siete, sú podskupinou strojového učenia a jadrom algoritmov hlbokého učenia. Ich názov a štruktúra sú často prirovnávané k ľudskému mozgu, pretože pripomínajú spôsob, akým si biologické neuróny navzájom signalizujú procesy \cite{Shanmuganathan2016}. Umelá neurónová sieť bez cyklov sa v angličtine označuje aj ako FNN \textit{(feed forward neural network)}. Je tvorená neurónmi, ktoré sa skladajú do vrstiev. Neuróny v susedných vrstvách sú medzi sebou spojené jedným smerom a podobne ako biologický neurón nesú číselnú hodnotu.
 
 Na prvú, vstupnú vrstvu sú prenesené údaje, ktoré vchádzajú do siete. Do neurónovej siete môžu ísť obrázky, zvuk a prakticky ľubovoľné dáta, ktoré sa dajú vyjadriť číselne. V tejto práci sa budeme zaujímať výhradne o obrázkové vstupy a videá. Neuróny zo vstupnej vrstvy sú ďalej prepojené s jednou, alebo viacerými skrytými vrstvami nasledujúcimi po sebe. Posledná skrytá vrstva sa spája s výstupnou vrstvou. Neuróny vo výstupnej vrstve nesú výsledok vypočítaný zo vstupných údajov. Na obrázku \ref{img:network} je každý neurón v susednej vrstve prepojený so všetkými neurónmi z predchádzajúcej vrstvy. To vo všeobecnosti nemusí byť pravidlom, pretože môžu existovať také siete, kedy sa niektoré spojenia neurónov úmyselne prerušia \cite{DettmersTim2019SNfS}.
 \begin{figure}[ht]
@@ -121,16 +121,16 @@ Modernejším prístupom by bolo použitie KNN na vygenerovanie potenciálnych h
 
 Tieto spomenuté postupy sú ale pomalé a je ťažké ich optimalizovať pretože každá individuálna súčasť musí byť trénovaná samostatne. YOLO sa teda stavia k hľadaniu objektov komplexne a rieši detekciu objektov od vstupu až po výsledné hraničné oblasti. Jedna konvolučná sieť predikuje hraničné oblasti a pravdepodobnosti príslušnosti k jednotlivým triedam. Tento proces prebieha naraz nad celým obrazom a je analyzovaný napriek všetkými triedami. Aj napriek vysokej výkonnosti v porovnaní s ostatným sieťami ako napr. Fast R-CNN nie je YOLO dokonalá sieť a problémy má hlavne s hľadaním objektov menších rozmerov alebo takých objektov, ktoré sa v obraze vyskytujú v skupinkách.
 
+Vstupný obraz je rozdelený na mriežku s rozmermi S x S. Na to aby mohlo byť určené, že objekt patrí ku konkrétnemu štvorcu v mriežke je výrátané skóre, ktoré určuje ako si je model istý, že v štvorci našiel objekt. Ak nastane situácia, že bol objekt objavený a spadá do konkrétneho štvorca z mriežky, tak je od toho momentu daný štvorec zodpovedný za detegovanie toho objektu.
+
+Je bežným javom, že sa pri detekcii objektov pre jeden detegovaný objekt vygenerujú viaceré hraničné oblasti. Tie bývajú umiestnené na rôznych pozíciách alebo sa môžu aj prekrývať. Takéto výskyty je z pohľadu zlepšenia účinnosti detekcie a zároveň aj jej presnosti najlepšie odstrániť. Na tento účel slúži nemaximálna supresia a tej výstupom je len jedna hraničná oblasť na každý detegovaný objekt. Názorné fungovanie YOLO je znázornené na nasledujúcom obrázku.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.6\textwidth]{images/02/yolo.png}
     \caption{YOLO}
     \label{img:ch2}
 \end{figure}
-
-Vstupný obraz je rozdelený na mriežku s rozmermi S x S. Na to aby mohol byť určené, že objekt patrí ku konkrétnemu štvorcu v mriežke sú vyrátavané skóre, ktoré určí ako si je model istý, že našiel objekt a ako presne si odhaduje, že ho našiel. Ak nastane situácia, že bol objekt objavený a spadá do konkrétneho štvorca z mriežky, tak je od toho momentu daný štvorec zodpovedný za detegovanie toho objektu.
-
-Je bežným javom, že sa pri detekcii objektov pre jeden detegovaný objekt vygenerujú viaceré hraničné oblasti. Tie bývajú umiestnené na rôznych pozíciách alebo sa môžu aj prekrývať. Takéto výskyty je z pohľadu zlepšenia účinnosti detekcie a zároveň aj jej presnosti najlepšie odstrániť. Na tento účel slúži nemaximálna supresia a tej výstupom je len jedna hraničná oblasť na každý detegovaný objekt
 
 %https://www.geeksforgeeks.org/r-cnn-region-based-cnns/
 %https://towardsdatascience.com/intuition-and-implementation-of-non-max-suppression-algorithm-in-object-detection-d68ba938b630
@@ -160,7 +160,7 @@ Na vytvorenie robustného detektoru objektov, ktorý dokáže prekonať bežné 
 \subsubsection{Výpočtový čas}
 Vo všeobecnosti si trénovanie môže dovoliť trvať dlhý čas, no výpočtový čas je často veľmi dôležitým kritériom výkonu, ktorý môže byť hlavnou požiadavkov pre niektoré aplikácie. Ako príklad sa dajú uviesť časovo kritické aplikácie, akými sú autonómne riadenie a sledovacie systémy, ktoré musia nevyhnutne fungovať v reálnom čase. Iné aplikácie, napríklad náš projekt, si môže dovoliť pomalšie časy výpočtu. Často tak existuje kompromis medzi výpočtovým časom a výkonom siete. Dlhý čas trénovania môže byť v niektorých prípadoch predsa len problém. Nie každý si môže dovoliť dlho čakať na výsledky, prípadne nemá zdroje, ktoré by zvládli natrénovať model v prijateľnom čase alebo s dostatočne veľkými parametrami.
 
-\subsubsection{Podobnosť a variácia trieď}
+\subsubsection{Podobnosť a variácia tried}
 Objekty, ktoré sa snaží počítač vidieť a rozoznať sa môžu medzi sebou veľmi podobať a napriek tomu byť označené rozdielnymi triedami. Vonkajšia podobnosť môže ľahko spôsobiť nesprávne priradenie triedy objektu. Na druhej strane, jedna trieda môže mať veľmi veľa variácií. Predovšetkým sa to stáva pre objekty vytvorené človekom alebo prírodou. Napríklad na obrázku \ref{img:ch2} vidíme rôzne podoby stoličky, ktoré sa výrazne líšia, ale nemáme problém povedať, že ide o stoličku. Pokiaľ niektorá nezvyčajná podoba stoličky nie je v trénovacích dátach, tak pravdepodobne nebude rozoznaná. Druhá časť obrázku \ref{img:ch2} ukazuje, že aj keď sú objekty z rôznych tried, tak sa môžu veľmi podobať. Napríklad mačka a puma sú si veľmi podobné, ale sú z rôznych tried. Toto môže spôsobiť, že sa mačka označí ako puma alebo naopak.
 
 \begin{figure}[ht]
