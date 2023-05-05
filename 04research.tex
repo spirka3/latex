@@ -16,16 +16,16 @@ V nahrávacom softvéry so po dokončení nahrávania zobrazila informácia o to
 \centering
 \begin{tabular}{ |c c c c c|  }
 \hline
-meno & dioptrie & pozná cestu & pozná projekt & meranie \\
+jazda & dioptrie & pozná cestu & pozná projekt & meranie \\
 \hline
-Dávid & - & áno & áno & 69\% \\
-Matúš & 0.5 & časť & áno & 70\% \\
-Viktor & 0.5 & časť & áno & 63\% \\
-Zuzana & - & áno & áno & 33\% \\
-Lukáš & - & časť & nie & 72\% \\
-Jaroslav & - & áno & nie & 69\% \\
-Zdenka & - & áno & nie & 45\% \\
-Zuzana & - & časť & áno & 88\% \\
+1. & - & áno & áno & 69\% \\
+2. & 0.5 & časť & áno & 70\% \\
+3. & 0.5 & časť & áno & 63\% \\
+4. & - & áno & áno & 33\% \\
+5. & - & časť & nie & 72\% \\
+6. & - & áno & nie & 69\% \\
+7. & - & áno & nie & 45\% \\
+8. & - & časť & áno & 88\% \\
 \hline
 \end{tabular}
 \caption{Informácie o účastníkoch experimentálneho merania.}
@@ -34,7 +34,7 @@ Zuzana & - & časť & áno & 88\% \\
 
 \section{Tobii Pro Lab}
 
-Spoločnosť Tobii okrem hardvéru dodáva aj softvér na analýzu záznamu, čím ponúka kompletné riešenie pre výskum. Tobii Pro Lab poskytuje grafické používateľské rozhranie a špeciálne softvérové funkcie, ktoré pomáhajú s analýzou pohľadov. V zásade podporuje dva spôsoby, podľa ktorých sa dajú získať analytické údaje. 
+Spoločnosť Tobii okrem hardvéru dodáva aj softvér na analýzu záznamu, čím ponúka kompletné riešenie pre výskum. Tobii Pro Lab poskytuje grafické používateľské rozhranie a špeciálne softvérové funkcie, ktoré pomáhajú s analýzou pohľadov. V zásade podporuje dva spôsoby, podľa ktorých sa dajú získať analytické údaje.
 
 Prvým spôsobom je označenie oblasti, na ktorej sa nachádza objekt záujmu. Ku zvýšeniu efektivity má pomôcť automatické označovanie oblastí, kde stačí označiť objekt na prvej a na poslednej snímke, na ktorej bol viditeľný. Na základe predpokladaného pohybu softvér vypočíta oblasť zvoleného objektu pre všetky zvyšné snímky v sekvencii. V našej práci sa to neukázalo ako funkčné riešenie, pretože pohyb reklamy v nahrávkach nebol jednoduchý a takmer na žiadnej snímke medzi začiatkom a koncom nebola oblasť reklamy označená správne.
 
@@ -116,7 +116,7 @@ Na priblíženie sa ku skutočným výskytom reklám, sme sa rozhodli natrénova
 
 Pomocný model dosahoval pri sledovaní výrazne viac detekcií. Pre účely dosiahnuť čo najviac snímok s reklamou, sme metódu StrongSort nastavili tak, aby mala čo najväčšiu citlivosť detekcie. Samozrejme sa tým znížila celková presnosť sledovania, ale to v podstate nebolo dôležité, pretože sme vedeli, že pred pokračovaním budeme potrebovať každú reklamu označiť rovnakou referenciou v každom videu, aby sme mohli analyzovať pohľady na reklamu v každom videu.
 
-Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou a sledovali označenia. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video. Zmeny referencií sme zapisovali do textovho súboru. Pokiaľ išlo o falošne pozitívnu detekciu, tak sme ju jednoducho vynechali a nezapísali do súboru s opravami.
+Museli sme opraviť dve chyby, falošne pozitívne detekcie a nesprávne priradenie referencie. Prakticky to znamenalo, že sme vytvorili kópie nahrávok, v ktorej boli vykreslené všetky detekcie s uvedenou referenciou a sledovali označenia. Pokiaľ išlo o správnu detekciu reklamy, tak sme priradenú referenciu nahradili poradovým číslom danej reklamy, ktorá bola rovnaké pre každé video. Zmeny referencií sme zapisovali do textového súboru. Pokiaľ išlo o falošne pozitívnu detekciu, tak sme ju jednoducho vynechali a nezapísali do súboru s opravami.
 
 Nakoniec sme skriptom premenovali referencie podľa poradového čísla reklamy, čím sme dosiahli, že v každom videu boli reklamy označené rovnakým číslom. Získané označenia sme ďalej považovali za skutočne pravdivé údaje. Označenia sme zapísali do textového súboru vo formáte MOT \cite{mot}. pre každé video samostatne. Každá snímka, na ktorej sa nachádzala reklama bola zapísaná v samostatnom riadku s hodnotami pre poradie snímky, referenciu reklamy, x a y súradnice ľavého horného rohu a pre rozmery reklamy.
 
@@ -144,29 +144,29 @@ Pre každú snímku, na ktorej bola detekcia reklamy a zaznamenaný pohľad, sme
 
 \section{Klasifikátor reklám}
 
-S predchádzajúcimi krokmi sa nám podarilo pripraviť databázu reklám s priradenou významnosťou. Pre každú reklamu sme mali uložené všetky snímky s detekciou. Snímky boli rozdelené pre každú reklamu a pre každé video samostatne. Snímky, na ktorých sa nachádzala jedna a tá istá reklama sme nazvali sekvenciou. Pre každú sekvenciu sme vypočítali vlastnosti, ktoré sme použili na klasifikáciu.
+S predchádzajúcimi krokmi sa nám podarilo pripraviť databázu reklám s priradenou významnosťou. Pre každú reklamu sme mali uložené všetky snímky s detekciou. Snímky boli rozdelené pre každú reklamu a pre každé video samostatne. Snímky, na ktorých sa nachádzala jedna a tá istá reklama sme nazvali sekvenciou. Pre každú sekvenciu sme vypočítali príznaky, ktoré sme použili na klasifikáciu.
 
 Na to aby sme vedeli predikovať významnosť reklamy, sme natrénovali Random Forest Classifier (RFC). Podobne ako pri trénovaní neurónovej siete sme databázu rozdelili na dve časti v pomere 8:2. Tentokrát sme nepotrebovali validačnú sadu. V tréningovej sade sa nachádzalo 115 reklám a v testovacej 30.
 
-RFC na základe hodnôt vlastností v tréningovej sade náhodne vygeneruje viacero rozhodovacích stromov. Rozhodovací strom je tvorený z vrcholov, v ktorých sa nachádza podmienka, podľa ktorej sa zo vstupných údajov vytvorí cesta ku listu. Podmienka porovnáva hodnotu danej vlastnosti s navrhnutou prahovou hodnotou. Na konci vetvy je v liste uložená trieda, ktorá určuje významnosť reklamy.
+RFC na základe hodnôt príznakov v tréningovej sade náhodne vygeneruje viacero rozhodovacích stromov. Rozhodovací strom je tvorený z vrcholov, v ktorých sa nachádza podmienka, podľa ktorej sa zo vstupných údajov vytvorí cesta ku listu. Podmienka porovnáva hodnotu daného príznaku s navrhnutou prahovou hodnotou. Na konci vetvy je v liste uložená trieda, ktorá určuje významnosť reklamy.
 
 \subsection{Extrahovanie príznakov}
 
-Každý reklama mala nanajvýš 8 sekvencíí. V niektorých videách nebol detekovaný úplný počet reklám, kvôli tomu že reklamu mohlo zakrývať auto alebo bola v takom uhle, že keď bol vodič vo vzdialenejšom jazdnom pruhu, tak ju nebolo vidno. Hodnota vlastnosti bola vypočítaná ako priemerná hodnota zo všetkých sekvencií reklamy.
+Každá reklama mala nanajvýš 8 sekvencíí. V niektorých videách nebol detekovaný úplný počet reklám kvôli tomu, že reklamu mohlo zakrývať auto alebo bola v takom uhle, že keď bol vodič vo vzdialenejšom jazdnom pruhu, tak ju nebolo vidno. Hodnota vlastnosti bola vypočítaná ako priemerná hodnota zo všetkých sekvencií reklamy.
 
 \subsubsection{Počet snímok v sekvencii}
 
-Najjednoduchšia vlastnosť je počet snímok, ktoré sa nachádzajú v sekvencii. Táto vlastnosť nám hovorí o tom, ako dlho bola reklama viditeľná. Čím dlhšie bola reklama viditeľná, tým väčšiu mala šancu, že ju vodič zaregistruje.
+Najjednoduchší príznak je počet snímok, ktoré sa nachádzajú v sekvencii. Tento príznak nám hovorí o tom, ako dlho bola reklama viditeľná. Čím dlhšie bola reklama viditeľná, tým väčšiu mala šancu, že ju vodič zaregistruje.
 
 \subsubsection{Lokalizácia reklamy}
 
-Z lokalizácie reklamy sme vypocítali dva príznaky. Prvý príznak určoval, na ktorej strane obrazu sa reklama nachádzala najdlhšie. Obraz sme rozdelili na ľavú, právu a strednú časť. Stredná časť bola definovaná v rozmedzí 20\% od stredového bodu, ľavá a práva časť zaberala po 40\% plochy.
+Z lokalizácie reklamy sme vypočítali dva príznaky. Prvý príznak určoval, na ktorej strane obrazu sa reklama nachádzala najdlhšie. Obraz sme rozdelili na ľavú, pravu a strednú časť. Stredná časť bola definovaná v rozmedzí 20\% od stredového bodu, ľavá a pravá časť zaberala po 40\% plochy.
 
 Vodiči majú tendenciu pozerať sa do stredu obrazu, preto reklamy, ktoré sa nachádzali v strede obrazu, mali väčšiu šancu, že ich vodič zaregistruje. Na základe toho sme vypočítali druhý príznak, ktorý určoval euklidovskú vzdialenosť stredného bodu reklamy od stredu bodu obrazu.
 
 \subsubsection{Veľkosť reklamy}
 
-Veľkosť sme vypočítali ako pomer reklamnej plochy a plochy snímky. Ak bola reklama detekovaná vo väčšej vzdialenosti, tak jej priemerná veľkosť bola menšia než v prípade reklamy detekovanej v bližšej vzdialenosti aj napriek rovnakému rozmeru. Vozidlo sa k reklame približovalo, preto sme okrem priemernej veľkosti z celej sekvencie vypočítali aj priemernú veľkosť v posledných desiatich snímkach.
+Veľkosť sme vypočítali ako pomer reklamnej plochy a plochy snímky. Ak bola reklama detegovaná vo väčšej vzdialenosti, tak jej priemerná veľkosť bola menšia než v prípade reklamy detekovanej v bližšej vzdialenosti aj napriek rovnakému rozmeru. Vozidlo sa k reklame približovalo, preto sme okrem priemernej veľkosti z celej sekvencie vypočítali aj priemernú veľkosť v posledných desiatich snímkach.
 
 \subsubsection{Mapa význačností}
 
