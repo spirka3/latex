@@ -4,14 +4,14 @@ Vyhodnotenie získaných výsledkov sme rozdelili na štyri časti. V prvej čas
 
 \section{Detekcia reklám}
 
-Nazačiatku sme natrénovali tri modely, ktoré mali pri tréningu rovnako nastavené parametre a líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server spracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte. Dĺžka trénovanie jednej epochy bola približne 20 minút pre pôvodnú verziu dát a 10 minúť pre obe odfiltrované verzie.
+Na začiatku sme natrénovali tri modely, ktoré mali pri tréningu rovnako nastavené parametre a líšili sa jedine verziou dát. Počet epoch bol nastavený na 128, veľkosť dávky na 16 a ostatné parametre boli ponechané s prednastavenými hodnotami. Najlepšie počiatočné váhy, s ktorými dokázal server pracovať mali označenie YOLOv8large. Váhy s väčším počtom parametrov zlyhali pri výpočtoch kvôli nedostatku pamäte na grafickej karte. Dĺžka trénovanie jednej epochy bola približne 20 minút pre pôvodnú verziu dát a 10 minúť pre obe odfiltrované verzie.
 
-Na vyhodnotenie modelu sa počíta pomer medzi prienikom a zjednotením detekovanej plochy so skutočnou plochou objektu. Táto hodnota sa označuje skratkou IoU (Intersection over Union). Nastavením požadovanej hodnoty pre IoU sa určujú tri základné stavy detekcie:
+Na vyhodnotenie modelu sa počíta pomer medzi prienikom a zjednotením detegovanej plochy so skutočnou plochou objektu. Táto hodnota sa označuje skratkou IoU \textit{(Intersection over Union)}. Nastavením požadovanej hodnoty pre IoU sa určujú tri základné stavy detekcie:
 
 \begin{itemize}
   \item skutočne pozitívna detekcia (true positive, TP)
   \item falošne pozitívna detekcia (false positive, FP)
-  \item falošne negativna detakcia (false negative, FN)
+  \item falošne negatívna detekcia (false negative, FN)
 \end{itemize}
 
 Na obrázku \ref{img:ious} sú znázornené všetky tri situácie s prahovou hodnotou 50\%. Pokiaľ by sme zmenili hodnotu prahu na 90\%, tak aj v prvom prípade by bola detekcia vyhodnotená ako FP.
@@ -25,9 +25,9 @@ Na obrázku \ref{img:ious} sú znázornené všetky tri situácie s prahovou hod
 
 Na základe takýchto elementárnych vyhodnotení sa počíta viacero metrík. Metrika precision určuje koľko detekcií bolo skutočne pozitívnych a metrika recall určuje koľko skutočne pravdivých označení bolo odhalených skutočne pozitívnou detekciou.
 
-Presnosť a citlivosť je okrem prahovej hodnoty IoU ovplyvnená ešte prahovou hodnotou istoty (confidence), ktorá je vypočítaná pre každú detekciu. Confidence hodnota určuje istotu modelu, že je daná detekcia správna. Model zaznačí len také detekcie, ktoré majú istotu vyššiu ako je nastavená prahová hodnota.
+Presnosť a citlivosť je okrem prahovej hodnoty IoU ovplyvnená ešte prahovou hodnotou istoty \textit{(confidence)}, ktorá je vypočítaná pre každú detekciu. \textit{Confidence} hodnota určuje istotu modelu, že je daná detekcia správna. Model zaznačí len také detekcie, ktoré majú istotu vyššiu ako je nastavená prahová hodnota.
 
-Závislosť medzi presnosťou a citlivosťou sa znázorňuje pomocou grafu. Obsah plochy pod krivkou je označovaný ako mAP (mean Average Precision). Výsledná hodnota mAP50 je priemer presnosti pre hodnotu prahu IoU 50\%. V prípade metriky mAP50-95 je priemer počítaný pre prah IoU od 50\% do 95\%.
+Závislosť medzi presnosťou a citlivosťou sa znázorňuje pomocou grafu. Obsah plochy pod krivkou je označovaný ako mAP \textit{(mean Average Precision)}. Výsledná hodnota mAP50 je priemer presnosti pre hodnotu prahu IoU 50\%. V prípade metriky mAP50-95 je priemer počítaný pre prah IoU od 50\% do 95\%.
 
 V tabuľke \ref{table:test1} je každý model vyhodnotený na testovacej sade príslušnej verzie. Model M1 mal výrazne nižšie výsledky ako zvyšné dva modely. Bolo to zapríčinené tým, že pre prvý model boli ponechané aj veľmi malé reklamy, ktoré sme vyhodnotili ako nedôležité.
 
@@ -76,7 +76,7 @@ Na obrázku \ref{img:dt7} sú vykreslené detekcie z vybranej snímky. Označeni
 
 \section{Sledovanie reklám}
 
-Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Rozhodli sme sa použiť metriku so skratkou HOTA (Higher Order Tracking Accuracy) \cite{hota}, ktorá sa kladá z menších častí, podľa ktorých sa dajú vyhodnotiť tri aspekty sledovania: lokalizácia, detekcia a asociácia.
+Na vyhodnotenie sledovania objektov, existuje viacero zaužívaných metrík. Rozhodli sme sa použiť metriku so skratkou HOTA \textit{(Higher Order Tracking Accuracy)} \cite{hota}, ktorá sa kladá z menších častí, podľa ktorých sa dajú vyhodnotiť tri aspekty sledovania: lokalizácia, detekcia a asociácia.
 
 Lokalizácia a detekcia sa meria rovnako ako pri testovaní detektorov. Asociácia meria ako dobre sa podarilo spojiť detekciu s referenciou. Podobne ako pri detekcii môžu nastať tri stavy, ktoré určujú správnosť asociácie:
 
@@ -89,7 +89,7 @@ Lokalizácia a detekcia sa meria rovnako ako pri testovaní detektorov. Asociác
 % https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1
 % https://arxiv.org/pdf/2009.07736.pdf
 
-Obrázok \ref{cite:usecase} vysvetľuje koncepty TPA, FPA a FNA na objekte, ktorý je označený v červenom štvorci. Zelená farba označuje stav TPA, v ktorom je predikovaná referencia rovnaká so skutočnou referenciou objektu. Žltá farba označuje FPA, ktorá je v prvom prípade zapríčinená FP detekciou a v druhom prípade tým, že asociácia vstupuje to trajektórie iného objektu. Hnedá farba označuje FNA v prípade, kde sa nepodarilo zachytiť skutočnú časť trajektórie.
+Obrázok \ref{img:usecase} vysvetľuje koncepty TPA, FPA a FNA na objekte, ktorý je označený v červenom štvorci. Zelená farba označuje stav TPA, v ktorom je predikovaná referencia rovnaká so skutočnou referenciou objektu. Žltá farba označuje FPA, ktorá je v prvom prípade zapríčinená FP detekciou a v druhom prípade tým, že asociácia vstupuje to trajektórie iného objektu. Hnedá farba označuje FNA v prípade, kde sa nepodarilo zachytiť skutočnú časť trajektórie.
 
 \begin{figure}[ht]
     \centering
@@ -152,9 +152,7 @@ Priemerne sa na jednu reklamu pozreli traja vodiči a 45 reklám sa nepozrel ani
 
 \section{Klasifikácia reklám}
 
-Na klasifikáciu bolo vypočítaných niekoľko príznakov, z ktorých by sa dalo vyvodiť niekoľko daľších štatistických údajov. Najzaujímavejším príznakom je však mapa význačností počítaná z videa. Presnosť 69
-
-V niektorých prípadoch, ako napríklad na obrázku \ref{img:salmap}, je vidieť, že mapa význačnosti jasne zachytí oblasť s reklamou.
+Na klasifikáciu bolo vypočítaných niekoľko príznakov, z ktorých by sa dalo vyvodiť niekoľko daľších štatistických údajov. Najzaujímavejším príznakom je však mapa význačností počítaná z videa. V niektorých prípadoch, ako napríklad na obrázku \ref{img:salmap}, je vidieť, že mapa význačnosti jasne zachytí oblasť s reklamou. Celková presnosť mapy význačnosti bola vyhodnotená metrikami AUC-Judd, NSS, SIM skóre a CC skóre. AUC-Judd dosiahla presnosť 0.8964, NSS 1.7823, SIM skóre 0.3332 a CC skóre 0.4367.
 
 \begin{figure}[H]
     \centering
@@ -163,39 +161,35 @@ V niektorých prípadoch, ako napríklad na obrázku \ref{img:salmap}, je vidie�
     \label{img:salmap}
 \end{figure}
 
-ahoj
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/05/chart2.png}
-    \caption{Dôležitosť príznakov.}
-    \label{img:road}
-\end{figure}
-
-%Na získanie čo najlepších výsledkov sme vyskúšali natrénovať niekoľko stromov.
-%
-%Best hyper parameters: {'n_estimators': 130, 'min_samples_leaf': 3, 'max_leaf_nodes': 10, 'max_features': 'sqrt', 'max_depth': 3}
-%
-%n_estimator, The number of trees in the forest
-%
-%max_leaf_node, Grow trees with max_leaf_nodes in best-first fashion. Best nodes are defined as relative reduction in impurity. If None then unlimited number of leaf nodes.
 
 
+Na získanie čo najlepších výsledkov sme vyskúšali natrénovať niekoľko stromov, ktoré umožnili vytriedenie výsledných dát. Výsledky sú zobrazené na obrázku \ref{img:tree}. Najlepšie výsledky boli dosiahnuté pomocou najčastejčej hodnoty so 130 stromov. Pre každý strom platílo, že mal minimálne 3 a maximálne 10 listov. Jeden príznak sa mohol použiť maximálne trikrát na vytvorenie podmienky v jednom strome. Každý strom mal maximálnu hĺbku 4.
 
-%Spojením všetkých príznakov... TODO
+Jeden z rozhodovacích stromov je generovaný na obrázku \ref{img:tree}. Údaje rozdeľuje na základe príznakov s porovnávanou hodnotou. Hodnoty v uzloch predstavujú pravdepodobnosť výberu triedy v poradí podľa významnosti. Strom má štyri úrovne hĺbky a maximálnu hĺbku stromu je možné ovládať ako parameter algoritmu.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/05/v3.png}
-    \caption{Výsledky klasifikácie s použitím RFC.}
-    \label{img:matrix}
-\end{figure}
-
-%Jeden z rozhodovacích stromov je generovaný na obrázku \ref{img:tree}. Údaje rozdeľuje na základe niekoľkých funkcií vrátane „strana“, „výraznosť masky“, „vzdialenosť“ a „pomer_väčšej_veľkosti“. Hodnoty v uzloch predstavujú rozdelenie tried v zodpovedajúcej podmnožine údajov. Strom má štyri úrovne hĺbky a maximálnu hĺbku stromu je možné ovládať ako parameter algoritmu. Farba uzlov predstavuje distribúciu tried v podmnožine údajov.
-
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/05/tree.png}
     \caption{Dôležitosť príznakov.}
     \label{img:tree}
 \end{figure}
+
+Po vytvorení všetkých stromoch sa dalo určiť, akú dôležisť mali použité príznaky. V tomto prípade to vyšlo, že najdôležitejším príznakom je počet snímok, respektíve dĺžka viditeľnosti reklamy a priemer veľkosti, ktorý bol počítaný z desiatich najväčších hraničných boxov. Naopak najnižší vplyv mala priemerná hodnota počítaná pre vyznačnosť snímky. Vyskúšali sme vynechať príznaky, ktoré boli vyhodnotené ako málo dôležité, ale celková úspešnosť sa znížila. Dôležitosť príznakov je na obrázku \ref{img:imp}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/05/chart2.png}
+    \caption{Dôležitosť použitách príznakov na klasifikáciu.}
+    \label{img:imp}
+\end{figure}
+
+Klasifikátor bol trénovaný len na 115 reklám a testovanie bolo vyhodnotené z 30 reklám. Výsledky sú zobrazené v matici, kde sú zobrazené predikované a skutočné hodnoty. Číslo na diagonále známená, že klasifikácia bola správne predikovaná. V našom prípade sa predikcia významnosti vo väčšine prípadov držala práve v týchto miestach a pri chybe sa v každom prípade pomýlila len o susednú triedu. Výsledky sú zobrazené na obrázku \ref{img:matrix}. Celková presnosť klasifikácia dosiahla presnosť 69\%.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/05/v3.png}
+    \caption{Výsledky klasifikácie s použitím RFC.}
+    \label{img:matrix}
+\end{figure}
+
+%
