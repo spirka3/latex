@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {2.4}Výzvy neurónových sietí}{18}{section.2.4}%
 \contentsline {subsubsection}{Trénovacie údaje}{19}{section*.23}%
 \contentsline {subsubsection}{Výpočtový čas}{19}{section*.24}%
-\contentsline {subsubsection}{Podobnosť a variácia trieď}{19}{section*.25}%
+\contentsline {subsubsection}{Podobnosť a variácia tried}{19}{section*.25}%
 \contentsline {subsubsection}{Osvetlenie, oklúzia a deformácia}{20}{section*.27}%
 \contentsline {chapter}{\numberline {3}Návrh riešenia}{21}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Detekcia reklám}{21}{section.3.1}%

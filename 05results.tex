@@ -152,44 +152,50 @@ Priemerne sa na jednu reklamu pozreli traja vodiči a 45 reklám sa nepozrel ani
 
 \section{Klasifikácia reklám}
 
-Na klasifikáciu bolo vypočítaných niekoľko príznakov, z ktorých sa dajú vyvodiť daľšie štatistické údaje. Napríklad na ľavej strane sa nachádzalo X reklám, na pravej Y a Z reklám mal vodič väčšinu času pred sebou.
+Na klasifikáciu bolo vypočítaných niekoľko príznakov, z ktorých by sa dalo vyvodiť niekoľko daľších štatistických údajov. Najzaujímavejším príznakom je však mapa význačností počítaná z videa. Presnosť 69
 
-Zaujímavejšia je mapa význačností z videa.
+V niektorých prípadoch, ako napríklad na obrázku \ref{img:salmap}, je vidieť, že mapa význačnosti jasne zachytí oblasť s reklamou.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/05/rfc.png}
-    \caption{Matica klasifikácie.}
-    \label{img:road}
+    \includegraphics[width=1\textwidth]{images/05/sal_frame.jpg}
+    \caption{Ukážka prekrytia mapy význačnosti so snímkou z experimentu.}
+    \label{img:salmap}
 \end{figure}
 
-\newpage
-
-dve strany
+ahoj
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/05/frame.png}
-    \caption{.}
-    \label{img:Saliency map.}
-\end{figure}
-
-\newpage
-
-... snáď aj tri.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/05/importance.png}
+    \includegraphics[width=0.6\textwidth]{images/05/chart2.png}
     \caption{Dôležitosť príznakov.}
     \label{img:road}
 \end{figure}
 
+%Na získanie čo najlepších výsledkov sme vyskúšali natrénovať niekoľko stromov.
+%
+%Best hyper parameters: {'n_estimators': 130, 'min_samples_leaf': 3, 'max_leaf_nodes': 10, 'max_features': 'sqrt', 'max_depth': 3}
+%
+%n_estimator, The number of trees in the forest
+%
+%max_leaf_node, Grow trees with max_leaf_nodes in best-first fashion. Best nodes are defined as relative reduction in impurity. If None then unlimited number of leaf nodes.
+
+
+
+%Spojením všetkých príznakov... TODO
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{images/placeholder.png}
-    \caption{Obrázok klasifikácie.}
-    \label{img:road}
+    \includegraphics[width=0.5\textwidth]{images/05/v3.png}
+    \caption{Výsledky klasifikácie s použitím RFC.}
+    \label{img:matrix}
 \end{figure}
 
-%If your use-case contains many occlussions and the motion trajectiories are not too complex, you will most certainly benefit from updating the Kalman Filter by its own predicted state. Select the number of predictions that suits your needs here: https://github.com/mikel-brostrom/Yolov5_StrongSORT_OSNet/blob/b1da64717ef50e1f60df2f1d51e1ff91d3b31ed4/trackers/strong_sort/configs/strong_sort.yaml#L7
+%Jeden z rozhodovacích stromov je generovaný na obrázku \ref{img:tree}. Údaje rozdeľuje na základe niekoľkých funkcií vrátane „strana“, „výraznosť masky“, „vzdialenosť“ a „pomer_väčšej_veľkosti“. Hodnoty v uzloch predstavujú rozdelenie tried v zodpovedajúcej podmnožine údajov. Strom má štyri úrovne hĺbky a maximálnu hĺbku stromu je možné ovládať ako parameter algoritmu. Farba uzlov predstavuje distribúciu tried v podmnožine údajov.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/05/tree.png}
+    \caption{Dôležitosť príznakov.}
+    \label{img:tree}
+\end{figure}
