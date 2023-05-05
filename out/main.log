@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  4 MAY 2023 20:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  5 MAY 2023 19:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -805,12 +805,6 @@ LaTeX Warning: Label `img:road' multiply defined.
 
 LaTeX Warning: Label `img:road' multiply defined.
 
-
-LaTeX Warning: Label `img:road' multiply defined.
-
-
-LaTeX Warning: Label `img:road' multiply defined.
-
 )
 \openout1 = `main.aux'.
 
@@ -1366,73 +1360,73 @@ Package pdftex.def Info: images/04/snapshot.png  used on input line 45.
 <images/04/graf.png, id=434, 867.24pt x 433.62pt>
 File: images/04/graf.png Graphic file (type png)
 <use images/04/graf.png>
-Package pdftex.def Info: images/04/graf.png  used on input line 87.
+Package pdftex.def Info: images/04/graf.png  used on input line 78.
 (pdftex.def)             Requested size: 441.01773pt x 220.50809pt.
 
 
-Package natbib Warning: Citation `mikel' on page 28 undefined on input line 96.
+Package natbib Warning: Citation `mikel' on page 28 undefined on input line 87.
 
 
 
-Package natbib Warning: Citation `ocsort' on page 28 undefined on input line 96
+Package natbib Warning: Citation `ocsort' on page 28 undefined on input line 87
 .
 
 
 Package natbib Warning: Citation `deepocsort' on page 28 undefined on input lin
-e 96.
+e 87.
 
 
 Package natbib Warning: Citation `strongsort' on page 28 undefined on input lin
-e 96.
+e 87.
 
 
-Package natbib Warning: Citation `bot' on page 28 undefined on input line 96.
+Package natbib Warning: Citation `bot' on page 28 undefined on input line 87.
 
 
 Package natbib Warning: Citation `bytetrack' on page 28 undefined on input line
- 96.
+ 87.
 
 
-Package natbib Warning: Citation `sort' on page 28 undefined on input line 96.
+Package natbib Warning: Citation `sort' on page 28 undefined on input line 87.
 
 [28 <./images/04/graf.png>]
 <images/04/tracking.png, id=444, 1189.44376pt x 522.45187pt>
 File: images/04/tracking.png Graphic file (type png)
 <use images/04/tracking.png>
-Package pdftex.def Info: images/04/tracking.png  used on input line 102.
+Package pdftex.def Info: images/04/tracking.png  used on input line 93.
 (pdftex.def)             Requested size: 308.71106pt x 135.59512pt.
  [29 <./images/04/tracking.png (PNG copy)>]
 
-Package natbib Warning: Citation `v7' on page 30 undefined on input line 117.
+Package natbib Warning: Citation `v7' on page 30 undefined on input line 108.
 
 <images/04/lab.png, id=452, 1130.72438pt x 663.22781pt>
 File: images/04/lab.png Graphic file (type png)
 <use images/04/lab.png>
-Package pdftex.def Info: images/04/lab.png  used on input line 121.
+Package pdftex.def Info: images/04/lab.png  used on input line 112.
 (pdftex.def)             Requested size: 441.01773pt x 258.67804pt.
 [30 <./images/04/lab.png (PNG copy)>]
 
-Package natbib Warning: Citation `mot' on page 31 undefined on input line 130.
+Package natbib Warning: Citation `mot' on page 31 undefined on input line 121.
 
 <images/04/mapping.jpg, id=457, 1868.9825pt x 1083.04625pt>
 File: images/04/mapping.jpg Graphic file (type jpg)
 <use images/04/mapping.jpg>
-Package pdftex.def Info: images/04/mapping.jpg  used on input line 134.
+Package pdftex.def Info: images/04/mapping.jpg  used on input line 125.
 (pdftex.def)             Requested size: 441.01773pt x 255.55704pt.
 [31 <./images/04/mapping.jpg>]
 <images/04/iou.jpg, id=463, 1927.2pt x 1084.05pt>
 File: images/04/iou.jpg Graphic file (type jpg)
 <use images/04/iou.jpg>
-Package pdftex.def Info: images/04/iou.jpg  used on input line 149.
+Package pdftex.def Info: images/04/iou.jpg  used on input line 140.
 (pdftex.def)             Requested size: 441.01773pt x 248.06912pt.
  [32 <./images/04/iou.jpg>] [33]
 
-Package natbib Warning: Citation `hd2s' on page 34 undefined on input line 185.
+Package natbib Warning: Citation `hd2s' on page 34 undefined on input line 173.
 
 
 
 Package natbib Warning: Citation `jain2021vinet' on page 34 undefined on input 
-line 185.
+line 173.
 
 ) (./05results.tex [34]
 Kapitola 5.
@@ -1445,109 +1439,62 @@ File: images/05/ious.png Graphic file (type png)
 Package pdftex.def Info: images/05/ious.png  used on input line 21.
 (pdftex.def)             Requested size: 441.01773pt x 164.6646pt.
  [36 <./images/05/ious.png (PNG copy)>]
-<images/05/120.jpg, id=497, 1927.2pt x 1084.05pt>
+<images/05/120.jpg, id=496, 1927.2pt x 1084.05pt>
 File: images/05/120.jpg Graphic file (type jpg)
 <use images/05/120.jpg>
-Package pdftex.def Info: images/05/120.jpg  used on input line 87.
+Package pdftex.def Info: images/05/120.jpg  used on input line 72.
 (pdftex.def)             Requested size: 441.01773pt x 248.06912pt.
 
 
-Package natbib Warning: Citation `hota' on page 37 undefined on input line 94.
+Package natbib Warning: Citation `hota' on page 37 undefined on input line 79.
 
 [37 <./images/05/120.jpg>]
 
-LaTeX Warning: Reference `cite:usecase' on page 38 undefined on input line 113.
-
+LaTeX Warning: Reference `cite:usecase' on page 38 undefined on input line 92.
 
 <images/05/usecase.png, id=503, 880.79062pt x 619.56468pt>
 File: images/05/usecase.png Graphic file (type png)
 <use images/05/usecase.png>
-Package pdftex.def Info: images/05/usecase.png  used on input line 117.
+Package pdftex.def Info: images/05/usecase.png  used on input line 96.
 (pdftex.def)             Requested size: 308.71106pt x 217.1534pt.
 
-Package natbib Warning: Citation `hota' on page 38 undefined on input line 118.
+Package natbib Warning: Citation `hota' on page 38 undefined on input line 97.
 
 
+Package natbib Warning: Citation `hota' on page 38 undefined on input line 97.
 
-Package natbib Warning: Citation `hota' on page 38 undefined on input line 118.
-
-
-[38 <./images/05/usecase.png (PNG copy)>]
-Overfull \hbox (9.7418pt too wide) in paragraph at lines 128--139
- [][] 
- []
-
-
-./05results.tex:150: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.150 
-      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-LaTeX Warning: File `images/05/pedestian_plot.png' not found on input line 153.
-
-
-
-./05results.tex:153: Package pdftex.def Error: File `images/05/pedestian_plot.p
-ng' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.153 ...\textwidth]{images/05/pedestian_plot.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-53.
-(/usr/local/texlive/2023/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-)
-<images/placeholder.png, id=510, 401.5pt x 200.75pt>
-File: images/placeholder.png Graphic file (type png)
-<use images/placeholder.png>
-Package pdftex.def Info: images/placeholder.png  used on input line 161.
-(pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
- [39]
-<images/05/front.png, id=520, 477.28313pt x 353.82187pt>
-File: images/05/front.png Graphic file (type png)
-<use images/05/front.png>
-Package pdftex.def Info: images/05/front.png  used on input line 189.
-(pdftex.def)             Requested size: 308.71106pt x 228.85312pt.
-<images/05/rfc.png, id=521, 478.78876pt x 358.33875pt>
+[38 <./images/05/usecase.png (PNG copy)>] [39]
+<images/05/chart.png, id=518, 387.69844pt x 249.93375pt>
+File: images/05/chart.png Graphic file (type png)
+<use images/05/chart.png>
+Package pdftex.def Info: images/05/chart.png  used on input line 148.
+(pdftex.def)             Requested size: 264.61333pt x 170.58958pt.
+<images/05/rfc.png, id=519, 478.78876pt x 358.33875pt>
 File: images/05/rfc.png Graphic file (type png)
 <use images/05/rfc.png>
-Package pdftex.def Info: images/05/rfc.png  used on input line 202.
+Package pdftex.def Info: images/05/rfc.png  used on input line 159.
 (pdftex.def)             Requested size: 220.50887pt x 165.03467pt.
- [40 <./images/placeholder.png>]
-<images/05/frame.png, id=530, 1534.98468pt x 837.1275pt>
+ [40 <./images/05/chart.png (PNG copy)> <./images/05/rfc.png (PNG copy)>]
+<images/05/frame.png, id=527, 1534.98468pt x 837.1275pt>
 File: images/05/frame.png Graphic file (type png)
 <use images/05/frame.png>
-Package pdftex.def Info: images/05/frame.png  used on input line 213.
+Package pdftex.def Info: images/05/frame.png  used on input line 170.
 (pdftex.def)             Requested size: 220.50887pt x 120.24992pt.
- [41 <./images/05/front.png (PNG copy)> <./images/05/rfc.png (PNG copy)>]
-<images/05/importance.png, id=537, 163.3603pt x 143.78719pt>
+ [41 <./images/05/frame.png (PNG copy)>]
+<images/05/importance.png, id=533, 163.3603pt x 143.78719pt>
 File: images/05/importance.png Graphic file (type png)
 <use images/05/importance.png>
-Package pdftex.def Info: images/05/importance.png  used on input line 224.
+Package pdftex.def Info: images/05/importance.png  used on input line 181.
 (pdftex.def)             Requested size: 220.50887pt x 194.08896pt.
+<images/placeholder.png, id=534, 401.5pt x 200.75pt>
 File: images/placeholder.png Graphic file (type png)
 <use images/placeholder.png>
-Package pdftex.def Info: images/placeholder.png  used on input line 231.
+Package pdftex.def Info: images/placeholder.png  used on input line 188.
 (pdftex.def)             Requested size: 441.01773pt x 220.5224pt.
-) (./06conclusion.tex [42 <./images/05/frame.png (PNG copy)> <./images/05/impor
-tance.png (PNG copy)>] [43] [44
+) (./06conclusion.tex [42 <./images/05/importance.png (PNG copy)> <./images/pla
+ceholder.png>] [43
 
-]) [45]
+]) [44]
 No file main.bbl.
 
 Package caption Warning: Unused \captionsetup[sub] on input line 62.
@@ -1567,40 +1514,35 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D0A42A2BEC0FBD18460412FECF31FCE2;5714.
  ) 
 Here is how much of TeX's memory you used:
- 19716 strings out of 476001
- 338711 string characters out of 5789205
+ 19650 strings out of 476001
+ 336804 string characters out of 5789205
  1864074 words of memory out of 5000000
- 39654 multiletter control sequences out of 15000+600000
- 527860 words of font info for 73 fonts, out of 8000000 for 9000
+ 39608 multiletter control sequences out of 15000+600000
+ 527547 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  77i,9n,77p,1222b,617s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{table.caption.50} has been referenced but does not 
-exist, replaced by a fixed one
-
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
-sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
-/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
-ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
-al/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
-/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texli
-ve/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive
-/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2
-023/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/202
-3/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/
-texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/te
-xmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2023/texm
-f-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2023/texmf-
-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (54 pages, 847
-5366 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/tex
+live/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texli
+ve/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive
+/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2
+023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/202
+3/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/
+texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2023/te
+xmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on /home/janci/PycharmProjects/LaTeX/out/main.pdf (53 pages, 845
+8864 bytes).
 PDF statistics:
- 674 PDF objects out of 1000 (max. 8388607)
- 537 compressed objects within 6 object streams
- 155 named destinations out of 1000 (max. 500000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 529 compressed objects within 6 object streams
+ 151 named destinations out of 1000 (max. 500000)
  447 words of extra memory for PDF output out of 10000 (max. 10000000)
 

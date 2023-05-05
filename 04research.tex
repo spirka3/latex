@@ -47,8 +47,6 @@ Druhou možnosťou je priložiť do softvéru referenčný obrázok, na ktorom j
     \label{img:lab}
 \end{figure}
 
-% tensorboard https://medium.com/mlearning-ai/remote-tensorboard-viewing-on-your-local-browser-b0dc5c5a634a     and     https://pytorch.org/docs/stable/tensorboard.html
-
 \section{Detektor reklám}
 
 Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a importovať do projektu priamo ako knižnica pre Python. Spolu s ňou sa do prostredia nainštalujú ďalšie dôležité knižnice ako matplotlib, opencv-python, scipy, torch, torchvision a iné. Trénovanie sa spúšťa pomocou jedného príkazu, kde argumenty špecifikujú hodnoty pre parametre. Potrebné je nastaviť tri parametre, ostatné majú prednastavené hodnoty podľa všeobecného odporúčania pre prvý tréning.
@@ -58,13 +56,6 @@ Narozdiel od predchádzajúcich YOLO verzií sa dá YOLOv8 nainštalovať a impo
     \item Počiatočné váhy: dajú sa stiahnuť z oficiálnej dokumentácie pre YOLOv8. Na výber je 5 modelov, ktoré sa líšia počtom parametrov, rýchlosťou a presnosťou.
     \item Počet epoch: určuje koľko krát prejdú všetky tréningové dáta sieťou. Po každej epoche sa vyhodnotí úspešnosť na validačnej sade.
 \end{enumerate}
-
-%\begin{figure}[ht]
-%    \centering
-%    \includegraphics[width=1\textwidth]{images/04/cmd.png}
-%    \caption{Ukážka .}
-%    \label{img:cmd}
-%\end{figure}
 
 Po natrénovaní sa dá spustiť testovanie a detekcia zo získaných váh. V prípade testovania, musia byť na vstupe okrem obrázkov aj pravdivé označenia, podľa ktorých sa vyhodnotí úspešnosť. V prípade detekcie postačí obrázok alebo video z ktorého chceme získať detekcie. V oboch prípadoch je najdôležitejším parametrom hodnota prahu pre detekciu. Táto hodnota určuje, aká vysoká musí byť pravdepodobnosť, aby sa detekcia považovala za úspešnú. Okrem toho sa dá nastaviť očakávaný výstup. Výstup môže byť textový súbor s detekciami, ale aj obrázky s vykresleným alebo vystrihnutým označením.
 
@@ -159,9 +150,6 @@ Na to aby sme vedeli predikovať významnosť reklamy, sme natrénovali Random F
 
 RFC na základe hodnôt vlastností v tréningovej sade náhodne vygeneruje viacero rozhodovacích stromov. Rozhodovací strom je tvorený z vrcholov, v ktorých sa nachádza podmienka, podľa ktorej sa zo vstupných údajov vytvorí cesta ku listu. Podmienka porovnáva hodnotu danej vlastnosti s navrhnutou prahovou hodnotou. Na konci vetvy je v liste uložená trieda, ktorá určuje významnosť reklamy.
 
-Pri testovaní sa významnosť reklamy predikuje tak, že sa vstupné údaje (vektor príznakov) vložia do rozhodovacieho stromu a podľa podmienok sa vypočíta hodnota významnosti. Významnosť reklamy je určená hodnotou triedy, ktorá sa vyskytovala najčastejšie zo všetkých rozhodovacích stromov.
-% todo nahradiť slovo vlasnosť za slovo príznak; skupina príznakov sa nazýva vektor príznakov
-
 \subsection{Extrahovanie príznakov}
 
 Každý reklama mala nanajvýš 8 sekvencíí. V niektorých videách nebol detekovaný úplný počet reklám, kvôli tomu že reklamu mohlo zakrývať auto alebo bola v takom uhle, že keď bol vodič vo vzdialenejšom jazdnom pruhu, tak ju nebolo vidno. Hodnota vlastnosti bola vypočítaná ako priemerná hodnota zo všetkých sekvencií reklamy.
@@ -182,18 +170,8 @@ Veľkosť sme vypočítali ako pomer reklamnej plochy a plochy snímky. Ak bola 
 
 \subsubsection{Mapa význačností}
 
-Na výpočet sme použili existujúcu neurónovu sieť HD2S \cite{hd2s}, určenú na získavanie máp význačností z videí. V tom čase mala najlepšie výsledky na viacerých testovacích databázach, ak nepočítame sieť ViNet \cite{jain2021vinet}, z ktorej sa nám nepodarilo získať žiadny výstup.
+Na získavanie máp význačností z videí sme použili existujúcu neurónovu sieť HD2S \cite{hd2s}. V tom čase mala najlepšie výsledky na viacerých testovacích databázach, ak nepočítame sieť ViNet \cite{jain2021vinet}, z ktorej sa nám nepodarilo získať žiadny výstup.
 
-Každú video nahrávku sme vložili celú na vstup a neurónová sieť nám vrátila mapu význačností pre každú snímku. Podobne ako v predchádzajúcich prípadoch, sme vypočítali hodnotu príznaku pre každú sekvenciu samostatne. V tomto prípade nás zaujímali dve veci. Priemerná hodnota význačnosti v celej snímke a priemerná hodnota význačnosti v oblasti ohraničenia reklamy.
+Celú video nahrávku sme vložili na vstup a neurónová sieť nám vrátila mapu význačností pre každú snímku. Podobne ako v predchádzajúcich prípadoch, sme vypočítali hodnotu príznaku pre každú sekvenciu samostatne. V tomto prípade nás zaujímali dve veci. Priemerná hodnota význačnosti v celej snímke, priemerná hodnota význačnosti v oblasti ohraničenia reklamy a počet snímok, v ktorých bola hodnota v oblasti vyššia ako v celej snímke.
 
-Veľká časť snímky mala nulové, prípadne iné nízke hodnoty, ktoré výrazne znižovali priemer. Preto sme priemer počítali len z významnejších oblastiach. Prahovú hodnotu sme nastavili na 100 z maximálnej 255. Nakoniec sme pre každú sekvenciu uložili ešte tretí príznak, ktorý bol pomer medzi priemernou hodnotou význačnosti v oblasti ohraničenia reklamy a priemernou hodnotou význačnosti v celej snímke.
-
-%TODO prečo.
-
-%\subsubsection{Entropia reklamy}
-%
-%TODO prečo.
-%
-%TODO ako.
-%
-%TODO kód.
+Veľká časť snímky mala nulové allebo iné nízke hodnoty, ktoré výrazne znižovali priemer. Preto sme priemer počítali len z takých bodov, ktoré mali hodnotu vyššiu ako 50 (maximum 255).

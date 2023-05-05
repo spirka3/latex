@@ -42,11 +42,11 @@
 \contentsline {section}{\numberline {4.5}Klasifikátor reklám}{33}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Extrahovanie príznakov}{33}{subsection.4.5.1}%
 \contentsline {subsubsection}{Počet snímok v sekvencii}{33}{section*.39}%
-\contentsline {subsubsection}{Lokalizácia reklamy}{34}{section*.40}%
+\contentsline {subsubsection}{Lokalizácia reklamy}{33}{section*.40}%
 \contentsline {subsubsection}{Veľkosť reklamy}{34}{section*.41}%
 \contentsline {subsubsection}{Mapa význačností}{34}{section*.42}%
 \contentsline {chapter}{\numberline {5}Vyhodnotenie výsledkov}{35}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Detekcia reklám}{35}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Sledovanie reklám}{37}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Sledovanie reklám}{38}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Významnosť reklám}{39}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Klasifikácia reklám}{40}{section.5.4}%
